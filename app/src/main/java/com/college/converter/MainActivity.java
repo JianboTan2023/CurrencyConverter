@@ -3,6 +3,7 @@ package com.college.converter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,9 +24,11 @@ import android.widget.TextView;
 */
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     static private final Float CONVERSION_RATE = 0.80F;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.w( TAG, "In onCreate() - Loading Widgets" );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
