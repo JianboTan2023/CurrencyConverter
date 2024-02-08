@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         if (!inputAmount.isEmpty()) {
             Float inputAmountDecimal = Float.valueOf(inputAmount);
 
