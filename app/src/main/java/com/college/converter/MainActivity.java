@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     static private final Float CONVERSION_RATE = 0.80F;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.w( TAG, "In onCreate() - Loading Widgets" );
+        Log.i( TAG, "In onCreate() - entry" );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
         buttonConvert.setOnClickListener( view ->  {
             convertCurrency(view);
         } );
+
+        Log.i( TAG, "In onCreate() - exit" );
     }
 
     public void convertCurrency(View view) {
-
+        Log.i( TAG, "In convertCurrency() - enter" );
         EditText inputView = findViewById(R.id.entryId);
 
         String inputAmount = inputView.getText().toString();
@@ -54,5 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
             resultView.setText( resultFloat + " Euros" );
         }
+        Log.i( TAG, "In convertCurrency() - exit" );
     }
 }
