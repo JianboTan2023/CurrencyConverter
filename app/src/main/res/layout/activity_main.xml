@@ -51,5 +51,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultId" />
+        app:layout_constraintTop_toBottomOf="@+id/resultId"
+        />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/convertResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="@string/result_euros"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/convertButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
