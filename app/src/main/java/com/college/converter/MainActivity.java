@@ -2,12 +2,10 @@ package com.college.converter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 
-import com.college.converter.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
     TODOs:
@@ -24,44 +22,42 @@ import com.college.converter.databinding.ActivityMainBinding;
 */
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     static private final Float CONVERSION_RATE = 0.80F;
-
-    private ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i( TAG, "In onCreate() - entry" );
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        binding.convertButton.setOnClickListener( view ->  {
-            convertCurrency(view);
-        } );
-
-        Log.i( TAG, "In onCreate() - exit" );
-    }
-
-    public void convertCurrency(View view) {
-
-        Log.i( TAG, "In convertCurrency() - enter" );
-        EditText inputView = findViewById(R.id.entryId);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
 
+        // Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.home_id);
 
-        String inputAmount = binding.entryId.getText().toString();
+        // Perform item selected listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
 
-
-
-        if (!inputAmount.isEmpty()) {
-            Float inputAmountDecimal = Float.valueOf(inputAmount);
-
-            Float resultFloat = inputAmountDecimal * CONVERSION_RATE;
-
-            binding.resultId.setText( resultFloat + " Euros" );
-        }
-        Log.i( TAG, "In convertCurrency() - exit" );
+            int item_id = item.getItemId();
+            if (item_id == R.id.home_id) {
+                return true;
+            }
+            else if (item_id == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), FirstActivity.class));
+                return true;
+            }
+            else if (item_id == R.id.second_id) {
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                return true;
+            }
+            else if (item_id == R.id.third_id) {
+                startActivity(new Intent(getApplicationContext(), Dictionary.class));
+                return true;
+            }
+            else if (item_id == R.id.forth_id) {
+                startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+                return true;
+            }
+            return false;
+        });
     }
 }
