@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
+import com.college.converter.dictionary.Dictionary;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             else if (item_id == R.id.third_id) {
-            //    startActivity(new Intent(getApplicationContext(), Dictionary.class));
+                startActivity(new Intent(getApplicationContext(), Dictionary.class));
                 return true;
             }
             else if (item_id == R.id.forth_id) {
