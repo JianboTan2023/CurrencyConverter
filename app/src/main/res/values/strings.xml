@@ -36,4 +36,9 @@
     <string name="dictionary_info_title">Dictionary API instructions</string>
     <!--Dictionary App end  Jianbo Tan -->
 
+    <!--Song App begin  Tammy Liu -->
+    <string name="song_search">Song name</string>
+
+    <!--Song App end  Tammy Liu -->
+
 </resources>

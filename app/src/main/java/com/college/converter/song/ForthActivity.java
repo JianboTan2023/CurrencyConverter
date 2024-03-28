@@ -1,4 +1,4 @@
-package com.college.converter;
+package com.college.converter.song;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.college.converter.FirstActivity;
+import com.college.converter.MainActivity;
+import com.college.converter.R;
+import com.college.converter.SecondActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ForthActivity extends AppCompatActivity {
@@ -13,7 +17,7 @@ public class ForthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forth);
+        setContentView(R.layout.activity_song);
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
