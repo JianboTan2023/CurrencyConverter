@@ -1,4 +1,6 @@
 <resources>
+
+    <!-- Common begin  -->
     <string name="app_name">CST2335 Final Project</string>
     <string name="first">Sunrise/Sunset</string>
     <string name="second">Recipe</string>
@@ -15,7 +17,7 @@
     <string name="deleted_message">You deleted record #</string>
     <string name="want_to_delete">Do you want to delete this term: </string>
     <string name="back">Back Home</string>
-
+    <!-- Common end  -->
 
 
     <!--Dictionary App begin  Jianbo Tan -->

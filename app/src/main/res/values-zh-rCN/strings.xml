@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CST2335 Final Project</string>
+    <string name="first">日出日落</string>
+    <string name="second">菜单</string>
+    <string name="third">字典</string>
+    <string name="forth">歌曲</string>
+    <string name="home">主页</string>
+    <string name="help">帮助</string>
+    <string name="search">搜索</string>
+    <string name="question">疑问：</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="error">错误</string>
+    <string name="undo">撤销</string>
+    <string name="deleted_message">删除的记录</string>
+    <string name="want_to_delete">你想删除这项吗</string>
+    <string name="back">返回主页</string>
+    <string name="word_search">单词</string>
+    <string name="word_search_hint">输入一个单词</string>
+    <string name="word_definition">单词定义</string>
+    <string name="word_save">保存</string>
+    <string name="word_read_history">单词历史</string>
+    <string name="word_history">历史</string>
+    <string name="record_goes_here">记录放这里</string>
+    <string name="error_word_msg">错误单词消息</string>
+    <string name="error_word_info">错误单词信息</string>
+    <string name="error_word_info">cuo</string>
+    <string name="dictionary_information">APP支持用户查询用户输入的单词的释义。 用户可以单击“保存”按钮将搜索词和定义保存在数据库中，然后单击“查看”按钮查看搜索词和定义的历史记录。</string>
+    <string name="dictionary_info_title">字典API指导</string>
+</resources>
