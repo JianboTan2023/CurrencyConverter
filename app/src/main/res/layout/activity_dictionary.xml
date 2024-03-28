@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dictionary">
+    tools:context=".dictionary.Dictionary">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/word"
+            android:text="@string/word_search"
             android:textSize="20sp" />
 
         <EditText
@@ -40,7 +40,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
-            android:hint="@string/hint"
+            android:hint="@string/word_search_hint"
             android:inputType="text"
             android:textSize="20sp" />
 
@@ -50,11 +50,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/definition"
+            android:text="@string/word_definition"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView_def"
+            android:id="@+id/recycle_view_definitions"
             android:layout_width="210dp"
             android:layout_height="200dp"
             android:layout_marginLeft="20dp"
@@ -76,7 +76,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="@string/save"
+            android:text="@string/word_save"
             android:textSize="20sp" />
 
         <Button
@@ -85,7 +85,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="@string/read"
+            android:text="@string/word_read_history"
             android:textSize="20sp" />
 
         </LinearLayout>
@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_margin="20dp"
-                android:text="@string/history"
+                android:text="@string/word_history"
                 android:textSize="20sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar" />

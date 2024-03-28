@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.college.converter.dictionary.Dictionary;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SecondActivity extends AppCompatActivity {

@@ -23,7 +23,7 @@
             android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Dictionary"
+            android:name=".dictionary.Dictionary"
             android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
