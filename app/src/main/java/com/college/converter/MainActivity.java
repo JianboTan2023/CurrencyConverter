@@ -1,11 +1,17 @@
 package com.college.converter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 
+import com.college.converter.dictionary.DictionaryActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
@@ -24,41 +30,80 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     static private final Float CONVERSION_RATE = 0.80F;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        final int item_id = item.getItemId();
+        if (item_id == R.id.home_id) {
+            return true;
+        }
+        else if (item_id == R.id.first_id) {
+            startActivity(new Intent(getApplicationContext(), FirstActivity.class));
+            return true;
+        }
+        else if (item_id == R.id.second_id) {
+            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+            return true;
+        }
+        else if (item_id == R.id.third_id) {
+            startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+            return true;
+        }
+        else if (item_id == R.id.forth_id) {
+            startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+            return true;
+        }
+        return false;
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
+     //   BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+// set Toolbar
+        setSupportActionBar(findViewById(R.id.mainToolbar));
 
         // Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.home_id);
+        //bottomNavigationView.setSelectedItemId(R.id.home_id);
 
         // Perform item selected listener
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-
-            int item_id = item.getItemId();
-            if (item_id == R.id.home_id) {
-                return true;
-            }
-            else if (item_id == R.id.first_id) {
-                startActivity(new Intent(getApplicationContext(), FirstActivity.class));
-                return true;
-            }
-            else if (item_id == R.id.second_id) {
-                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
-                return true;
-            }
-            else if (item_id == R.id.third_id) {
-            //    startActivity(new Intent(getApplicationContext(), Dictionary.class));
-                return true;
-            }
-            else if (item_id == R.id.forth_id) {
-                startActivity(new Intent(getApplicationContext(), ForthActivity.class));
-                return true;
-            }
-            return false;
-        });
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//
+//            int item_id = item.getItemId();
+//            if (item_id == R.id.home_id) {
+//                return true;
+//            }
+//            else if (item_id == R.id.first_id) {
+//                startActivity(new Intent(getApplicationContext(), FirstActivity.class));
+//                return true;
+//            }
+//            else if (item_id == R.id.second_id) {
+//                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+//                return true;
+//            }
+//            else if (item_id == R.id.third_id) {
+//                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+//                return true;
+//            }
+//            else if (item_id == R.id.forth_id) {
+//                startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+//                return true;
+//            }
+//            return false;
+//        });
     }
 }
