@@ -21,13 +21,14 @@
 
 
     <!--Dictionary App begin  Jianbo Tan -->
+    <string name="word_activity_name">My Dictionary</string>
     <string name="word_search">Word</string>
     <string name="word_search_hint">Enter a word</string>
     <string name="word_definition">Definition</string>
     <string name="word_save">Save</string>
-    <string name="word_read_history">View</string>
+    <string name="word_read_history">History</string>
     <string name="word_history">History</string>
-    <string name="word_database_name" translatable="false">database-dictionary</string>
+    <string name="word_database_name" translatable="false">myDictionary</string>
     <string name="record_goes_here">Record goes here</string>
     <string name="word_sharedPreferences_name" translatable="false">MyDictionary</string>
     <string name="error_word_msg">Please enter a valid word.</string>

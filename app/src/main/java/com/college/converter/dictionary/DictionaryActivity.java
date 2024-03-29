@@ -44,13 +44,14 @@ import com.android.volley.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Dictionary extends AppCompatActivity {
+public class DictionaryActivity extends AppCompatActivity {
     ActivityDictionaryBinding binding;
-    ArrayList<DictionaryRecord>  records;
-    ArrayList<String> definitions =new ArrayList<>();
+    protected String searchWord;
+    ArrayList<WordRecord> dictRecords;
+    ArrayList<String> wordDefinitions =new ArrayList<>();
     DictionaryDAO dictionaryDAO;
-    RecyclerView.Adapter  myAdapter;
-    RecyclerView.Adapter  myAdapter2;
+    RecyclerView.Adapter myWordAdapter;
+    RecyclerView.Adapter myDefinitionAdapter;
     SharedPreferences prefs;
     String result;
     String totalResult;
@@ -58,7 +59,7 @@ public class Dictionary extends AppCompatActivity {
     private final  String URL_REQUEST = "https://api.dictionaryapi.dev/api/v2/entries/en/";
     private final String front= "{\"words\":";
     private final String back= "}";
-    protected String myWord;
+
     protected RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +76,13 @@ public class Dictionary extends AppCompatActivity {
 
         queue= Volley.newRequestQueue(this);
 
-        if (records == null) {
-            records = new ArrayList<>();
+        if (dictRecords == null) {
+            dictRecords = new ArrayList<>();
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(() ->
             {
-                records.addAll( dictionaryDAO.getAllRecords() ); //get the data from database
-                runOnUiThread( () ->  binding.recycleView.setAdapter( myAdapter )); //load the RecyclerView
+                dictRecords.addAll( dictionaryDAO.getAllRecords() ); //get the data from database
+                runOnUiThread( () ->  binding.recycleWordHistory.setAdapter(myWordAdapter)); //load the RecyclerView
             });
         }
 
@@ -89,7 +90,7 @@ public class Dictionary extends AppCompatActivity {
         String previous = prefs.getString(getString(string.word_search), "");
         binding.editTextWord.setText(previous);
 
-        binding.recycleView.setAdapter(myAdapter=new RecyclerView.Adapter<MyRowHolder>() {
+        binding.recycleWordHistory.setAdapter(myWordAdapter =new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
             @Override
             public MyRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -101,17 +102,17 @@ public class Dictionary extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
-                DictionaryRecord obj = records.get(position);
+                WordRecord obj = dictRecords.get(position);
                 holder.wordText.setText(obj.getWord());
             }
 
             @Override
             public int getItemCount() {
-                return records.size();
+                return dictRecords.size();
             }
         });
 
-        binding.recycleViewDefinitions.setAdapter(myAdapter2=new RecyclerView.Adapter<MyRowHolder2>() {
+        binding.recycleViewDefinitions.setAdapter(myDefinitionAdapter =new RecyclerView.Adapter<MyRowHolder2>() {
             @NonNull
             @Override
             public MyRowHolder2 onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -123,27 +124,27 @@ public class Dictionary extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder2 holder, int position) {
-                String obj = definitions.get(position);
+                String obj = wordDefinitions.get(position);
                 holder.resultText.setText(obj);
             }
 
             @Override
             public int getItemCount() {
-                return definitions.size();
+                return wordDefinitions.size();
             }
         });
 
         binding.recycleViewDefinitions.setLayoutManager(new LinearLayoutManager(this));
 
         binding.buttonSearch.setOnClickListener(click -> {
-            myWord=binding.editTextWord.getText().toString();
+            searchWord =binding.editTextWord.getText().toString();
             try{
-              if(!myWord.isEmpty()){
+              if(!searchWord.isEmpty()){
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString(getString(string.word_search), myWord);
+                editor.putString(getString(string.word_search), searchWord);
                 editor.apply();
 
-                String url= URL_REQUEST + URLEncoder.encode(myWord,"UTF-8");
+                String url= URL_REQUEST + URLEncoder.encode(searchWord,"UTF-8");
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                         (response) -> {
                             String jsonString = front + response + back;
@@ -192,8 +193,8 @@ public class Dictionary extends AppCompatActivity {
         });
 
         binding.buttonSave.setOnClickListener(click -> {
-            DictionaryRecord DR=new DictionaryRecord(myWord, totalResult);
-            records.add(DR);
+            WordRecord DR=new WordRecord(searchWord, totalResult);
+            dictRecords.add(DR);
             new Thread(() -> {dictionaryDAO.insertRecord(DR);}).start();
  //           myAdapter.notifyItemInserted(records.size() - 1);
             binding.editTextWord.setText("");
@@ -201,7 +202,7 @@ public class Dictionary extends AppCompatActivity {
         });
 
         binding.buttonRead.setOnClickListener(click -> {
-            binding.recycleView.setLayoutManager(new LinearLayoutManager(this));
+            binding.recycleWordHistory.setLayoutManager(new LinearLayoutManager(this));
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -235,7 +236,7 @@ public class Dictionary extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.my_menu, menu);
+        getMenuInflater().inflate(R.menu.dictionary_menu, menu);
         return true;
     }
     @Override
@@ -243,7 +244,7 @@ public class Dictionary extends AppCompatActivity {
 
         int id = item.getItemId();
         if ( id ==  R.id.help) {
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(Dictionary.this);
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(DictionaryActivity.this);
             builder1.setMessage(getString(string.dictionary_information));
             builder1.setTitle(getString(string.dictionary_info_title));
 
@@ -263,42 +264,42 @@ public class Dictionary extends AppCompatActivity {
             super(itemView);
             itemView.setOnClickListener(click -> {
                 int position = getAbsoluteAdapterPosition();
-                String word = records.get(position).getWord();
+                String word = dictRecords.get(position).getWord();
                 binding.editTextWord.setText(word);
-                String meaning = records.get(position).getMeaning();
+                String meaning = dictRecords.get(position).getDefinitions();
                 showMeanings(meaning);
 
               
             });
             itemView.setOnLongClickListener(click -> {
                 int position = getAbsoluteAdapterPosition();
-                AlertDialog.Builder builder = new AlertDialog.Builder(Dictionary.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(DictionaryActivity.this);
                 builder.setMessage(getString(string.want_to_delete) + wordText.getText());
                 builder.setTitle(getString(string.question));
                 builder.setPositiveButton(getString(string.yes), (dialog, cl) -> {
-                    DictionaryRecord removedRecord=records.get(position);
+                    WordRecord removedRecord= dictRecords.get(position);
                     new Thread(() -> {dictionaryDAO.deleteRecord(removedRecord);}).start();
-                    records.remove(position);
-                    myAdapter.notifyItemRemoved(position);
+                    dictRecords.remove(position);
+                    myWordAdapter.notifyItemRemoved(position);
 
                     String editText= binding.editTextWord.getText().toString();
                     String historyWord= wordText.getText().toString();
                     if(editText.equals(historyWord)){
                         binding.editTextWord.setText("");
-                        definitions.clear();
-                        myAdapter2.notifyDataSetChanged();
+                        wordDefinitions.clear();
+                        myDefinitionAdapter.notifyDataSetChanged();
                     }
                     
                     Snackbar.make(wordText,getString(string.deleted_message)+position, Snackbar.LENGTH_LONG)
                             .setAction(getString(string.undo), clk->{
                                 new Thread(() -> {dictionaryDAO.insertRecord(removedRecord);}).start();
-                                records.add(position,removedRecord);
-                                myAdapter.notifyItemInserted(position);
+                                dictRecords.add(position,removedRecord);
+                                myWordAdapter.notifyItemInserted(position);
 
 
                                 if(editText.equals(historyWord)){
                                     binding.editTextWord.setText(editText);
-                                    showMeanings(removedRecord.getMeaning());
+                                    showMeanings(removedRecord.getDefinitions());
                                 }
 
                             }).show();
@@ -318,18 +319,18 @@ public class Dictionary extends AppCompatActivity {
      */
     private void showMeanings(String meaning) {
         //clear all item in recycleViewDef
-        definitions.clear();
-        myAdapter2.notifyDataSetChanged();
+        wordDefinitions.clear();
+        myDefinitionAdapter.notifyDataSetChanged();
 
         // update recycleViewDef with current meaning
 
         String[] definitions = meaning.split("\n");
 
         for (String s : definitions) {
-            this.definitions.add(s);
+            this.wordDefinitions.add(s);
 
         }
-        myAdapter2.notifyDataSetChanged();
+        myDefinitionAdapter.notifyDataSetChanged();
     }
 
     class MyRowHolder2 extends RecyclerView.ViewHolder {
@@ -339,4 +340,20 @@ public class Dictionary extends AppCompatActivity {
             resultText = itemView.findViewById(R.id.record);
         }
     }
+
+    /**
+     * Called when activity start-up is complete (after onStart() and onRestoreInstanceState(Bundle) have been called).
+     * refer to: https://blog.csdn.net/ylbf_dev/article/details/80125016
+     * @param savedInstanceState
+     */
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        //Toolbar title and subtitle
+        if (binding.toolbar != null) {
+            binding.toolbar.setTitle(R.string.word_activity_name);
+            binding.toolbar.setSubtitle(string.app_name);
+        }
+    }
+
 }

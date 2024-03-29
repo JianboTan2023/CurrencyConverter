@@ -5,23 +5,23 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class DictionaryRecord {
+public class WordRecord {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     public int id;
 
     @ColumnInfo(name="word")
     protected String word;
-    @ColumnInfo(name="meaning")
-    protected String meaning;
+    @ColumnInfo(name="definitions")
+    protected String definitions;
 
 
-    public DictionaryRecord(String w, String m){
+    public WordRecord(String w, String m){
         word=w;
-        meaning=m;
+        definitions =m;
     }
 
-    public DictionaryRecord(){
+    public WordRecord(){
 
     }
 
@@ -29,7 +29,7 @@ public class DictionaryRecord {
         return word;
     }
 
-    public String getMeaning() {
-        return meaning;
+    public String getDefinitions() {
+        return definitions;
     }
 }
