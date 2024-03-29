@@ -21,13 +21,14 @@
 
 
     <!--Dictionary App begin  Jianbo Tan -->
+    <string name="word_activity_name">My Dictionary</string>
     <string name="word_search">Word</string>
     <string name="word_search_hint">Enter a word</string>
     <string name="word_definition">Definition</string>
     <string name="word_save">Save</string>
-    <string name="word_read_history">View</string>
+    <string name="word_read_history">History</string>
     <string name="word_history">History</string>
-    <string name="word_database_name" translatable="false">database-dictionary</string>
+    <string name="word_database_name" translatable="false">myDictionary</string>
     <string name="record_goes_here">Record goes here</string>
     <string name="word_sharedPreferences_name" translatable="false">MyDictionary</string>
     <string name="error_word_msg">Please enter a valid word.</string>
@@ -36,4 +37,17 @@
     <string name="dictionary_info_title">Dictionary API instructions</string>
     <!--Dictionary App end  Jianbo Tan -->
 
+    <!--SunLookup App begin  Yue Shang -->
+    <string name="Latitude">Latitude</string>
+    <string name="Enter_number" >Enter number</string>
+    <string name="Result" >Result</string>
+    <string name="yueword_save" >Save</string>
+    <string name="word_favorite" >Favorite</string>
+    <string name="Longitude">Longitude</string>
+    <string name="yueword_history">History</string>
+    <string name="Lat____Long" translatable="false">Lat         Long</string>
+    <string name="sunlookup_information">The APP looks up sunrise and sunset times based on the latitude and longitude entered by the user.</string>
+    <string name="sl_ifo_titlr">Sun Lookup</string>
+
+    <!--SunLookup App end  Yue Shang -->
 </resources>
