@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
-import com.college.converter.song.ForthActivity;
+import com.college.converter.song.ui.SearchArtistActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             else if (item_id == R.id.forth_id) {
-                startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
                 return true;
             }
             return false;

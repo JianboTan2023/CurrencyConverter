@@ -5,7 +5,7 @@
     <item android:id="@+id/help"
 
         android:title="@string/help"
-        android:icon="@drawable/help"
+        android:icon="@drawable/ds_help"
         app:showAsAction ="always"
         />
 
@@ -13,7 +13,7 @@
     <item android:id="@+id/home"
 
         android:title="@string/home"
-        android:icon="@drawable/homeicon"
+        android:icon="@drawable/ds_homeicon"
         app:showAsAction ="always"
 
         />
