@@ -1,12 +1,18 @@
 package com.college.converter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 
-import com.college.converter.song.ForthActivity;
+import com.college.converter.song.ui.SearchArtistActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
@@ -56,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             else if (item_id == R.id.forth_id) {
-                startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
                 return true;
             }
             return false;
