@@ -44,7 +44,6 @@
     <string name="ds_song_title">曲目</string>
     <string name="ds_textview">文本视图</string>
     <string name="ds_duration">时长</string>
-    <string name="ds_duration">shi</string>
     <string name="ds_rank">排名</string>
     <string name="ds_title">主题</string>
     <string name="ds_rank2">时长2</string>
@@ -52,4 +51,5 @@
     <string name="ds_name">名字</string>
     <string name="ds_album2">专辑2</string>
     <string name="ds_fans2">粉丝2</string>
+    <string name="ds_question">问题</string>
 </resources>

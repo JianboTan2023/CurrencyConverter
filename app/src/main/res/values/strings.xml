@@ -45,7 +45,7 @@
     <string name="deezer_help">Help</string>
     <string name="deezer_home">home</string>
     <string name="deezer_search">Search</string>
-    <string name="">Question:</string>
+    <string name="ds_question">Question:</string>
     <string name="ds_no">No</string>
     <string name="ds_yes">Yes</string>
     <string name="ds_you_deleted_song">You deleted song #</string>
