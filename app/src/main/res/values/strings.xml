@@ -37,4 +37,20 @@
     <string name="dictionary_info_title">Dictionary API instructions</string>
     <!--Dictionary App end  Jianbo Tan -->
 
+    <!--SunLookup App begin  Yue Shang -->
+    <string name="Latitude">Latitude</string>
+    <string name="Enter_number" >Enter number</string>
+    <string name="Result" >Result</string>
+    <string name="yueword_save" >Save</string>
+    <string name="word_favorite" >Favorite</string>
+    <string name="Longitude">Longitude</string>
+    <string name="yueword_history">History</string>
+    <string name="Lat____Long" translatable="false">Lat           Long</string>
+    <string name="sunlookup_information">The APP looks up sunrise and sunset times based on the latitude and longitude entered by the user.</string>
+    <string name="sl_ifo_titlr">Sun Lookup</string>
+    <string name="lookup">Lookup</string>
+    <string name="time_goes_here">Time goes here</string>
+    <string name="message_goes_here">Message goes here</string>
+
+    <!--SunLookup App end  Yue Shang -->
 </resources>

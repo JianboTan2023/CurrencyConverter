@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 
 import com.college.converter.dictionary.DictionaryActivity;
+import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (item_id == R.id.first_id) {
-            startActivity(new Intent(getApplicationContext(), FirstActivity.class));
+            startActivity(new Intent(getApplicationContext(), SunActivity.class));
             return true;
         }
         else if (item_id == R.id.second_id) {
