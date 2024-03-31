@@ -51,8 +51,9 @@
     <!--Dictionary App end  Jianbo Tan -->
 
 
+
     <!--recipe string-->
-    <resources>
+
 
         <string name="title_activity_recipt_main">ReciptMain</string>
         <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -105,7 +106,38 @@
         <string name="desserts">desserts</string>
         <string name="fingerfood">fingerfood</string>
 
-    </resources>
+
     <!---recipe string end-->
+
+    <!--Song App begin  Tammy Liu -->
+    <string name="song_search">Song name</string>
+    <string name="deezer_help_info">"Steps:\n\n" +
+                            "1. Type artist name in the editText.\n +
+                            "2. Click on the artist you want.\n" +
+                            "3. Choose a song to see the details.\n" +
+                            "4. Add this song to your favorite.\n" +
+                            "5. Click on the home button to see your song list."</string>
+    <string name="deezer_how_to_use_the_interface">How to use the Interface?</string>
+    <string name="deezer_do_you_want_to_delete_the_song">"Do you want to delete the song: "</string>
+    <!--Song App end  Tammy Liu -->
+
+
+    <!--SunLookup App begin  Yue Shang -->
+    <string name="Latitude">Latitude</string>
+    <string name="Enter_number" >Enter number</string>
+    <string name="Result" >Result</string>
+    <string name="yueword_save" >Save</string>
+    <string name="word_favorite" >Favorite</string>
+    <string name="Longitude">Longitude</string>
+    <string name="yueword_history">History</string>
+    <string name="Lat____Long" translatable="false">Lat           Long</string>
+    <string name="sunlookup_information">The APP looks up sunrise and sunset times based on the latitude and longitude entered by the user.</string>
+    <string name="sl_ifo_titlr">Sun Lookup</string>
+    <string name="lookup">Lookup</string>
+    <string name="time_goes_here">Time goes here</string>
+    <string name="message_goes_here">Message goes here</string>
+
+    <!--SunLookup App end  Yue Shang -->
+
 
 </resources>
