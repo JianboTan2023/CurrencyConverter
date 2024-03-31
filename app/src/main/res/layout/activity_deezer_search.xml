@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dictionary.Dictionary">
+    tools:context=".song.ui.SearchArtistActivity">
 
 
 
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Search"
+        android:text="@string/deezer_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:ems="10"
-        android:hint="Please type artist name "
+        android:hint="@string/ds_please_type_artist_name"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/searchButton"
         app:layout_constraintStart_toEndOf="@+id/searchButton" />

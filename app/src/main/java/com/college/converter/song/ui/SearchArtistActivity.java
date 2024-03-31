@@ -73,7 +73,7 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
             editor.apply();
             nameInput.setText("");
             sendRequest(name);
-            Toast.makeText(this, "Acquiring Result......", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.ds_acquiring_result, Toast.LENGTH_SHORT).show();
             // Set the click listener
             adapter.setOnItemClickListener(this);
         });
@@ -99,13 +99,8 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
         // Menu help
         if (item.getItemId() == R.id.help) {
             AlertDialog.Builder builder = new AlertDialog.Builder( SearchArtistActivity.this );
-            builder.setMessage("Steps:\n\n" +
-                            "1. Type artist name in the editText.\n" +
-                            "2. Click on the artist you want.\n" +
-                            "3. Choose a song to see the details.\n" +
-                            "4. Add this song to your favorite.\n" +
-                            "5. Click on the home button to see your song list.")
-                    .setTitle("How to use the Interface?")
+            builder.setMessage(R.string.deezer_help_info)
+                    .setTitle(R.string.deezer_how_to_use_the_interface)
                     .setPositiveButton("Ok", (dialog, which) -> {
                     })
                     .create().show();

@@ -38,14 +38,31 @@
 
     <!--Song App begin  Tammy Liu -->
     <string name="song_search">Song name</string>
-    <string name="deezer_help_info">"Steps:\n\n" +
-                            "1. Type artist name in the editText.\n +
-                            "2. Click on the artist you want.\n" +
-                            "3. Choose a song to see the details.\n" +
-                            "4. Add this song to your favorite.\n" +
-                            "5. Click on the home button to see your song list."</string>
+    <string name="deezer_help_info">"Steps:
+                            "Enter artist name, click to select, view song details, add to favorites, and access your list with a home button."</string>
     <string name="deezer_how_to_use_the_interface">How to use the Interface?</string>
     <string name="deezer_do_you_want_to_delete_the_song">"Do you want to delete the song: "</string>
+    <string name="deezer_help">Help</string>
+    <string name="deezer_home">home</string>
+    <string name="deezer_search">Search</string>
+    <string name="">Question:</string>
+    <string name="ds_no">No</string>
+    <string name="ds_yes">Yes</string>
+    <string name="ds_you_deleted_song">You deleted song #</string>
+    <string name="ds_undo">Undo</string>
+    <string name="ds_acquiring_result">Acquiring Result......</string>
+    <string name="ds_please_type_artist_name">Please type artist name</string>
+    <string name="ds_album">Album:</string>
+    <string name="ds_song_title">Song Title:</string>
+    <string name="ds_textview">TextView</string>
+    <string name="ds_duration">Duration:</string>
+    <string name="ds_rank">Rank</string>
+    <string name="ds_title">Title</string>
+    <string name="ds_rank2">Rank:</string>
+    <string name="ds_fans">Fans</string>
+    <string name="ds_name">Name</string>
+    <string name="ds_album2">Album:</string>
+    <string name="ds_fans2">Fans:</string>
     <!--Song App end  Tammy Liu -->
 
 </resources>
