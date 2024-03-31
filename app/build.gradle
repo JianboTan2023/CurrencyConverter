@@ -38,6 +38,7 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.+")
+    implementation 'org.testng:testng:6.9.6'
     // implementation(fileTree(mapOf("dir" to "C:\\Users\\46297\\AppData\\Local\\Android\\Sdk\\platforms\\android-34", "include" to listOf("*.aar", "*.jar"), "exclude" to listOf(""))))
     testImplementation("junit:junit:4.13.2")
     implementation("com.android.volley:volley:1.2.1")
@@ -45,4 +46,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("androidx.room:room-runtime:2.6.1")
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
+    testImplementation 'org.mockito:mockito-core:x.y.z'
 }
