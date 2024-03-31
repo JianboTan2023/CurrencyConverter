@@ -1,11 +1,16 @@
 package com.college.converter.song.ui;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,6 +37,10 @@ public class TrackListActivity extends AppCompatActivity implements Track_Adapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deezer_tracklist);
+
+        Toolbar toolbar = findViewById(R.id.deezerToolBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Track List");
 
         RecyclerView recyclerView = findViewById(R.id.trackRecyclerView);
         adapter = new Track_Adapter(this, tracks);
@@ -60,6 +69,38 @@ public class TrackListActivity extends AppCompatActivity implements Track_Adapte
         nextPage.putExtra("id", track.getId());
         nextPage.putExtra("rank", track.getRank());
         startActivity(nextPage);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.deezer_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Menu help
+        if (item.getItemId() == R.id.help) {
+            AlertDialog.Builder builder = new AlertDialog.Builder( TrackListActivity.this );
+            builder.setMessage("Steps:\n\n" +
+                            "1. Type artist name in the editText.\n" +
+                            "2. Click on the artist you want.\n" +
+                            "3. Choose a song to see the details.\n" +
+                            "4. Add this song to your favorite.\n" +
+                            "5. Click on the home button to see your song list.")
+                    .setTitle("How to use the Interface?")
+                    .setPositiveButton("Ok", (dialog, which) -> {
+                    })
+                    .create().show();
+            // Menu item 2 Help
+        } else if (item.getItemId() == R.id.homepage) {
+            Intent nextPage = new Intent(TrackListActivity.this, FavoriteSongActivity.class);
+            startActivity(nextPage);
+        } else if (item.getItemId() == R.id.search) {
+            Intent nextPage = new Intent(TrackListActivity.this, SearchArtistActivity.class);
+            startActivity(nextPage);
+        }
+        else {
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void sendRequest(String arg) {
@@ -108,5 +149,4 @@ public class TrackListActivity extends AppCompatActivity implements Track_Adapte
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
-
 }

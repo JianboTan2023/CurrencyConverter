@@ -14,17 +14,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/deezerToolBar" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="#FFF6DA"
+        android:id="@+id/deezerToolBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/deezer_toolbar"
+        android:elevation="10dp"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Favorite Songs"
+        app:titleTextColor="#FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

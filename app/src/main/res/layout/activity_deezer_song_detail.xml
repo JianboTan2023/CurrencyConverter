@@ -131,4 +131,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/deezerToolBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/deezer_toolbar"
+        android:elevation="10dp"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Song Details"
+        app:titleTextColor="#FFFFFF" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

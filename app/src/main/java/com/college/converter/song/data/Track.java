@@ -27,13 +27,15 @@ public class Track {
     public Track() {
     }
 
-    public Track(@NonNull String id, String title_short, String duration, String picture_medium, String album, String rank) {
+    public Track(@NonNull String id, String title_short, String duration, String picture_medium, String picture_big, String album, String rank) {
         this.id = id;
         this.title_short = title_short;
         this.duration = duration;
         this.picture_medium = picture_medium;
+        this.picture_big = picture_big;
         this.album = album;
         this.rank = rank;
+
     }
 
     public String getId() {

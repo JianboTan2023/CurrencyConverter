@@ -16,12 +16,15 @@
         tools:targetApi="31">
         <activity
             android:name=".song.ui.TrackListActivity"
+            android:theme="@style/Theme.Deezer"
             android:exported="false" />
         <activity
             android:name=".song.ui.FavoriteSongActivity"
+            android:theme="@style/Theme.Deezer"
             android:exported="false" />
         <activity
             android:name=".song.ui.TrackDetailsActivity"
+            android:theme="@style/Theme.Deezer"
             android:exported="false" />
         <activity
             android:name=".FirstActivity"
@@ -37,6 +40,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".song.ui.SearchArtistActivity"
+            android:theme="@style/Theme.Deezer"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
