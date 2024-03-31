@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.college.converter.recipe.data.Recipe;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

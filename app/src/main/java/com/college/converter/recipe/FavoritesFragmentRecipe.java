@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.college.converter.recipe.data.Recipe;
+
 import java.util.List;
 import java.util.Objects;
 

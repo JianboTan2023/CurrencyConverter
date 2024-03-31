@@ -1,20 +1,27 @@
-package com.college.converter.recipe;
+package com.college.converter.recipe.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+
+import com.college.converter.recipe.data.RecipeID;
+
+import java.util.ArrayList;
 
 public class Recipe_ID_Adapter {
 
     public class Recipe_ID_Adapter extends RecyclerView.Adapter<Recipe_ID_Adapter.RecipeIdViewHolder> {
 
         private Context context;
-        private ArrayList<RecipeId> RecipeId;
+        private ArrayList<RecipeID> recipeId;
         private static OnItemClickListener listener;
 
-        public Recipe_ID_Adapter(Context context, ArrayList<RecipeId> RecipeId) {
+        public Recipe_ID_Adapter(Context context, ArrayList<RecipeID> recipeId) {
             this.context = context;
-            this.RecipeId = RecipeId;
+            this.recipeId = recipeId;
         }
 
         @NonNull
@@ -30,7 +37,7 @@ public class Recipe_ID_Adapter {
         @Override
         public void onBindViewHolder(@NonNull Recipe_ID_Adapter.RecipeViewRowHolder holder, int position) {
 
-            RecipeId recipeId = RecipeId.get(position);
+            recipeId recipeId = recipeId.get(position);
             holder.title.setText(recipeId.getTitle_short());
             holder.instruction.setText(recipeId.getInstruction());
             holder.bind(recipeId);
@@ -53,15 +60,14 @@ public class Recipe_ID_Adapter {
         public static class RecipeIdViewHolder extends RecyclerView.ViewHolder{
 
             ImageView imageView;
-            TextView title, rank, duration;
+            TextView title,instruction;
 
             public RecipeIdViewHolder(@NonNull View itemView) {
                 super(itemView);
 
                 imageView = itemView.findViewById(R.id.imageView);
-                title     = itemView.findViewById(R.id.songTitle);
-                rank      = itemView.findViewById(R.id.rank);
-                duration  = itemView.findViewById(R.id.duration);
+                title     = itemView.findViewById(R.id.recipeTitle);
+                instruction = itemView.findViewById(R.id.instruction);
 
                 // Set click listener
                 itemView.setOnClickListener(new View.OnClickListener() {
