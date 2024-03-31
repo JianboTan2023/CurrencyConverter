@@ -14,12 +14,12 @@ public class SunlookupData {
     @ColumnInfo(name="longitude")
     protected String longitude;
 
-    public SunlookupData(String lat, String longitude) {
-        this.latitude = lat;
+    public SunlookupData(String latitude, String longitude) {
+        this.latitude = latitude;
         this.longitude =longitude;
     }
 
-    public String getLat()
+    public String getLatitude()
     {
         return this.latitude;
     }
