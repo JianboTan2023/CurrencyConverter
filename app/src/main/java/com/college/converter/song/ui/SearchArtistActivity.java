@@ -26,12 +26,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.college.converter.MainActivity;
 import com.college.converter.R;
 
+import com.college.converter.SecondActivity;
+import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.song.adapter.Artist_Adapter;
 import com.college.converter.song.data.Artist;
 import com.college.converter.song.data.Track;
 import com.college.converter.song.data.TrackDAO;
+import com.college.converter.sunlookup.SunActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import org.json.JSONArray;
@@ -76,6 +81,35 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
             Toast.makeText(this, "Acquiring Result......", Toast.LENGTH_SHORT).show();
             // Set the click listener
             adapter.setOnItemClickListener(this);
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.forth_id);
+
+        // Perform item selected listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int item_id = item.getItemId();
+            if ( item_id == R.id.home_id ) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+            else if (item_id == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.second_id ) {
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.third_id ) {
+                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.forth_id ) {
+
+                return true;
+            }
+            return false;
         });
     }
 
