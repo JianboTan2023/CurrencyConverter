@@ -27,4 +27,9 @@
     <string name="error_word_info">错误单词信息</string>
     <string name="dictionary_information">APP支持用户查询用户输入的单词的释义。 用户可以单击“保存”按钮将搜索词和定义保存在数据库中，然后单击“查看”按钮查看搜索词和定义的历史记录。</string>
     <string name="dictionary_info_title">字典API指导</string>
+    <string name="Latitude">纬度</string>
+    <string name="Enter_number">输入数字</string>
+    <string name="Longitude">经度</string>
+    <string name="Result">结果</string>
+    <string name="word_favorite">喜好</string>
 </resources>

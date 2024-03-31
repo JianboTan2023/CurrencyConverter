@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Common begin  -->
     <string name="app_name">CST2335 Final Project</string>
@@ -36,4 +36,18 @@
     <string name="dictionary_info_title">Dictionary API instructions</string>
     <!--Dictionary App end  Jianbo Tan -->
 
+    <!--SunLookup App begin  Yue Shang -->
+    <string name="Latitude">Latitude</string>
+    <string name="Enter_number" tools:ignore="DuplicateDefinition">Enter number</string>
+    <string name="Result" tools:ignore="DuplicateDefinition">Result</string>
+    <string name="word_save" tools:ignore="DuplicateDefinition">Save</string>
+    <string name="word_read_history" tools:ignore="DuplicateDefinition">View</string>
+    <string name="word_favorite" tools:ignore="DuplicateDefinition">Favorite</string>
+    <string name="Longitude">Longitude</string>
+
+    <string name="Lat____Long" translatable="false">Lat         Long</string>
+
+
+
+    <!--SunLookup App end  Yue Shang -->
 </resources>
