@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+
+        android:id="@+id/recipe_help"
+        android:icon="@drawable/help"
+        android:title="@string/help"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/homepage"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_searchbtn_24"
+        android:title="Search"
+        app:showAsAction="always" />
+
+</menu>

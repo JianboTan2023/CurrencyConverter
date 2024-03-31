@@ -35,8 +35,79 @@
     <string name="error_word_info">"Error encoding word"</string>
     <string name="dictionary_information">The APP support user to look up the definitions of word which is entered by the user. User can click save button to save the search term and definitions in the database and click view button to see the history of the search term and definitions.</string>
     <string name="dictionary_info_title">Dictionary API instructions</string>
+    <string name="fabRecipe">Your favorite recipe</string>
+    <string name="recipe_delete_warning">Are you sure you want to delte the recipe?</string>
+    <string name="recipe_instruction">Instruction: \\n1. the saved recipe will be displayed in recycler view\\n2. click search button to do recipe search\\n3. save button to save recipe as favourite\\n4. go back button to return to the previous page</string>
+    <string name="recipe_search_int">Please enter the recipe name (pasta,soup,salad, etc)</string>
+    <string name="receip_title">Search Recipe</string>
+    <string name="titel">title</string>
+    <string name="ingredient">ingredient</string>
+    <string name="instruction">instruction</string>
+    <string name="name">Name</string>
+    <string name="how_to_use_interface">"How to use interface? "</string>
+    <string name="favconfirmation">added successfully</string>
+    <string name="waitrequest">Time is too slow for those who wait, too swift for those who fear, too long for those who grieve, too short for those who rejoice, but for those who love, time is eternity.\nRead more at https://www.brainyquote.com/topics/wait-quotes</string>
+    <string name="recipeId">recipe id</string>
     <!--Dictionary App end  Jianbo Tan -->
 
+
+
+    <!--recipe string-->
+
+
+        <string name="title_activity_recipt_main">ReciptMain</string>
+        <string name="navigation_drawer_open">Open navigation drawer</string>
+        <string name="navigation_drawer_close">Close navigation drawer</string>
+        <string name="nav_header_title">Android Studio</string>
+        <string name="nav_header_subtitle">android.studio@android.com</string>
+        <string name="nav_header_desc">Navigation header</string>
+        <string name="action_settings">Settings</string>
+
+        <string name="menu_home">Home</string>
+        <string name="menu_gallery">Gallery</string>
+        <string name="menu_slideshow">Slideshow</string>
+        <string name="website">Website</string>
+
+        <string name="hint">Find a recipe or ingredient</string>
+        <string name="saveBtn">Save</string>
+        <string name="retrieveBtn">Retrieve</string>
+        <string name="favourite_pictures">Favourite Recipes</string>
+        <string name="placeholder">Recipe Picture</string>
+        <string name="delete">Delete</string>
+        <string name="textview">Textview</string>
+        <string name="RecipeSearch">Receipe Search</string>
+        <string name="go_back">Go Back</string>
+        <string name="searchHint">Find a recipe </string>
+
+        <string name="help_title">Recipe search user guidance</string>
+        <string name="author">Kelly Wu</string>
+        <string name="date">March 30, 2024</string>
+        <string name="recipe_help">Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page</string>
+        <string name="welcome_message">Discover your new favourite recipe</string>
+        <string name="alreadyexisted">This recipe is already existed in the favourite list</string>
+        <string name="addedMessage">You added this recipe to the favourite list</string>
+        <string name="deletAlert">Do you want to delete the message?</string>
+        <string name="deleteConfirm">You deleted this recipe</string>
+        <string name="dataName">database name</string>
+        <string name="click">click here</string>
+        <string name="errorMessage">Error</string>
+        <string name="searchRecipe">search recipe</string>
+
+        <string name="hello_blank_fragment">Hello blank fragment</string>
+        <string name="favourite">Your favourite recipe</string>
+        <string name="fav">"Saved "</string>
+        <string name="empty">empty\n</string>
+        <string name="fav_recipe">favorite recipe</string>
+        <string name="food_name">food name</string>
+        <string name="salad">salad\n</string>
+        <string name="soup">soup\n</string>
+        <string name="beverage">beverage</string>
+        <string name="appetizer">appetizer</string>
+        <string name="desserts">desserts</string>
+        <string name="fingerfood">fingerfood</string>
+
+
+    <!---recipe string end-->
 
     <!--Song App begin  Tammy Liu -->
     <string name="song_search">Song name</string>
@@ -67,5 +138,6 @@
     <string name="message_goes_here">Message goes here</string>
 
     <!--SunLookup App end  Yue Shang -->
+
 
 </resources>
