@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.college.converter.R;
 import com.college.converter.recipe.data.Recipe;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         @Override
         public RecipeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            View view = inflater.inflate(R.layout.deezer_recycleview_row,parent,false);
+            View view = inflater.inflate(R.layout.recyclerview_row_recipe,parent,false);
             return new RecipeAdapter.MyViewHolder(view);
         }
 

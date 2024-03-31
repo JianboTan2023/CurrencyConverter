@@ -115,7 +115,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
 
             RecipeID RecipeId = RecipeIDs.get(position);
             holder.title.setText(RecipeId.getTitle_short());
-            holder.bind(track);
+            holder.bind(RecipeID);
 
         }
 
@@ -175,7 +175,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                 itemView.setOnClickListener(clk -> {
                     int position = getAbsoluteAdapterPosition();
                     RecipeID RecipeID = RecipeIDs.get(position);
-                    Intent nextPage = new Intent(AvtivityRecipeFavorite.this, ActivityRecipeIDDetail.class);
+                    Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeIDDetail.class);
                     nextPage.putExtra("ingredients", RecipeID.getIngredient());
                     nextPage.putExtra("instruction", RecipeID.getInstruction());
                     nextPage.putExtra("picture", RecipeID.getPicture_medium());
