@@ -16,12 +16,12 @@ public class Recipe_ID_Adapter {
     public class Recipe_ID_Adapter extends RecyclerView.Adapter<Recipe_ID_Adapter.RecipeIdViewHolder> {
 
         private Context context;
-        private ArrayList<RecipeID> recipeId;
+        private ArrayList<RecipeID> RecipeID;
         private static OnItemClickListener listener;
 
-        public Recipe_ID_Adapter(Context context, ArrayList<RecipeID> recipeId) {
+        public Recipe_ID_Adapter(Context context, ArrayList<RecipeID> RecipeID) {
             this.context = context;
-            this.recipeId = recipeId;
+            this.RecipeID = RecipeID;
         }
 
         @NonNull
@@ -37,16 +37,16 @@ public class Recipe_ID_Adapter {
         @Override
         public void onBindViewHolder(@NonNull Recipe_ID_Adapter.RecipeViewRowHolder holder, int position) {
 
-            recipeId recipeId = recipeId.get(position);
-            holder.title.setText(recipeId.getTitle_short());
-            holder.instruction.setText(recipeId.getInstruction());
-            holder.bind(recipeId);
+            RecipeID RecipeID = RecipeID.get(position);
+            holder.title.setText(RecipeID.getTitle_short());
+            holder.instruction.setText(RecipeID.getInstruction());
+            holder.bind(RecipeID);
 
         }
 
         @Override
         public int getItemCount() {
-            return recipeId.size();
+            return RecipeID.size();
         }
 
         public interface OnItemClickListener {
@@ -81,8 +81,8 @@ public class Recipe_ID_Adapter {
                 });
             }
 
-            public void bind(Track track) {
-                Picasso.get().load(track.getPicture_medium()).into(imageView);
+            public void bind(RecipeID RecipeID) {
+                Picasso.get().load(RecipeID.getPicture_medium()).into(imageView);
             }
         }
     }

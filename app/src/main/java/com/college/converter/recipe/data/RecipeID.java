@@ -16,20 +16,22 @@ public class RecipeID {
         String title_short;
         @ColumnInfo(name = "picture_medium")
         String picture_medium;
-        @ColumnInfo(name = "picture_big")
-        String picture_big;
+
         @ColumnInfo(name = "ingredient")
         String ingredient;
+        @ColumnInfo(name = "instruction")
+        String instruction;
 
         public RecipeID() {
         }
 
-        public RecipeID(@NonNull String recipeId, String title_short, String picture_medium, String picture_big, String ingredient) {
+        public RecipeID(@NonNull String recipeId, String title_short, String picture_medium,
+                        String ingredient, String instruction) {
             this.recipeId = recipeId;
             this.title_short = title_short;
             this.picture_medium = picture_medium;
-            this.picture_big = picture_big;
             this.ingredient = ingredient;
+            this.instruction = instruction;
 
         }
 
@@ -74,12 +76,14 @@ public class RecipeID {
             this.ingredient = ingredient;
         }
 
-        public String getPicture_big() {
-            return picture_big;
-        }
+         public String getInstruction() {
+        return instruction;
+    }
 
-        public void setPicture_big(String picture_big) {
-            this.picture_big = picture_big;
-        }
+        public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
+
+
     }
 

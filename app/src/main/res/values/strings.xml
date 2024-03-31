@@ -35,6 +35,14 @@
     <string name="error_word_info">"Error encoding word"</string>
     <string name="dictionary_information">The APP support user to look up the definitions of word which is entered by the user. User can click save button to save the search term and definitions in the database and click view button to see the history of the search term and definitions.</string>
     <string name="dictionary_info_title">Dictionary API instructions</string>
+    <string name="fabRecipe">Your favorite recipe</string>
+    <string name="recipe_delete_warning">Are you sure you want to delte the recipe?</string>
+    <string name="recipe_instruction">Instruction: \\n1. the saved recipe will be displayed in recycler view\\n2. click search button to do recipe search\\n3. save button to save recipe as favourite\\n4. go back button to return to the previous page</string>
+    <string name="recipe_search_int">Please enter the recipe name (pasta,soup,salad, etc)</string>
+    <string name="receip_title">Search Recipe</string>
+    <string name="titel">title</string>
+    <string name="ingredient">ingredient</string>
+    <string name="instruction">instruction</string>
     <!--Dictionary App end  Jianbo Tan -->
 
 
@@ -63,7 +71,7 @@
         <string name="textview">Textview</string>
         <string name="RecipeSearch">Receipe Search</string>
         <string name="go_back">Go Back</string>
-        <string name="searchHint">Find a recipe or ingredient</string>
+        <string name="searchHint">Find a recipe </string>
         <string name="help">Help</string>
         <string name="help_title">Recipe search user guidance</string>
         <string name="author">Kelly Wu</string>

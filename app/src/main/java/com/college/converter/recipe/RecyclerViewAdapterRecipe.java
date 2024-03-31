@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.recipe.data.Recipe;
+import com.college.converter.recipe.ui.ActivityRecipeSearch;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class RecyclerViewAdapterRecipe extends RecyclerView.Adapter<RecyclerView
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, RecipeSearchActivity.class);
+                Intent intent = new Intent(mContext, ActivityRecipeSearch.class);
                 intent.putExtra("id",mData.get(position).getId());
                 intent.putExtra("title",mData.get(position).getTitle());
                 intent.putExtra("img",mData.get(position).getImage());

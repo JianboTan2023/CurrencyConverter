@@ -21,9 +21,9 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
     private ArrayList<RecipeID> RecipeID;
     private static OnItemClickListener listener;
 
-    public RecipeFavoriteAdapter(Context context, ArrayList<RecipeID> RecipeId) {
+    public RecipeFavoriteAdapter(Context context, ArrayList<RecipeID> RecipeID) {
         this.context = context;
-        this.RecipeID = RecipeId;
+        this.RecipeID = RecipeID;
     }
 
     @NonNull
