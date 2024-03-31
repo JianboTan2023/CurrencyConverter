@@ -47,7 +47,7 @@ public class RecyclerViewAdapterRecipe extends RecyclerView.Adapter<RecyclerView
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, RecipeActivity.class);
+                Intent intent = new Intent(mContext, RecipeSearchActivity.class);
                 intent.putExtra("id",mData.get(position).getId());
                 intent.putExtra("title",mData.get(position).getTitle());
                 intent.putExtra("img",mData.get(position).getImage());
