@@ -5,4 +5,5 @@
     <color name="my_statusbar">#FFEB3B</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="deezer_toolbar">#430E0E</color>
 </resources>

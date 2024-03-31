@@ -25,7 +25,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
+import com.college.converter.MainActivity;
 import com.college.converter.R;
+import com.college.converter.SecondActivity;
+import com.college.converter.dictionary.DictionaryActivity;
+import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.data.ChatMessage;
 import com.college.converter.sunlookup.data.ChatMessageDAO;
 import com.college.converter.sunlookup.data.ChatViewModel;
@@ -33,6 +37,7 @@ import com.college.converter.databinding.ActivitySunBinding;
 import com.college.converter.databinding.SentMessageBinding;
 
 import com.college.converter.sunlookup.data.MessageDatabase;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -199,6 +204,35 @@ public class SunActivity extends AppCompatActivity {
         binding.buttonRead.setOnClickListener(clk ->{
             // Set RecyclerView layout manager to linear layout
             binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.first_id);
+
+        // Perform item selected listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int item_id = item.getItemId();
+            if ( item_id == R.id.home_id ) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+            else if (item_id == R.id.first_id) {
+
+                return true;
+            }
+            else if ( item_id == R.id.second_id ) {
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.third_id ) {
+                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.forth_id ) {
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
+                return true;
+            }
+            return false;
         });
     }
     @Override
