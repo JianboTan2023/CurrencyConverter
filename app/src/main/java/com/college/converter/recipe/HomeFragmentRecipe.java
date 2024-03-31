@@ -30,10 +30,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment} factory method to
+ * Use the {@link HomeFragmentRecipe} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragmentRecipe extends Fragment {
     private List<Recipe> listRecipe = new ArrayList<>();
     private JSONArray testArr;
     private RecyclerView myrv;
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
                                         Integer.parseInt(jsonObject1.optString("servings")),
                                         Integer.parseInt(jsonObject1.optString("readyInMinutes" ))));
                             }
-                            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), listRecipe);
+                            RecyclerViewAdapterRecipe myAdapter = new RecyclerViewAdapterRecipe(getContext(), listRecipe);
                             myrv.setAdapter(myAdapter);
 
 

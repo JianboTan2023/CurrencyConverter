@@ -1,11 +1,10 @@
-package com.college.converter.recipe;import android.annotation.SuppressLint;
+package com.college.converter.recipe;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -16,10 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,10 +23,10 @@ import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FavoritesFragment#} factory method to
+ * Use the {@link FavoritesFragmentRecipe#} factory method to
  * create an instance of this fragment.
  */
-public class FavoritesFragment extends Fragment {
+public class FavoritesFragmentRecipe extends Fragment {
     private List<Recipe> lstFavorites;
     private RecyclerView myrv;
     // private DatabaseReference mRootRef;

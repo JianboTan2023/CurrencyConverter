@@ -36,10 +36,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SearchFragment#} factory method to
+ * Use the {@link SearchFragmentRecipe#} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment implements View.OnClickListener{
+public class SearchFragmentRecipe extends Fragment implements View.OnClickListener{
     private RecyclerView myrv;
     private ProgressBar progressBar;
     private SearchView searchView;
@@ -128,7 +128,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                             progressBar.setVisibility(View.GONE);
                         } else {
 
-                            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), sRecipe);
+                            RecyclerViewAdapterRecipe myAdapter = new RecyclerViewAdapterRecipe(getContext(), sRecipe);
                             myrv.setAdapter(myAdapter);
                             myrv.setAlpha(1);
                             progressBar.setVisibility(View.GONE);

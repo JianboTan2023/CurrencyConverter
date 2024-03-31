@@ -17,26 +17,26 @@ import java.util.List;
 
 
 
-public class RecyclerViewAdapterFavorites extends RecyclerView.Adapter<RecyclerViewAdapterFavorites.MyViewHolder>{
+public class RecyclerViewAdapterFavoritesRecipe extends RecyclerView.Adapter<RecyclerViewAdapterFavoritesRecipe.MyViewHolder>{
     private Context mContext;
     private List<Recipe> mData;
 
-    public RecyclerViewAdapterFavorites(Context mContext, List<Recipe> mData) {
+    public RecyclerViewAdapterFavoritesRecipe(Context mContext, List<Recipe> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
 
     @NonNull
     @Override
-    public RecyclerViewAdapterFavorites.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewAdapterFavoritesRecipe.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
         view = mInflater.inflate(R.layout.cardview_item_favorite, parent, false);
-        return new RecyclerViewAdapterFavorites.MyViewHolder(view);
+        return new RecyclerViewAdapterFavoritesRecipe.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewAdapterFavorites.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(RecyclerViewAdapterFavoritesRecipe.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.tv_favRecipe_title.setText(mData.get(position).getTitle());
         if(mData.get(position).getImage().isEmpty()){
             holder.img_favRecipe_thumbnail.setImageResource(R.drawable.nopicture);

@@ -17,11 +17,11 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
+public class RecyclerViewAdapterRecipe extends RecyclerView.Adapter<RecyclerViewAdapterRecipe.MyViewHolder>{
     private Context mContext ;
     private List<Recipe> mData ;
 
-    public RecyclerViewAdapter(Context mContext, List<Recipe> mData) {
+    public RecyclerViewAdapterRecipe(Context mContext, List<Recipe> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
