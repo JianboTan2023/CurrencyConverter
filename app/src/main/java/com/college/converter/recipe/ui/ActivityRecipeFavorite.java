@@ -1,5 +1,11 @@
 package com.college.converter.recipe.ui;
 
+/**
+ * @author Kelly Wu
+ * @section 021
+ */
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,46 +24,24 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.college.converter.R;
+import com.college.converter.recipe.adapter.RecipeFavoriteAdapter;
 import com.college.converter.recipe.data.RecipeID;
 import com.college.converter.recipe.data.RecipeIDDAO;
 import com.college.converter.recipe.data.RecipeIDDatabase;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class ActivityRecipeFavorite extends AppCompatActivity {
-    FavoriteSongRecyclerViewAdapter adapter;
-    ArrayList<RecipeID> RecipeIds = new ArrayList<>();
-    RecipIDDAO rDAO;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite_recipe);
-
-        Toolbar toolbar = findViewById(R.id.recipeToolBar);
-        setSupportActionBar(toolbar);
-
-        RecyclerView recyclerView = findViewById(R.id.trackRecyclerView);
-
-        RecipeIDDatabase db = Room.databaseBuilder(getApplicationContext(), RecipeIDDatabase.class,
-                "database-recipeId").build();
-        rDAO = db.rDAO();
-        if (RecipeIds.size() == 0) {
-            Executor thread = Executors.newSingleThreadExecutor();
-            thread.execute(() ->
-            {
-                RecipeIds.addAll(rDAO.getAllRecipeIDs()); //Once you get the data from database
-                runOnUiThread(() -> {
-                    adapter = new FavoriteSongRecyclerViewAdapter(this, RecipeIds);
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                });
-            });
-        }
-    }
+    RecipeFavoriteRecyclerViewAdapter adapter;
+    ArrayList<RecipeID> RecipeIDs = new ArrayList<>();
+    RecipeIDDAO rDAO;
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.recipe_menu, menu);
@@ -87,34 +71,90 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_favorite_recipe);
+
+        Toolbar toolbar = findViewById(R.id.recipeToolBar);
+        setSupportActionBar(toolbar);
+
+        RecyclerView recyclerView = findViewById(R.id.RecipeIDRecyclerView);
+
+        RecipeIDDatabase db = Room.databaseBuilder(getApplicationContext(), RecipeIDDatabase.class,
+                "database-recipeId").build();
+        rDAO = db.RecipeIDDAO();
+        if (RecipeIDs.size() == 0) {
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute(() ->
+            {
+                RecipeIDs.addAll(rDAO.getAllRecipeIDs()); //Once you get the data from database
+                runOnUiThread(() -> {
+                    adapter = new RecipeFavoriteRecyclerViewAdapter(this, RecipeIDs);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                });
+            });
+        }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.recipe_menu, menu);
+        Log.d("R", menu.toString());
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.help) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ActivityRecipeFavorite.this);
+            builder.setMessage(getString(R.string.help))
+                    .setTitle(R.string.recipe_instruction)
+                    .setPositiveButton("Ok", (dialog, which) -> {
+                    })
+                    .create().show();
+            // Menu item 2 Help
+        } else if (item.getItemId() == R.id.homepage) {
+            Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeFavorite.class);
+            startActivity(nextPage);
+        } else if (item.getItemId() == R.id.search) {
+            Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeSearch.class);
+            startActivity(nextPage);
+        } else {
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     class RecipeFavoriteRecyclerViewAdapter extends RecyclerView
-            .Adapter<RecipeFavoriteRecyclerViewAdapter.FavoriteSongViewRowHolder.RecipeFavoriteViewRowHolder> {
+            .Adapter<RecipeFavoriteRecyclerViewAdapter.RecipeFavoriteViewRowHolder> {
 
         private Context context;
         private ArrayList<RecipeID> RecipeIDs;
         RecipeIDDAO rDAO;
 
-        public RecipeFavoriteRecyclerViewAdapter(Context context, ArrayList<RecipeID> recipeIds) {
+        public RecipeFavoriteRecyclerViewAdapter(Context context, ArrayList<RecipeID> RecipeIDs) {
             this.context = context;
-            this.recipeIds = recipeIds;
+            this.RecipeIDs = RecipeIDs;
         }
 
         @NonNull
         @Override
-        public FavoriteSongViewRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public RecipeFavoriteViewRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
             LayoutInflater inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.recyclerview_favorite_recipe, parent, false);
 
-            return new FavoriteSongViewRowHolder(view);
+            return new RecipeFavoriteViewRowHolder(view);
         }
 
         @Override
         public void onBindViewHolder(@NonNull RecipeFavoriteRecyclerViewAdapter
                 .RecipeFavoriteViewRowHolder holder, int position) {
 
-            RecipeID RecipeId = RecipeIDs.get(position);
-            holder.title.setText(RecipeId.getTitle());
+            RecipeID RecipeID = RecipeIDs.get(position);
+            holder.title.setText(RecipeID.getTitle());
+            holder.ingredient.setText(RecipeID.getIngredient());
             holder.bind(RecipeID);
 
         }
@@ -124,10 +164,10 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
             return RecipeIDs.size();
         }
 
-        public class FavoriteSongViewRowHolder extends RecyclerView.ViewHolder {
+        public class RecipeFavoriteViewRowHolder extends RecyclerView.ViewHolder {
 
             ImageView imageView;
-            TextView title;
+            TextView title, ingredient;
             ImageButton deleteBtn;
 
             public RecipeFavoriteViewRowHolder(@NonNull View itemView) {
@@ -138,7 +178,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                 deleteBtn = itemView.findViewById(R.id.deleteBtn);
 
                 RecipeIDDatabase db = Room.databaseBuilder(context.getApplicationContext(), RecipeIDDAO.class, "database-recipeIds").build();
-                rDAO = db.rDAO();
+                rDAO = db.RecipeIDDAO();
                 deleteBtn.setOnClickListener(v -> {
                     int position = getAbsoluteAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {

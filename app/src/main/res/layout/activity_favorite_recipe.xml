@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recipe.RecipeSearchActivity">
+    tools:context=".recipe.ui.ActivityRecipeSearch.">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/trackRecyclerView"
+        android:id="@+id/RecipeIDRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
