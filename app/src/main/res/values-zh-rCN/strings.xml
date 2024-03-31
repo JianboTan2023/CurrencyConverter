@@ -37,4 +37,7 @@
     <string name="yueword_history">历史</string>
     <string name="sunlookup_information">查信息</string>
     <string name="sl_ifo_titlr">标题</string>
+    <string name="lookup">查询</string>
+    <string name="time_goes_here">时间栏</string>
+    <string name="message_goes_here">信息栏</string>
 </resources>

@@ -3,7 +3,7 @@ package com.college.converter.sunlookup.data;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.college.converter.data.ChatMessage;
+import com.college.converter.sunlookup.data.ChatMessage;
 
 
 @Database(entities = {ChatMessage.class}, version=1)

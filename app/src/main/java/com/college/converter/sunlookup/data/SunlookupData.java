@@ -1,8 +1,9 @@
 package com.college.converter.sunlookup.data;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+@Entity
 public class SunlookupData {
 
     @PrimaryKey (autoGenerate = true)

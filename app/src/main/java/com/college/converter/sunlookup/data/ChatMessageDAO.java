@@ -5,7 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.college.converter.data.ChatMessage;
+import com.college.converter.sunlookup.data.ChatMessage;
 
 import java.util.List;
 

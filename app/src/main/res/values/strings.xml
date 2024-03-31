@@ -48,6 +48,9 @@
     <string name="Lat____Long" translatable="false">Lat         Long</string>
     <string name="sunlookup_information">The APP looks up sunrise and sunset times based on the latitude and longitude entered by the user.</string>
     <string name="sl_ifo_titlr">Sun Lookup</string>
+    <string name="lookup">Lookup</string>
+    <string name="time_goes_here">Time goes here</string>
+    <string name="message_goes_here">Message goes here</string>
 
     <!--SunLookup App end  Yue Shang -->
 </resources>

@@ -23,18 +23,18 @@ public class OptionMenuActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         //binding menu
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu,menu);
+        menuInflater.inflate(R.menu.sun_menu,menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        switch (itemId){
-            case R.id.help:
+        if (itemId==R.id.help){
+
                 Toast.makeText(this, "CLICK HELP", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.home:
+                return true;}
+            else if (itemId==R.id.home) {
                 Toast.makeText(this, "CLICK HOME", Toast.LENGTH_SHORT).show();
                 return true;
 

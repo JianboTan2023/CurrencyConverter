@@ -48,8 +48,8 @@ public class SunActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        switch (itemId) {
-            case R.id.help:
+        if (itemId==R.id.help) {
+
                 // Display an AlertDialog with help information when Help menu item is clicked
                 AlertDialog.Builder builder = new AlertDialog.Builder(SunActivity.this);
                 builder.setMessage(getString(R.string.sunlookup_information));
@@ -59,8 +59,8 @@ public class SunActivity extends AppCompatActivity {
                 builder.create().show();
                 // Show a toast indicating that Help menu item is clicked
                 Toast.makeText(this, "CLICK HELP", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.home:
+                return true;}
+            else if (itemId==R.id.home){
                 // Show a toast indicating that Home menu item is clicked
                 Toast.makeText(this, "CLICK HOME", Toast.LENGTH_SHORT).show();
                 return true;
@@ -68,7 +68,7 @@ public class SunActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-}
+
     String latitude;
     String longitude;
     Handler handler;
@@ -221,15 +221,15 @@ class MyRowHolder extends RecyclerView.ViewHolder {
             // Get position of clicked item
             int position = getAbsoluteAdapterPosition();
             AlertDialog.Builder builder = new AlertDialog.Builder( SunActivity.this );
-            builder.setMessage(getString(R.string.delete_message));
+            builder.setMessage(getString(R.string.deleted_message));
             builder.setTitle(getString(R.string.question));
             builder.setPositiveButton(getString(R.string.lookup),(dialog,cl)->{
                 // Perform a search for latitude and longitude when Lookup option is chosen
                 ChatMessage m = messages.get(position);
                 latitude = m.getMessage();
-                binding.editTextLat.setText(latitude);
+                binding.editTextLatitude.setText(latitude);
                 longitude = m.getTimeSent();
-                binding.editTextLongitut.setText(longitude);
+                binding.editTextLongitude.setText(longitude);
                 search(latitude,longitude);
 
             });
@@ -259,7 +259,7 @@ class MyRowHolder extends RecyclerView.ViewHolder {
             @Override
             public void run() {
                 // Create and send a message to mHandler with search results
-                String[] time =  SearchTime.search(latitude,lng);
+                String[] time =  SearchTime.search(latitude,longitude);
                 // Create and send a message to mHandler with search results
                 Message message = new Message();
                 message.what = 0;
