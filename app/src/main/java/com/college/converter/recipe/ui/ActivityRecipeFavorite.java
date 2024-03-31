@@ -114,7 +114,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                 .RecipeFavoriteViewRowHolder holder, int position) {
 
             RecipeID RecipeId = RecipeIDs.get(position);
-            holder.title.setText(RecipeId.getTitle_short());
+            holder.title.setText(RecipeId.getTitle());
             holder.bind(RecipeID);
 
         }
@@ -155,7 +155,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                                         runOnUiThread(() -> {
                                             RecipeIDs.remove(position);
                                             adapter.notifyItemRemoved(position);
-                                            Snackbar.make(title, "You deleted song #" + position, Snackbar.LENGTH_LONG)
+                                            Snackbar.make(title, "You deleted recipe #" + position, Snackbar.LENGTH_LONG)
                                                     .setAction("Undo", clk2 -> {
                                                         RecipeIDs.add(position, removedRecipeId);
                                                         adapter.notifyItemInserted(position);
@@ -179,7 +179,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                     nextPage.putExtra("ingredients", RecipeID.getIngredient());
                     nextPage.putExtra("instruction", RecipeID.getInstruction());
                     nextPage.putExtra("picture", RecipeID.getPicture_medium());
-                    nextPage.putExtra("recipe", RecipeID.getTitle_short());
+                    nextPage.putExtra("recipe", RecipeID.getTitle());
                     nextPage.putExtra("id", RecipeID.getRecipeId());
 
                     startActivity(nextPage);

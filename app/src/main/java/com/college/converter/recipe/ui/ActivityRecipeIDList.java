@@ -2,8 +2,11 @@ package com.college.converter.recipe.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.MenuItem;
 import android.widget.Toolbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +18,9 @@ import com.android.volley.toolbox.Volley;
 import com.college.converter.R;
 import com.college.converter.recipe.adapter.RecipeAdapter;
 import com.college.converter.recipe.adapter.Recipe_ID_Adapter;
-import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeID;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -56,7 +60,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
         Intent nextPage = new Intent(ActivityRecipeIDList.this, ActivityRecipeIDDetail.class);
         nextPage.putExtra("recipeId", RecipeID.getRecipeId());
         nextPage.putExtra("cover_m", RecipeID.getPicture_medium());
-        nextPage.putExtra("title", RecipeID.getTitle_short());
+        nextPage.putExtra("title", RecipeID.getTitle());
         nextPage.putExtra("ingredient", RecipeID.getIngredient());
         nextPage.putExtra("instruction", RecipeID.getInstruction());
         startActivity(nextPage);
@@ -70,14 +74,9 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Menu help
         if (item.getItemId() == R.id.help) {
-            AlertDialog.Builder builder = new AlertDialog.Builder( TrackListActivity.this );
-            builder.setMessage("Steps:\n\n" +
-                            "1. Type artist name in the editText.\n" +
-                            "2. Click on the artist you want.\n" +
-                            "3. Choose a song to see the details.\n" +
-                            "4. Add this song to your favorite.\n" +
-                            "5. Click on the home button to see your song list.")
-                    .setTitle("How to use the Interface?")
+            AlertDialog.Builder builder = new AlertDialog.Builder( ActivityRecipeIDList.this );
+            builder.setMessage(R.string.recipe_instruction)
+                    .setTitle(R.string.favconfirmation)
                     .setPositiveButton("Ok", (dialog, which) -> {
                     })
                     .create().show();
@@ -116,11 +115,11 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
                                 JSONObject recipeIdObject = result.getJSONObject("recipeId");
                                 RecipeID RecipeID = new RecipeID();
                                 RecipeID.setTitle(result.getString("title"));
-                                RecipeID.setTitle_short(result.getString("title_short"));
-                                track.setPicture_medium(recipeIdObject.getString("picture"));
-                                track.setIngredient(recipeIdObject.getString("ingredient"));
-                                track.setInstruction(albumObject.getString("instruction"));
-                                tracks.add(track);
+                                RecipeID.setTitle(result.getString("title_short"));
+                                RecipeID.setPicture_medium(recipeIdObject.getString("picture"));
+                                RecipeID.setIngredient(recipeIdObject.getString("ingredient"));
+                                RecipeID.setInstruction(RecipeIDObject.getString("instruction"));
+                                com.college.converter.recipe.data.RecipeID.add(track);
                             }
 
                             adapter.notifyDataSetChanged();

@@ -34,7 +34,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,11 +69,11 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
             TextView nameInput = findViewById(R.id.nameInput);
             String name = nameInput.getText().toString();
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("artistName", nameEditText.getText().toString());
+            editor.putString("recipeName", nameEditText.getText().toString());
             editor.apply();
             nameInput.setText("");
             sendRequest(name);
-            Toast.makeText(this, "Please wait......", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.waitrequest, Toast.LENGTH_SHORT).show();
             // Set the click listener
             adapter.setOnItemClickListener(this);
         });
@@ -100,13 +99,8 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
         // Menu help
         if (item.getItemId() == R.id.help) {
             AlertDialog.Builder builder = new AlertDialog.Builder( ActivityRecipeSearch.this );
-            builder.setMessage("Steps:\n\n" +
-                            "1. Type the  name in the editText.\n" +
-                            "2. Click on the artist you want.\n" +
-                            "3. Choose a song to see the details.\n" +
-                            "4. Add this song to your favorite.\n" +
-                            "5. Click on the home button to see your song list.")
-                    .setTitle("How to use the Interface?")
+            builder.setMessage(R.string.recipe_instruction)
+                    .setTitle(R.string.how_to_use_interface)
                     .setPositiveButton("Ok", (dialog, which) -> {
                     })
                     .create().show();
@@ -146,7 +140,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
                                Recipe recipe = new Recipe();
                                 recipe.setRecipeName(result.getString("name"));
                                 recipe.setIngredient(result.getString("ingredient"));
-                                recipe.setRecipePicture_medium(result.getString("picture"));
+                                recipe.setRecipePicture_small(result.getString("picture"));
 
                                 recipes.add(recipe);
                             }

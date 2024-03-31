@@ -44,12 +44,16 @@
     <string name="ingredient">ingredient</string>
     <string name="instruction">instruction</string>
     <string name="name">Name</string>
+    <string name="how_to_use_interface">"How to use interface? "</string>
+    <string name="favconfirmation">added successfully</string>
+    <string name="waitrequest">Time is too slow for those who wait, too swift for those who fear, too long for those who grieve, too short for those who rejoice, but for those who love, time is eternity.\nRead more at https://www.brainyquote.com/topics/wait-quotes</string>
+    <string name="recipeId">recipe id</string>
     <!--Dictionary App end  Jianbo Tan -->
 
 
     <!--recipe string-->
     <resources>
-        <string name="app_name">Project_Recipe</string>
+
         <string name="title_activity_recipt_main">ReciptMain</string>
         <string name="navigation_drawer_open">Open navigation drawer</string>
         <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -62,7 +66,7 @@
         <string name="menu_gallery">Gallery</string>
         <string name="menu_slideshow">Slideshow</string>
         <string name="website">Website</string>
-        <string name="search">Search</string>
+
         <string name="hint">Find a recipe or ingredient</string>
         <string name="saveBtn">Save</string>
         <string name="retrieveBtn">Retrieve</string>
@@ -73,11 +77,11 @@
         <string name="RecipeSearch">Receipe Search</string>
         <string name="go_back">Go Back</string>
         <string name="searchHint">Find a recipe </string>
-        <string name="help">Help</string>
+
         <string name="help_title">Recipe search user guidance</string>
         <string name="author">Kelly Wu</string>
         <string name="date">March 30, 2024</string>
-        <string name="instruction">Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page</string>
+        <string name="recipe_help">Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page</string>
         <string name="welcome_message">Discover your new favourite recipe</string>
         <string name="alreadyexisted">This recipe is already existed in the favourite list</string>
         <string name="addedMessage">You added this recipe to the favourite list</string>

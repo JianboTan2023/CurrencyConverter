@@ -1,15 +1,24 @@
 package com.college.converter.recipe.ui;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import com.college.converter.R;
 import com.college.converter.recipe.data.RecipeID;
 import com.college.converter.recipe.data.RecipeIDDAO;
 import com.college.converter.recipe.data.RecipeIDDatabase;
+import com.squareup.picasso.Picasso;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class ActivityRecipeIDDetail extends AppCompatActivity {
 
@@ -56,7 +65,7 @@ public class ActivityRecipeIDDetail extends AppCompatActivity {
                 try {
                     rDAO.insertRecipeID(RecipeID);
                     runOnUiThread(() -> {
-                        Toast.makeText(this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.favconfirmation, Toast.LENGTH_SHORT).show();
                     });
                 }catch (Exception e){
 
@@ -81,13 +90,8 @@ public class ActivityRecipeIDDetail extends AppCompatActivity {
         // Menu help
         if (item.getItemId() == R.id.help) {
             AlertDialog.Builder builder = new AlertDialog.Builder( ActivityRecipeIDDetail.this );
-            builder.setMessage("Steps:\n\n" +
-                            "1. Type artist name in the editText.\n" +
-                            "2. Click on the artist you want.\n" +
-                            "3. Choose a song to see the details.\n" +
-                            "4. Add this song to your favorite.\n" +
-                            "5. Click on the home button to see your song list.")
-                    .setTitle("How to use the Interface?")
+            builder.setMessage(R.string.recipe_instruction)
+                    .setTitle(R.string.how_to_use_interface)
                     .setPositiveButton("Ok", (dialog, which) -> {
                     })
                     .create().show();
