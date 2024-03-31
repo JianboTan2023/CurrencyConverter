@@ -12,13 +12,13 @@ import java.util.List;
  */
 public interface RecipeIDDAO {
     @Insert
-    long insertRecipeID(RecipeID recipeId);
+    long insertRecipeID(RecipeID RecipeID);
     @Query("Select * from RecipeID")
     List<RecipeID> getAllRecipeIDs();
-    @Query(("Select * from RecipeID where recipeId = :id"))
-    RecipeID getOneRecipeID(long recipeId);
+    @Query(("Select * from RecipeID where RecipeID = :id"))
+    RecipeID getOneRecipeID(long id);
     @Delete
-    void deleteRecipeID(RecipeID recipeId);
+    void deleteRecipeID(RecipeID RecipeID);
     @Query(("Delete from RecipeID"))
     void deleteAll();
 }
