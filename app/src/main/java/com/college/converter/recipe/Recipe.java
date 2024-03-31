@@ -1,3 +1,5 @@
+package com.college.converter.recipe;
+
 public class Recipe {
     import androidx.annotation.NonNull;
 
