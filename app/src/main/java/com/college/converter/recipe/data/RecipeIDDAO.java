@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Dao interface have three methods insert/query/delete for implementation
  * @author Kelly Wu
+ * @lab section 021
  */
 public interface RecipeIDDAO {
     @Insert

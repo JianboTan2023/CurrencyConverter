@@ -1,4 +1,10 @@
-package com.college.converter.recipe.data;import androidx.room.Database;
+package com.college.converter.recipe.data;
+/**
+ * @author Kelly Wu
+ *  @lab section 021
+ *  this is Database for RecipeID
+ */
+import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 @Database(entities = {RecipeID.class}, version=1)
@@ -9,5 +15,5 @@ import androidx.room.RoomDatabase;
  */
 public abstract class RecipeIDDatabase extends RoomDatabase {
 
-    public abstract RecipeIDDAO recipeIDDAO();
+    public abstract RecipeIDDAO RecipeIDDAO();
 }
