@@ -15,16 +15,30 @@
         android:theme="@style/Theme.NoToolbar"
         tools:targetApi="31">
         <activity
+        android:name=".sunlookup.SunActivity"
+        android:parentActivityName=".MainActivity"
+
+        android:exported="false" />
+        <activity
+
             android:name=".song.ui.TrackListActivity"
             android:theme="@style/Theme.Deezer"
             android:exported="false" />
+
+
         <activity
             android:name=".song.ui.FavoriteSongActivity"
             android:theme="@style/Theme.Deezer"
             android:exported="false" />
         <activity
+
             android:name=".song.ui.TrackDetailsActivity"
             android:theme="@style/Theme.Deezer"
+            android:exported="false" />
+        <activity
+            android:name=".dictionary.DictionaryActivity"
+            android:parentActivityName=".MainActivity"
+
             android:exported="false" />
         <activity
             android:name=".FirstActivity"
@@ -34,10 +48,7 @@
             android:name=".SecondActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".dictionary.Dictionary"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".song.ui.SearchArtistActivity"
             android:theme="@style/Theme.Deezer"

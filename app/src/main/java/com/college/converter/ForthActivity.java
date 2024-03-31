@@ -6,23 +6,19 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
-import com.college.converter.song.ui.SearchArtistActivity;
-
 import com.college.converter.dictionary.DictionaryActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class FirstActivity extends AppCompatActivity {
+public class ForthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
+        setContentView(R.layout.activity_forth);
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.first_id);
+        bottomNavigationView.setSelectedItemId(R.id.forth_id);
 
         // Perform item selected listener
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -31,7 +27,8 @@ public class FirstActivity extends AppCompatActivity {
             if ( item_id == R.id.home_id ) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
-            else if ( item_id == R.id.first_id ) {
+            else if (item_id == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), FirstActivity.class));
                 return true;
             }
             else if ( item_id == R.id.second_id ) {
@@ -43,7 +40,6 @@ public class FirstActivity extends AppCompatActivity {
                 return true;
             }
             else if ( item_id == R.id.forth_id ) {
-                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
                 return true;
             }
             return false;

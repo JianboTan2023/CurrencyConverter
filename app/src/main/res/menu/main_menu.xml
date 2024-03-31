@@ -5,24 +5,33 @@
 
     <item
         android:id="@+id/home_id"
-        android:title="@string/home" />
+        android:icon="@drawable/homeicon"
+        android:title="@string/home"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/first_id"
+        android:icon="@drawable/sunset"
         android:title="@string/first"
-        />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/second_id"
-        android:title="@string/second" />
+        android:icon="@drawable/recipe"
+        android:title="@string/second"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/third_id"
-        android:title="@string/third" />
+        android:icon="@drawable/dictionary"
+        android:title="@string/third"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/forth_id"
-        android:title="@string/forth" />
+        android:icon="@drawable/song"
+        android:title="@string/forth"
+        app:showAsAction="always" />
 
 <!--    <item-->
 <!--        android:id="@+id/help"-->
