@@ -45,11 +45,12 @@ public class ActivityRecipeIDDetail extends AppCompatActivity {
         Intent intent = getIntent();
         String recipeId = intent.getStringExtra("recipeId");
         String picture = intent.getStringExtra("picture_medium");
+        String pictureSmall = intent.getStringExtra("picture_medium");
         String title  = intent.getStringExtra("title");
         String ingredient = intent.getStringExtra("ingredient");
         String instruction     = intent.getStringExtra("instruction");
 
-        RecipeID RecipeID = new RecipeID(recipeId, picture, title, ingredient, instruction);
+        RecipeID RecipeID = new RecipeID(recipeId, title, picture,pictureSmall, ingredient, instruction);
 
         ImageView picture2 = findViewById(R.id.imageView2);
         TextView title2 = findViewById(R.id.recipe_title);

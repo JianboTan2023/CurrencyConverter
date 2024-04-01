@@ -29,12 +29,6 @@ import com.college.converter.recipe.adapter.Recipe_ID_Adapter;
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeID;
 import com.college.converter.recipe.data.RecipeIDDAO;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +50,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
 
         setContentView(R.layout.activity_recipe_search);
         Toolbar toolbar = findViewById(R.id.recipeToolBar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
         adapter = new RecipeAdapter(this, recipes);
@@ -78,7 +72,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
             sendRequest(name);
             Toast.makeText(this, R.string.waitrequest, Toast.LENGTH_SHORT).show();
             // Set the click listener
-            adapter.setOnItemClickListener(this);
+            //adapter.setOnItemClickListener(this);
         });
     }
 
@@ -88,37 +82,10 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
         // Handle item click here
         // For example, start a new activity
         Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeIDList.class);
-        nextPage.putExtra("url", artist.getArtistTrackList());
+        //nextPage.putExtra("url", artist.getArtistTrackList());
         startActivity(nextPage);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.recipe_menu, menu);
-        Log.d("R", menu.toString());
-        return super.onCreateOptionsMenu(menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Menu help
-        if (item.getItemId() == R.id.help) {
-            AlertDialog.Builder builder = new AlertDialog.Builder( ActivityRecipeSearch.this );
-            builder.setMessage(R.string.recipe_instruction)
-                    .setTitle(R.string.how_to_use_interface)
-                    .setPositiveButton("Ok", (dialog, which) -> {
-                    })
-                    .create().show();
-            // Menu item 2 Help
-        } else if (item.getItemId() == R.id.homepage) {
-            Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeFavorite.class);
-            startActivity(nextPage);
-        } else if (item.getItemId() == R.id.search) {
-            Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeSearch.class);
-            startActivity(nextPage);
-        }
-        else {
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
     private void sendRequest(String rName) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
