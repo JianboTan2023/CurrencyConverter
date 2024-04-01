@@ -17,8 +17,6 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.college.converter.FirstActivity;
-import com.college.converter.ForthActivity;
 import com.college.converter.MainActivity;
 import com.college.converter.R;
 import com.college.converter.R.*;
@@ -30,8 +28,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.college.converter.SecondActivity;
 import com.college.converter.databinding.ActivityDictionaryBinding;
+import com.college.converter.recipe.ui.ActivityRecipeSearch;
 import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -222,7 +220,7 @@ public class DictionaryActivity extends AppCompatActivity {
                 return true;
             }
             else if ( item_id == R.id.second_id ) {
-                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
                 return true;
             }
             else if ( item_id == R.id.third_id ) {

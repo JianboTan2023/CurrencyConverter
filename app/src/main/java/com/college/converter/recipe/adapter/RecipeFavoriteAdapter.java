@@ -117,7 +117,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
          * @param RecipeID calls the picture_medium
          */
         public void bind(RecipeID RecipeID) {
-            Picasso.get().load(RecipeID.getPicture_medium()).into(imageView);
+            Picasso.get().load(RecipeID.getPicture_big()).into(imageView);
         }
     }
 }

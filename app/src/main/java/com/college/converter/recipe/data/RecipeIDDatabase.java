@@ -7,6 +7,8 @@ package com.college.converter.recipe.data;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
+import com.college.converter.dictionary.WordRecord;
+
 @Database(entities = {RecipeID.class}, version=1)
 /**
  * RecipeDatabase extends from RoomDatabase and have abstract class rDAO()

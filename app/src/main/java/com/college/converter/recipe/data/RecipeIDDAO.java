@@ -11,6 +11,7 @@ import java.util.List;
  * @author Kelly Wu
  * @lab section 021
  */
+
 public interface RecipeIDDAO {
     @Insert
     long insertRecipeID(RecipeID RecipeID);

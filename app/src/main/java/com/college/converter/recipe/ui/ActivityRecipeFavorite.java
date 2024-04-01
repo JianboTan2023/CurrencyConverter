@@ -77,7 +77,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_recipe);
 
         Toolbar toolbar = findViewById(R.id.recipeToolBar);
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
 
         RecyclerView recyclerView = findViewById(R.id.RecipeIDRecyclerView);
 
@@ -98,33 +98,8 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.recipe_menu, menu);
-        Log.d("R", menu.toString());
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.help) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(ActivityRecipeFavorite.this);
-            builder.setMessage(getString(R.string.help))
-                    .setTitle(R.string.recipe_instruction)
-                    .setPositiveButton("Ok", (dialog, which) -> {
-                    })
-                    .create().show();
-            // Menu item 2 Help
-        } else if (item.getItemId() == R.id.homepage) {
-            Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeFavorite.class);
-            startActivity(nextPage);
-        } else if (item.getItemId() == R.id.search) {
-            Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeSearch.class);
-            startActivity(nextPage);
-        } else {
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     class RecipeFavoriteRecyclerViewAdapter extends RecyclerView
             .Adapter<RecipeFavoriteRecyclerViewAdapter.RecipeFavoriteViewRowHolder> {
@@ -177,7 +152,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                 title = itemView.findViewById(R.id.recipeTitle);
                 deleteBtn = itemView.findViewById(R.id.deleteBtn);
 
-                RecipeIDDatabase db = Room.databaseBuilder(context.getApplicationContext(), RecipeIDDAO.class, "database-recipeIds").build();
+                RecipeIDDatabase db = Room.databaseBuilder(context.getApplicationContext(), RecipeIDDatabase.class, "database-recipeIds").build();
                 rDAO = db.RecipeIDDAO();
                 deleteBtn.setOnClickListener(v -> {
                     int position = getAbsoluteAdapterPosition();
@@ -218,7 +193,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                     Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeIDDetail.class);
                     nextPage.putExtra("ingredients", RecipeID.getIngredient());
                     nextPage.putExtra("instruction", RecipeID.getInstruction());
-                    nextPage.putExtra("picture", RecipeID.getPicture_medium());
+                    nextPage.putExtra("picture", RecipeID.getPicture_big());
                     nextPage.putExtra("recipe", RecipeID.getTitle());
                     nextPage.putExtra("id", RecipeID.getRecipeId());
 
@@ -227,7 +202,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
             }
 
             public void bind(RecipeID RecipeID) {
-                Picasso.get().load(RecipeID.getPicture_medium()).into(imageView);
+                Picasso.get().load(RecipeID.getPicture_big()).into(imageView);
             }
         }
     }

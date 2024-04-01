@@ -3,8 +3,6 @@
 
 package com.college.converter.sunlookup;
 
-import static com.college.converter.sunlookup.SearchTime.search;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,8 +25,8 @@ import android.content.SharedPreferences;
 
 import com.college.converter.MainActivity;
 import com.college.converter.R;
-import com.college.converter.SecondActivity;
 import com.college.converter.dictionary.DictionaryActivity;
+import com.college.converter.recipe.ui.ActivityRecipeSearch;
 import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.data.ChatMessage;
 import com.college.converter.sunlookup.data.ChatMessageDAO;
@@ -44,7 +42,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.content.Context;
 import android.content.Intent;
 
 public class SunActivity extends AppCompatActivity {
@@ -221,7 +218,7 @@ public class SunActivity extends AppCompatActivity {
                 return true;
             }
             else if ( item_id == R.id.second_id ) {
-                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
                 return true;
             }
             else if ( item_id == R.id.third_id ) {

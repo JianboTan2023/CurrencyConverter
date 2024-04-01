@@ -37,8 +37,7 @@ public class RecipeID {
         String instruction;
 
 //construct with nothing
-        public RecipeID() {
-        }
+
 
         public RecipeID(@NonNull String recipeId, String title, String picture_small, String picture_big,
                         String ingredient, String instruction) {
@@ -50,6 +49,9 @@ public class RecipeID {
             this.instruction = instruction;
 
         }
+
+//    public RecipeID() {
+//    }
 
         public String getRecipeId() {
             return recipeId;
@@ -63,26 +65,16 @@ public class RecipeID {
             return title;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
 
-        public String getTitle() {
-            return title;
-        }
+
 
         public void setTitle(String title) {
             this.title = title;
         }
 
 
-        public String getPicture_medium() {
-            return picture_medium;
-        }
 
-        public void setPicture_medium(String picture_medium) {
-            this.picture_medium = picture_medium;
-        }
+
         public String getPicture_big() {
         return picture_big;
     }

@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
 import android.widget.Toolbar;
-
+import android.view.Menu;
+import android.view.MenuItem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -20,8 +22,9 @@ import com.college.converter.recipe.adapter.RecipeAdapter;
 import com.college.converter.recipe.adapter.Recipe_ID_Adapter;
 import com.college.converter.recipe.data.RecipeID;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.json.JSONArray;
 import java.util.ArrayList;
 
 public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAdapter.OnItemClickListener {
@@ -36,7 +39,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
         setContentView(R.layout.activity_recipeid_list);
 
         Toolbar toolbar = findViewById(R.id.recipeToolBar);
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Search Recipe");
 
         RecyclerView recyclerView = findViewById(R.id.recipeIdRecyclerView);
@@ -49,7 +52,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
         sendRequest(url);
 
         // Set the click listener
-        adapter.setOnItemClickListener(this);
+       // adapter.setOnItemClickListener(this);
     }
 
     @Override
@@ -59,7 +62,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
         // For example, start a new activity
         Intent nextPage = new Intent(ActivityRecipeIDList.this, ActivityRecipeIDDetail.class);
         nextPage.putExtra("recipeId", RecipeID.getRecipeId());
-        nextPage.putExtra("cover_m", RecipeID.getPicture_medium());
+        nextPage.putExtra("cover_m", RecipeID.getPicture_big());
         nextPage.putExtra("title", RecipeID.getTitle());
         nextPage.putExtra("ingredient", RecipeID.getIngredient());
         nextPage.putExtra("instruction", RecipeID.getInstruction());
@@ -100,41 +103,41 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
 
 
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            JSONArray data = jsonResponse.getJSONArray("data");
-
-                            // Iterate through the JSONArray to get individual track data
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject result = data.getJSONObject(i);
-                                JSONObject recipeIdObject = result.getJSONObject("recipeId");
-                                RecipeID RecipeID = new RecipeID();
-                                RecipeID.setTitle(result.getString("title"));
-                                RecipeID.setTitle(result.getString("title_short"));
-                                RecipeID.setPicture_medium(recipeIdObject.getString("picture"));
-                                RecipeID.setIngredient(recipeIdObject.getString("ingredient"));
-                                RecipeID.setInstruction(RecipeIDObject.getString("instruction"));
-                                com.college.converter.recipe.data.RecipeID.add(track);
-                            }
-
-                            adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        // Display the first 500 characters of the response string.
+//                        try {
+//                            JSONObject jsonResponse = new JSONObject(response);
+//                            JSONArray data = jsonResponse.getJSONArray("data");
+//
+//                            // Iterate through the JSONArray to get individual track data
+//                            for (int i = 0; i < data.length(); i++) {
+//                                JSONObject result = data.getJSONObject(i);
+//                                JSONObject recipeIdObject = result.getJSONObject("recipeId");
+//                                RecipeID RecipeID = new RecipeID();
+//                                RecipeID.setTitle(result.getString("title"));
+//                                RecipeID.setTitle(result.getString("title_short"));
+//                                RecipeID.setPicture_big(recipeIdObject.getString("picture"));
+//                                RecipeID.setIngredient(recipeIdObject.getString("ingredient"));
+//                                RecipeID.setInstruction(recipeIdObject.getString("instruction"));
+////                                com.college.converter.recipe.data.RecipeID(track);
+//                            }
+//
+//                            adapter.notifyDataSetChanged();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+//
+//        // Add the request to the RequestQueue.
+//        queue.add(stringRequest);
     }
 }
