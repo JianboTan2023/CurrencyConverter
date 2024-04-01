@@ -8,11 +8,5 @@
         android:icon="@drawable/baseline_live_help_24"
         app:showAsAction ="always"
         />
-    <item android:id="@+id/home"
 
-        android:title="home"
-        android:icon="@drawable/baseline_close_24"
-        app:showAsAction ="always"
-
-        />
 </menu>
