@@ -30,7 +30,7 @@ public class RecipeID {
         String picture;
 
         @ColumnInfo(name="sourceUrl")
-        String sourceUrl
+        String sourceUrl;
         @ColumnInfo(name = "summary")
         String summary;
 

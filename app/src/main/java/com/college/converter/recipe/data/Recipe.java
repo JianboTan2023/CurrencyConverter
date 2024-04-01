@@ -7,18 +7,18 @@ package com.college.converter.recipe.data;
  */
 
 public class Recipe {
-        String recipeName;
+        String recipeTitle;
         String recipePicture;
         String recipeId;
 
 
 
-public String getRecipeName() {
-        return recipeName;
+public String getRecipeTitle() {
+        return recipeTitle;
         }
 
-public void setRecipeName(String recipeName) {
-        this.recipeName=recipeName;
+public void setRecipeTitle(String recipeTitle) {
+        this.recipeTitle = recipeTitle;
         }
 
 public String getRecipePicture() {

@@ -51,7 +51,7 @@ import java.util.ArrayList;
 
             RecipeID RecipeID = RecipeIDs.get(position);
             holder.title.setText(RecipeID.getTitle());
-            holder.ingredient.setText(RecipeID.getIngredient());
+            holder.summary.setText(RecipeID.getSummary());
             holder.bind(RecipeID);
 
         }
@@ -72,14 +72,14 @@ import java.util.ArrayList;
         public static class RecipeIDViewRowHolder extends RecyclerView.ViewHolder{
 
             ImageView imageView;
-            TextView title,ingredient, receipeId;
+            TextView title,summary, receipeId;
 
             public RecipeIDViewRowHolder(@NonNull View itemView) {
                 super(itemView);
                 receipeId = itemView.findViewById(R.id.recipeId);
                 imageView = itemView.findViewById(R.id.imageView);
                 title = itemView.findViewById(R.id.textView);
-                ingredient = itemView.findViewById(R.id.textView4);
+                summary = itemView.findViewById(R.id.textView4);
 
                 // Set click listener
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -94,9 +94,9 @@ import java.util.ArrayList;
             }
 
             public void bind(RecipeID RecipeID) {
-                Picasso.get().load(RecipeID.getPicture_medium()).into(imageView);
+                Picasso.get().load(RecipeID.getPicture()).into(imageView);
             }
         }
     }
 
-}
+

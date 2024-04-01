@@ -136,6 +136,8 @@
     <string name="lookup">Lookup</string>
     <string name="time_goes_here">Time goes here</string>
     <string name="message_goes_here">Message goes here</string>
+    <string name="summary">summary</string>
+    <string name="source">sourceUrl</string>
 
     <!--SunLookup App end  Yue Shang -->
 

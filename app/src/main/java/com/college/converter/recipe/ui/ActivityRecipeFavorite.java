@@ -17,11 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -98,33 +99,9 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.recipe_menu, menu);
-        Log.d("R", menu.toString());
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.help) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(ActivityRecipeFavorite.this);
-            builder.setMessage(getString(R.string.help))
-                    .setTitle(R.string.recipe_instruction)
-                    .setPositiveButton("Ok", (dialog, which) -> {
-                    })
-                    .create().show();
-            // Menu item 2 Help
-        } else if (item.getItemId() == R.id.homepage) {
-            Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeFavorite.class);
-            startActivity(nextPage);
-        } else if (item.getItemId() == R.id.search) {
-            Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeSearch.class);
-            startActivity(nextPage);
-        } else {
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     class RecipeFavoriteRecyclerViewAdapter extends RecyclerView
             .Adapter<RecipeFavoriteRecyclerViewAdapter.RecipeFavoriteViewRowHolder> {
@@ -152,10 +129,10 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
         public void onBindViewHolder(@NonNull RecipeFavoriteRecyclerViewAdapter
                 .RecipeFavoriteViewRowHolder holder, int position) {
 
-            RecipeID RecipeID = RecipeIDs.get(position);
-            holder.title.setText(RecipeID.getTitle());
-            holder.ingredient.setText(RecipeID.getIngredient());
-            holder.bind(RecipeID);
+            RecipeID recipeID = RecipeIDs.get(position);
+            holder.title.setText(recipeID.getTitle());
+
+            holder.bind(recipeID);
 
         }
 
@@ -177,7 +154,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                 title = itemView.findViewById(R.id.recipeTitle);
                 deleteBtn = itemView.findViewById(R.id.deleteBtn);
 
-                RecipeIDDatabase db = Room.databaseBuilder(context.getApplicationContext(), RecipeIDDAO.class, "database-recipeIds").build();
+                RecipeIDDatabase db = Room.databaseBuilder(context.getApplicationContext(), RecipeIDDatabase.class, "database-recipeIds").build();
                 rDAO = db.RecipeIDDAO();
                 deleteBtn.setOnClickListener(v -> {
                     int position = getAbsoluteAdapterPosition();
@@ -214,20 +191,20 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
                 // Set click listener
                 itemView.setOnClickListener(clk -> {
                     int position = getAbsoluteAdapterPosition();
-                    RecipeID RecipeID = RecipeIDs.get(position);
+                    RecipeID recipeID = RecipeIDs.get(position);
                     Intent nextPage = new Intent(ActivityRecipeFavorite.this, ActivityRecipeIDDetail.class);
-                    nextPage.putExtra("ingredients", RecipeID.getIngredient());
-                    nextPage.putExtra("instruction", RecipeID.getInstruction());
-                    nextPage.putExtra("picture", RecipeID.getPicture_medium());
-                    nextPage.putExtra("recipe", RecipeID.getTitle());
-                    nextPage.putExtra("id", RecipeID.getRecipeId());
+                    nextPage.putExtra("summary", recipeID.getSummary());
+                    nextPage.putExtra("sourceUrl", recipeID.getSourceUrl());
+                    nextPage.putExtra("picture", recipeID.getPicture());
+                    nextPage.putExtra("recipe", recipeID.getTitle());
+                    nextPage.putExtra("id", recipeID.getRecipeId());
 
                     startActivity(nextPage);
                 });
             }
 
             public void bind(RecipeID RecipeID) {
-                Picasso.get().load(RecipeID.getPicture_medium()).into(imageView);
+                Picasso.get().load(RecipeID.getPicture()).into(imageView);
             }
         }
     }

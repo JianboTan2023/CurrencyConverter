@@ -32,7 +32,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
 
         RecipeID RecipeID = RecipeIDs.get(position);
         holder.title.setText(RecipeID.getTitle());
-        holder.ingredient.setText(RecipeID.getIngredient());
+        holder.summary.setText(RecipeID.getSummary());
 
         holder.bind(RecipeID);
 
@@ -85,7 +85,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
     public static class RecipeIDViewRowHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-        TextView title, ingredient;
+        TextView title, summary;
 
         /**
          * initialize RecipeIDViewRowHolder
@@ -96,7 +96,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
 
             imageView = itemView.findViewById(R.id.imageView);
             title     = itemView.findViewById(R.id.recipeTitle);
-            ingredient = itemView.findViewById(R.id.ingredient);
+            summary = itemView.findViewById(R.id.textView);
 
             /**
              * set up click listener
@@ -117,7 +117,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
          * @param RecipeID calls the picture_medium
          */
         public void bind(RecipeID RecipeID) {
-            Picasso.get().load(RecipeID.getPicture_medium()).into(imageView);
+            Picasso.get().load(RecipeID.getPicture()).into(imageView);
         }
     }
 }

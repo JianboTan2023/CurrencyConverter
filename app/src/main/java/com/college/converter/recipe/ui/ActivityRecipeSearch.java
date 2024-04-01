@@ -11,11 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,12 +32,6 @@ import com.college.converter.recipe.adapter.Recipe_ID_Adapter;
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeID;
 import com.college.converter.recipe.data.RecipeIDDAO;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,7 +75,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
             sendRequest(name);
             Toast.makeText(this, R.string.waitrequest, Toast.LENGTH_SHORT).show();
             // Set the click listener
-            adapter.setOnItemClickListener(this);
+            adapter.setOnItemClickListener((RecipeAdapter.OnItemClickListener) this);
         });
     }
 
@@ -90,7 +85,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
         // Handle item click here
         // For example, start a new activity
         Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeIDList.class);
-        nextPage.putExtra("url", recipe.getRecipeName());
+        nextPage.putExtra("url", recipe.getRecipeTitle());
         startActivity(nextPage);
     }
     @Override
@@ -136,7 +131,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
 
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            JSONArray results = jsonResponse.getJSONArray("result");
+                            JSONArray results = jsonResponse.getJSONArray("results");
                             recipes.clear();
 
                             // Iterate through the JSONArray to get recipeId and data
@@ -144,8 +139,8 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
                             for (int i = 0; i < results.length(); i++) {
                                 JSONObject result = results.getJSONObject(i);
                                Recipe recipe = new Recipe();
-                                recipe.setRecipeName(result.getString("title"));
                                 recipe.setRecipeId(result.getString("id"));
+                                recipe.setRecipeTitle(result.getString("title"));
                                 recipe.setRecipePicture(result.getString("image"));
 
                                 recipes.add(recipe);

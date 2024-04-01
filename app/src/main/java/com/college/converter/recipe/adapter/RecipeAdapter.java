@@ -53,7 +53,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         @Override
         public void onBindViewHolder(@NonNull RecipeAdapter.MyViewHolder holder, int position) {
             Recipe recipe = recipes.get(position);
-            Log.d("D", recipe.getRecipeName());
+            Log.d("D", recipe.getRecipeTitle());
             holder.title.setText(recipes.get(position).getRecipeTitle());
             holder.recipeId.setText(recipes.get(position).getRecipeId());
             holder.recipebind(recipe);
@@ -100,7 +100,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
 
             public void recipebind(Recipe recipe) {
-                Picasso.get().load(recipe.getRecipePicture_small()).into(imageView);
+                Picasso.get().load(recipe.getRecipePicture()).into(imageView);
             }
 
         }

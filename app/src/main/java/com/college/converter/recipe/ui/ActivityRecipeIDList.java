@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toolbar;
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,7 +56,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
         sendRequest(url);
 
         // Set the click listener
-        adapter.setOnItemClickListener(this);
+        adapter.setOnItemClickListener(this::onItemClick);
     }
 
     @Override
@@ -112,7 +114,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
                         // Display the first 500 characters of the response string.
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            JSONArray data = jsonResponse.getJSONArray("result");
+                            JSONArray data = jsonResponse.getJSONArray("data");
 
                             // Iterate through the JSONArray to get individual track data
                             for (int i = 0; i < data.length(); i++) {
