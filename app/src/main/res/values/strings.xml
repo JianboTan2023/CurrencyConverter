@@ -112,8 +112,7 @@
     <!--Song App begin  Tammy Liu -->
     <string name="song_search">Song name</string>
 
-    <string name="deezer_help_info">"Steps:
-                            "Enter artist name, click to select, view song details, add to favorites, and access your list with a home button."</string>
+    <string name="deezer_help_info">Steps: Enter artist name, click to select, view song details, add to favorites, and access your list with a home button.</string>
     <string name="deezer_how_to_use_the_interface">How to use the Interface?</string>
     <string name="deezer_do_you_want_to_delete_the_song">"Do you want to delete the song: "</string>
     <string name="deezer_help">Help</string>

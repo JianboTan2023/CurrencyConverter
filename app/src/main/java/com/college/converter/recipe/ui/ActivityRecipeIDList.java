@@ -6,25 +6,19 @@ import android.support.annotation.NonNull;
 import android.view.MenuItem;
 import android.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.college.converter.R;
 import com.college.converter.recipe.adapter.RecipeAdapter;
 import com.college.converter.recipe.adapter.Recipe_ID_Adapter;
 import com.college.converter.recipe.data.RecipeID;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONArray;
 import java.util.ArrayList;
 
 public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAdapter.OnItemClickListener {
@@ -84,7 +78,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
                     })
                     .create().show();
             // Menu item 2 Help
-        } else if (item.getItemId() == R.id.homepage) {
+        } else if (item.getItemId() == R.id.favoriteSong) {
             Intent nextPage = new Intent(ActivityRecipeIDList.this, ActivityRecipeFavorite.class);
             startActivity(nextPage);
         } else if (item.getItemId() == R.id.search) {
