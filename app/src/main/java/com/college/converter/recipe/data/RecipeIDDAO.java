@@ -16,8 +16,8 @@ public interface RecipeIDDAO {
     long insertRecipeID(RecipeID RecipeID);
     @Query("Select * from RecipeID")
     List<RecipeID> getAllRecipeIDs();
-    @Query(("Select * from RecipeID where RecipeID = :id"))
-    RecipeID getOneRecipeID(long id);
+    @Query(("Select * from RecipeID where id = :id"))
+    RecipeID getOneRecipeID(String id);
     @Delete
     void deleteRecipeID(RecipeID RecipeID);
     @Query(("Delete from RecipeID"))
