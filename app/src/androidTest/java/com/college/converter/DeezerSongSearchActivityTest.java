@@ -6,12 +6,15 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -317,6 +320,151 @@ public class DeezerSongSearchActivityTest {
                         withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
                         isDisplayed()));
         textView.check(matches(withText("Ed Sheeran")));
+    }
+
+    @Test
+    public void deezerTrackListActivityTest6() {
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.bottom_navigation),
+                                        0),
+                                4),
+                        isDisplayed()));
+        bottomNavigationItemView.perform(click());
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.nameInput),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText.perform(replaceText("Tammy"), closeSoftKeyboard());
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction materialButton = onView(
+                allOf(withId(R.id.searchButton), withText("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        materialButton.perform(click());
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.mRecyclerView),
+                        childAtPosition(
+                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+                                1)));
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.songTitle), withText("Can You Picture Yourself"),
+                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
+                        isDisplayed()));
+        textView.check(matches(withText("Can You Picture Yourself")));
+    }
+
+    @Test
+    public void deezerSongDetailActivityTest7() {
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.bottom_navigation),
+                                        0),
+                                4),
+                        isDisplayed()));
+        bottomNavigationItemView.perform(click());
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.nameInput),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText.perform(replaceText("Tammy"), closeSoftKeyboard());
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction materialButton = onView(
+                allOf(withId(R.id.searchButton), withText("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        materialButton.perform(click());
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.mRecyclerView),
+                        childAtPosition(
+                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+                                1)));
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction recyclerView2 = onView(
+                allOf(withId(R.id.trackRecyclerView),
+                        childAtPosition(
+                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+                                0)));
+        recyclerView2.perform(actionOnItemAtPosition(0, click()));
+        try {
+            Thread.sleep(5929);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.title2), withText("Can You Picture Yourself"),
+                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
+                        isDisplayed()));
+        textView.check(matches(withText("Can You Picture Yourself")));
     }
 
     private static Matcher<View> childAtPosition(
