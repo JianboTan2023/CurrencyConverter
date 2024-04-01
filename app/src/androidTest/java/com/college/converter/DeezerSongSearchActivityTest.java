@@ -49,14 +49,7 @@ public class DeezerSongSearchActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottom_navigation),
-                                        0),
-                                4),
-                        isDisplayed()));
+        ViewInteraction bottomNavigationItemView = onView(withId(R.id.forth_id));
         bottomNavigationItemView.perform(click());
         try {
             Thread.sleep(5929);
@@ -105,14 +98,7 @@ public class DeezerSongSearchActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottom_navigation),
-                                        0),
-                                4),
-                        isDisplayed()));
+        ViewInteraction bottomNavigationItemView = onView(withId(R.id.forth_id));
         bottomNavigationItemView.perform(click());
         try {
             Thread.sleep(5929);
@@ -161,14 +147,7 @@ public class DeezerSongSearchActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottom_navigation),
-                                        0),
-                                4),
-                        isDisplayed()));
+        ViewInteraction bottomNavigationItemView = onView(withId(R.id.forth_id));
         bottomNavigationItemView.perform(click());
         try {
             Thread.sleep(5929);
@@ -217,14 +196,7 @@ public class DeezerSongSearchActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottom_navigation),
-                                        0),
-                                4),
-                        isDisplayed()));
+        ViewInteraction bottomNavigationItemView = onView(withId(R.id.forth_id));
         bottomNavigationItemView.perform(click());
         try {
             Thread.sleep(5929);
@@ -273,14 +245,7 @@ public class DeezerSongSearchActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottom_navigation),
-                                        0),
-                                4),
-                        isDisplayed()));
+        ViewInteraction bottomNavigationItemView = onView(withId(R.id.forth_id));
         bottomNavigationItemView.perform(click());
         try {
             Thread.sleep(5929);
@@ -329,14 +294,7 @@ public class DeezerSongSearchActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottom_navigation),
-                                        0),
-                                4),
-                        isDisplayed()));
+        ViewInteraction bottomNavigationItemView = onView(withId(R.id.forth_id));
         bottomNavigationItemView.perform(click());
         try {
             Thread.sleep(5929);
@@ -396,14 +354,7 @@ public class DeezerSongSearchActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.forth_id), withContentDescription("Deezer Song"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottom_navigation),
-                                        0),
-                                4),
-                        isDisplayed()));
+        ViewInteraction bottomNavigationItemView = onView(withId(R.id.forth_id));
         bottomNavigationItemView.perform(click());
         try {
             Thread.sleep(5929);

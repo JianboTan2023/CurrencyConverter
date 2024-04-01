@@ -127,16 +127,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/homeBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#554848"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
-                android:src="@drawable/ds_icons8home50white"
-                app:layout_constraintEnd_toStartOf="@+id/likeBtn"
-                app:layout_constraintTop_toTopOf="@+id/likeBtn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

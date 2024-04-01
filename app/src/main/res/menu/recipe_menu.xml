@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom"
         />
     <item
-        android:id="@+id/homepage"
+        android:id="@+id/favoriteSong"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/home"
         app:showAsAction="always" />

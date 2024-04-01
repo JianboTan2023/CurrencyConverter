@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/homepage"
+        android:icon="@drawable/ds_icons8home50"
+        android:title="Item"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/help"
         android:icon="@android:drawable/ic_menu_help"
 
@@ -10,7 +15,7 @@
 
         app:showAsAction="never" />
     <item
-        android:id="@+id/homepage"
+        android:id="@+id/favoriteSong"
         android:icon="@drawable/ds_icons8heart50"
 
 

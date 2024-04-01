@@ -50,54 +50,55 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
+// Activity class to search for artists
 public class SearchArtistActivity extends AppCompatActivity implements Artist_Adapter.OnItemClickListener{
 
-    ArrayList<Artist> artists = new ArrayList<>();
+    ArrayList<Artist> artists = new ArrayList<>();// List to store artists
     ArrayList<Track>  tracks  = new ArrayList<>();
-    Artist_Adapter adapter;
-    TrackDAO trackDAO;
+    Artist_Adapter adapter;// Adapter for RecyclerView
+    TrackDAO trackDAO;// Data Access Object for managing track data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_deezer_search);
-        Toolbar toolbar = findViewById(R.id.deezerToolBar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_deezer_search);// Set activity layout
+        Toolbar toolbar = findViewById(R.id.deezerToolBar);// Toolbar initialization
+        setSupportActionBar(toolbar);// Set toolbar as action bar
 
-        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
-        adapter = new Artist_Adapter(this, artists);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        String artistName = prefs.getString("artistName", "");
-        EditText nameEditText = findViewById(R.id.nameInput);
-        nameEditText.setText(artistName);
-        // 4. Set onClickListener for the search button.
-        Button btn = findViewById(R.id.searchButton);
+        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);// Initialize RecyclerView
+        adapter = new Artist_Adapter(this, artists);// Initialize adapter
+        recyclerView.setAdapter(adapter);// Set adapter to RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));// Set layout manager
+        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);// Initialize SharedPreferences
+        String artistName = prefs.getString("artistName", "");// Retrieve artist name from SharedPreferences
+        EditText nameEditText = findViewById(R.id.nameInput);// Find EditText for artist name input
+        nameEditText.setText(artistName);// Set artist name in EditText
+
+        Button btn = findViewById(R.id.searchButton);// Find search button
+        // Set onClickListener for the search button
         btn.setOnClickListener(click -> {
-            TextView nameInput = findViewById(R.id.nameInput);
+            TextView nameInput = findViewById(R.id.nameInput);// Find TextView for artist name input
+            // Get artist name from input
             String name = nameInput.getText().toString();
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("artistName", nameEditText.getText().toString());
-            editor.apply();
-            nameInput.setText("");
-            sendRequest(name);
+            SharedPreferences.Editor editor = prefs.edit();// Get SharedPreferences editor
+            editor.putString("artistName", nameEditText.getText().toString());// Store artist name in SharedPreferences
+            editor.apply();// Apply changes
+            nameInput.setText("");// Clear artist name input field
+            sendRequest(name);// Send API request to search for artist
 
-            Toast.makeText(this, R.string.ds_acquiring_result, Toast.LENGTH_SHORT).show();
-            // Set the click listener
-            adapter.setOnItemClickListener(this);
+            Toast.makeText(this, R.string.ds_acquiring_result, Toast.LENGTH_SHORT).show();// Show toast message
+            adapter.setOnItemClickListener(this);// Set click listener for RecyclerView items
         });
 
-
+        // Bottom navigation view initialization
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.forth_id);
 
-        // Perform item selected listener
+        // Set item selected listener for bottom navigation view
         bottomNavigationView.setOnItemSelectedListener(item -> {
-
             int item_id = item.getItemId();
+            // Navigate to respective activities based on selected item
             if ( item_id == R.id.home_id ) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
@@ -121,47 +122,55 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
         });
 
     }
-
+    // Method to handle item click in RecyclerView
     @Override
     public void onItemClick(int position) {
-        Artist artist = artists.get(position);
-        // Handle item click here
-        // For example, start a new activity
+        Artist artist = artists.get(position);// Get clicked artist
+        // Start TrackListActivity and pass URL for artist's track list
         Intent nextPage = new Intent(SearchArtistActivity.this, TrackListActivity.class);
         nextPage.putExtra("url", artist.getArtistTrackList());
         startActivity(nextPage);
     }
+    // Method to create options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.deezer_menu, menu);
-        Log.d("D", menu.toString());
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.deezer_menu, menu);// Inflate menu layout
+        Log.d("D", menu.toString());// Log menu information
+        return super.onCreateOptionsMenu(menu);// Return menu creation status
     }
+
+    // Method to handle options menu item selection
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Menu help
+        // Handle menu item selection
         if (item.getItemId() == R.id.help) {
+            // Show help dialog
             AlertDialog.Builder builder = new AlertDialog.Builder( SearchArtistActivity.this );
-
             builder.setMessage(R.string.deezer_help_info)
                     .setTitle(R.string.deezer_how_to_use_the_interface)
-
-
                     .setPositiveButton("Ok", (dialog, which) -> {
                     })
                     .create().show();
             // Menu item 2 Help
         } else if (item.getItemId() == R.id.homepage) {
+            // Navigate to MainActivity
+            Intent nextPage = new Intent(SearchArtistActivity.this, MainActivity.class);
+            startActivity(nextPage);
+        } else if (item.getItemId() == R.id.favoriteSong) {
+            // Navigate to FavoriteSongActivity
             Intent nextPage = new Intent(SearchArtistActivity.this, FavoriteSongActivity.class);
             startActivity(nextPage);
         } else if (item.getItemId() == R.id.search) {
+            // Navigate to SearchArtistActivity
             Intent nextPage = new Intent(SearchArtistActivity.this, SearchArtistActivity.class);
             startActivity(nextPage);
         }
         else {
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);// Return menu item selection status
     }
+
+    // Method to send API request to search for artists
     private void sendRequest(String name) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -176,34 +185,33 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONArray data = jsonResponse.getJSONArray("data");
-                            artists.clear();
+                            artists.clear();// Clear artists list
 
                             // Iterate through the JSONArray to get individual artist data
                             for (int i = 0; i < data.length(); i++) {
                                 JSONObject result = data.getJSONObject(i);
-                                Artist artist = new Artist();
+                                Artist artist = new Artist();// Create new Artist object
                                 artist.setArtistName(result.getString("name"));
                                 artist.setArtistNb_album(result.getString("nb_album"));
                                 artist.setArtistNb_fan(result.getString("nb_fan"));
                                 artist.setArtistPicture_medium(result.getString("picture_medium"));
                                 artist.setArtistTrackList(result.getString("tracklist"));
-                                artists.add(artist);
+                                artists.add(artist);// Add artist to list
                             }
 
-                            adapter.notifyDataSetChanged();
+                            adapter.notifyDataSetChanged();// Notify adapter of data change
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            e.printStackTrace();// Log JSON parsing error
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                // Handle error response
             }
         });
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
-
 }
