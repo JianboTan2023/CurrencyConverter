@@ -52,7 +52,7 @@
     <string name="name">Name</string>
     <string name="how_to_use_interface">"How to use interface? "</string>
     <string name="favconfirmation">added successfully</string>
-    <string name="waitrequest">Time is too slow for those who wait, too swift for those who fear, too long for those who grieve, too short for those who rejoice, but for those who love, time is eternity.\nRead more at https://www.brainyquote.com/topics/wait-quotes</string>
+    <string name="waitrequest">Time is too slow for those who wait, too swift for those who fear, too long for those who grieve, too short for those who rejoice, but for those who love, time is eternity. Read more at https://www.brainyquote.com/topics/wait-quotes</string>
     <string name="recipeId">recipe id</string>
 
         <string name="title_activity_recipt_main">ReciptMain</string>
@@ -82,7 +82,7 @@
         <string name="help_title">Recipe search user guidance</string>
         <string name="author">Kelly Wu</string>
         <string name="date">March 30, 2024</string>
-        <string name="recipe_help">Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page</string>
+        <string name="recipe_help">Instruction:  1. the saved recipe will be displayed in recycler view 2. click search button to do recipe search 3. save button to save recipe as favourite 4. go back button to return to the previous page</string>
         <string name="welcome_message">Discover your new favourite recipe</string>
         <string name="alreadyexisted">This recipe is already existed in the favourite list</string>
         <string name="addedMessage">You added this recipe to the favourite list</string>
