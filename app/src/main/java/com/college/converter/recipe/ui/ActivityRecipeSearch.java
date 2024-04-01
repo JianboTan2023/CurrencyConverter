@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -62,10 +64,10 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
         adapter = new RecipeAdapter(this, recipes);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        String artistName = prefs.getString("Recipe Name", "");
+        SharedPreferences prefs = getSharedPreferences("results", Context.MODE_PRIVATE);
+        String recipeName = prefs.getString("Recipe Name", "");
         EditText nameEditText = findViewById(R.id.nameInput);
-        nameEditText.setText(artistName);
+        nameEditText.setText(recipeName);
         // 4. Set onClickListener for the search button.
         Button btn = findViewById(R.id.searchButton);
         btn.setOnClickListener(click -> {
@@ -82,19 +84,19 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
         });
     }
 
-    @Override
-    public void onItemClick(int position) {
+   @Override
+   public void onItemClick(int position) {
         Recipe recipe = recipes.get(position);
         // Handle item click here
         // For example, start a new activity
         Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeIDList.class);
-        nextPage.putExtra("url", artist.getArtistTrackList());
+        nextPage.putExtra("url", recipe.getRecipeName());
         startActivity(nextPage);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.recipe_menu, menu);
-        Log.d("R", menu.toString());
+        Log.d("debug", menu.toString());
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -119,10 +121,10 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
         }
         return super.onOptionsItemSelected(item);
     }
-    private void sendRequest(String rName) {
+    private void sendRequest(String recipeName) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + rName
+        String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + recipeName
                 +"&apiKey=6c93a30ed6624a03be850e3d2c118b6b";
 
 
@@ -134,16 +136,17 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
 
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            JSONArray data = jsonResponse.getJSONArray("data");
+                            JSONArray results = jsonResponse.getJSONArray("result");
                             recipes.clear();
 
                             // Iterate through the JSONArray to get recipeId and data
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject result = data.getJSONObject(i);
+
+                            for (int i = 0; i < results.length(); i++) {
+                                JSONObject result = results.getJSONObject(i);
                                Recipe recipe = new Recipe();
-                                recipe.setRecipeName(result.getString("name"));
-                                recipe.setIngredient(result.getString("ingredient"));
-                                recipe.setRecipePicture_small(result.getString("picture"));
+                                recipe.setRecipeName(result.getString("title"));
+                                recipe.setRecipeId(result.getString("id"));
+                                recipe.setRecipePicture(result.getString("image"));
 
                                 recipes.add(recipe);
                             }

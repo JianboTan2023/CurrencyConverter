@@ -21,33 +21,30 @@ public class RecipeID {
 
         @PrimaryKey
         @NonNull
+        @ColumnInfo(name="id")
         String recipeId;
 
         @ColumnInfo(name = "title")
         String title;
-        @ColumnInfo(name = "picture_small")
-        String picture_small;
+        @ColumnInfo(name = "image")
+        String picture;
 
-        @ColumnInfo(name = "picture_big")
-         String picture_big;
-
-        @ColumnInfo(name = "ingredient")
-        String ingredient;
-        @ColumnInfo(name = "instruction")
-        String instruction;
+        @ColumnInfo(name="sourceUrl")
+        String sourceUrl
+        @ColumnInfo(name = "summary")
+        String summary;
 
 //construct with nothing
         public RecipeID() {
         }
 
-        public RecipeID(@NonNull String recipeId, String title, String picture_small, String picture_big,
-                        String ingredient, String instruction) {
+        public RecipeID(@NonNull String recipeId, String title, String picture,
+                        String sourceUrl, String summary) {
             this.recipeId = recipeId;
             this.title = title;
-            this.picture_small = picture_small;
-            this.picture_big = picture_big;
-            this.ingredient = ingredient;
-            this.instruction = instruction;
+            this.picture = picture;
+            this.sourceUrl = sourceUrl;
+            this.summary = summary;
 
         }
 
@@ -67,44 +64,29 @@ public class RecipeID {
             this.title = title;
         }
 
-        public String getTitle() {
-            return title;
+
+        public String getPicture() {
+            return picture;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setPicture(String picture) {
+            this.picture = picture;
         }
 
-
-        public String getPicture_medium() {
-            return picture_medium;
+        public String getSourceUrl() {
+            return sourceUrl;
         }
 
-        public void setPicture_medium(String picture_medium) {
-            this.picture_medium = picture_medium;
+        public void setSourceUrl(String sourceUrl) {
+            this.sourceUrl = sourceUrl;
         }
-        public String getPicture_big() {
-        return picture_big;
+
+         public String getSummary() {
+        return summary;
     }
 
-        public void setPicture_big(String picture_big) {
-        this.picture_big = picture_big;
-    }
-
-        public String getIngredient() {
-            return ingredient;
-        }
-
-        public void setIngredient(String ingredient) {
-            this.ingredient = ingredient;
-        }
-
-         public String getInstruction() {
-        return instruction;
-    }
-
-        public void setInstruction(String instruction) {
-        this.instruction = instruction;
+        public void setSummary(String summary) {
+        this.summary = summary;
     }
 
 

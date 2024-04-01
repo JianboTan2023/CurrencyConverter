@@ -53,9 +53,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         @Override
         public void onBindViewHolder(@NonNull RecipeAdapter.MyViewHolder holder, int position) {
             Recipe recipe = recipes.get(position);
-            Log.d("get entered random recipe name (general)", recipe.getRecipeName());
-            holder.name.setText(recipes.get(position).getRecipeName());
-            holder.ingredient.setText(recipes.get(position).getIngredient());
+            Log.d("D", recipe.getRecipeName());
+            holder.title.setText(recipes.get(position).getRecipeTitle());
+            holder.recipeId.setText(recipes.get(position).getRecipeId());
             holder.recipebind(recipe);
         }
 
@@ -76,14 +76,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
      * initiate viewholder with variables
      */
         public static class MyViewHolder extends RecyclerView.ViewHolder{
-            TextView name, title, ingredient;
+            TextView recipeId, title;
             ImageView imageView;
+
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.imageView);
-                name = itemView.findViewById(R.id.recipeName);
-                ingredient = itemView.findViewById(R.id.ingredient);
                 title = itemView.findViewById(R.id.recipeTitle);
+                recipeId = itemView.findViewById(R.id.recipeId);
+
 
 
                 itemView.setOnClickListener(new View.OnClickListener() {

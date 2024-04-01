@@ -8,8 +8,8 @@ package com.college.converter.recipe.data;
 
 public class Recipe {
         String recipeName;
-        String recipePicture_small;
-        String ingredient;
+        String recipePicture;
+        String recipeId;
 
 
 
@@ -21,20 +21,20 @@ public void setRecipeName(String recipeName) {
         this.recipeName=recipeName;
         }
 
-public String getRecipePicture_small() {
-        return recipePicture_small;
+public String getRecipePicture() {
+        return recipePicture;
         }
 
-public void setRecipePicture_small(String recipePicture_small) {
-        this.recipePicture_small = recipePicture_small;
+public void setRecipePicture(String recipePicture) {
+        this.recipePicture = recipePicture;
         }
 
-public String getIngredient() {
-        return ingredient;
+public String getRecipeId() {
+        return recipeId;
         }
 
-public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+public void setRecipeId(String recipeId) {
+        this.recipeId = recipeId;
         }
 
 
