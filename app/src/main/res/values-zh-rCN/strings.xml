@@ -66,7 +66,7 @@
     <string name="author">吴琦</string>
     <string name="date">3月30，2024</string>
     <string name="recipe_help">说明： 1. 保存的菜谱将显示在回收器视图中 2. 单击搜索按钮进行菜谱搜索 3. 保存按钮将菜谱保存到收藏夹 4. 返回按钮返回上一页</string>
-     <string name="welcome_message">发现您最喜欢的新食谱</string>
+    <string name="welcome_message">发现您最喜欢的新食谱</string>
     <string name="alreadyexisted">该食谱已存在于收藏夹列表中</string>
     <string name="addedMessage">您已将此食谱添加到收藏夹列表中</string>
     <string name="deletAlert">您想删除该消息吗？</string>
@@ -113,7 +113,6 @@
     <string name="ds_album2">专辑2</string>
     <string name="ds_fans2">粉丝2</string>
     <string name="ds_question">问题</string>
-=======
 
     <string name="word_activity_name">我的字典</string>
     <string name="Latitude">纬度</string>
@@ -130,5 +129,4 @@
     <string name="message_goes_here">信息栏</string>
 
 
->>>>>>> main
 </resources>
