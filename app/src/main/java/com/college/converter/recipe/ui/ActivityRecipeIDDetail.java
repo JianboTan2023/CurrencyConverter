@@ -2,11 +2,16 @@ package com.college.converter.recipe.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.room.Room;
@@ -35,7 +40,7 @@ public class ActivityRecipeIDDetail extends AppCompatActivity {
 
         RecipeIDDatabase db = Room.databaseBuilder(getApplicationContext(), RecipeIDDatabase.class,
                 "database-track").build();
-        rDAO = db.rDAO();
+        rDAO = db.RecipeIDDAO();
 
         Intent intent = getIntent();
         String recipeId = intent.getStringExtra("recipeId");
@@ -46,15 +51,17 @@ public class ActivityRecipeIDDetail extends AppCompatActivity {
 
         RecipeID RecipeID = new RecipeID(recipeId, picture, title, ingredient, instruction);
 
-        ImageView picture = findViewById(R.id.imageView2);
-        TextView title = findViewById(R.id.recipe_title);
-        TextView ingredient  = findViewById(R.id.ingredientdetail);
-        TextView instruction = findViewById(R.id.instructiondetail);
+        ImageView picture2 = findViewById(R.id.imageView2);
+        TextView title2 = findViewById(R.id.recipe_title);
+        TextView ingredientdetail  = findViewById(R.id.ingredientdetail);
+        TextView instructiondetail = findViewById(R.id.instructiondetail);
 
-        Picasso.get().load(picture).into(picture);
-        recipeId.setText(recipeId);
-        title.setText(title);
-        picture.setText(picture);
+        Picasso.get().load(picture).into(picture2);
+
+        title2.setText(title);
+        ingredientdetail.setText(ingredient);
+        instructiondetail.setText(instruction);
+
 
         ImageButton favBtn = findViewById(R.id.favBtn);
         favBtn.setOnClickListener(clk -> {

@@ -23,14 +23,25 @@
             android:background="@color/purple_500">
 
             <TextView
+                android:id="@+id/recipeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recipeId"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="152dp" />
+
+            <TextView
                 android:id="@+id/recipe_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/titel"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp"
-                tools:layout_editor_absoluteX="72dp"
-                tools:layout_editor_absoluteY="139dp" />
+                app:layout_constraintStart_toEndOf="@+id/recipeId"
+                tools:layout_editor_absoluteX="138dp"
+                tools:layout_editor_absoluteY="152dp" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -40,7 +51,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/help" />
+                app:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
                 android:id="@+id/textView7"

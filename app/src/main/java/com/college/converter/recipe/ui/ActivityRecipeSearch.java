@@ -28,6 +28,7 @@ import com.college.converter.recipe.adapter.RecipeAdapter;
 import com.college.converter.recipe.adapter.Recipe_ID_Adapter;
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeID;
+import com.college.converter.recipe.data.RecipeIDDAO;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,12 +40,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID_Adapter.OnItemClickListener{
 
     ArrayList<Recipe> recipes = new ArrayList<>();
     ArrayList<RecipeID> RecipeIDs = new ArrayList<>();
-    Recipe_Adapter adapter;
+    RecipeAdapter adapter;
     RecipeIDDAO rDAO;
 
     @Override
