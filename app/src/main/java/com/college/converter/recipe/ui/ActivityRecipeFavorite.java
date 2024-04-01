@@ -41,7 +41,7 @@ import java.util.concurrent.Executors;
 
 public class ActivityRecipeFavorite extends AppCompatActivity {
     RecipeFavoriteRecyclerViewAdapter adapter;
-    ArrayList<RecipeID> RecipeIDs = new ArrayList<>();
+    ArrayList<RecipeID> recipeIDs = new ArrayList<>();
     RecipeIDDAO rDAO;
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,13 +85,13 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
         RecipeIDDatabase db = Room.databaseBuilder(getApplicationContext(), RecipeIDDatabase.class,
                 "database-recipeId").build();
         rDAO = db.RecipeIDDAO();
-        if (RecipeIDs.size() == 0) {
+        if (recipeIDs.size() == 0) {
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(() ->
             {
-                RecipeIDs.addAll(rDAO.getAllRecipeIDs()); //Once you get the data from database
+                recipeIDs.addAll(rDAO.getAllRecipeIDs()); //Once you get the data from database
                 runOnUiThread(() -> {
-                    adapter = new RecipeFavoriteRecyclerViewAdapter(this, RecipeIDs);
+                    adapter = new RecipeFavoriteRecyclerViewAdapter(this, recipeIDs);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 });
@@ -138,7 +138,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return RecipeIDs.size();
+            return recipeIDs.size();
         }
 
         public class RecipeFavoriteViewRowHolder extends RecyclerView.ViewHolder {

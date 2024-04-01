@@ -31,7 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAdapter.OnItemClickListener {
+public class ActivityRecipeIDList extends AppCompatActivity implements Recipe_ID_Adapter.OnItemClickListener {
 
     Recipe_ID_Adapter adapter;
 
@@ -56,20 +56,20 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
         sendRequest(url);
 
         // Set the click listener
-        adapter.setOnItemClickListener(this::onItemClick);
+        adapter.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(int position) {
-        RecipeID RecipeID = recipeIDs.get(position);
+        RecipeID recipeID = recipeIDs.get(position);
         // Handle item click here
         // For example, start a new activity
         Intent nextPage = new Intent(ActivityRecipeIDList.this, ActivityRecipeIDDetail.class);
-        nextPage.putExtra("id", RecipeID.getRecipeId());
-        nextPage.putExtra("image", RecipeID.getPicture());
-        nextPage.putExtra("title", RecipeID.getTitle());
-        nextPage.putExtra("sourUrl", RecipeID.getSourceUrl());
-        nextPage.putExtra("summary", RecipeID.getSummary());
+        nextPage.putExtra("id", recipeID.getRecipeId());
+        nextPage.putExtra("image", recipeID.getPicture());
+        nextPage.putExtra("title", recipeID.getTitle());
+        nextPage.putExtra("sourUrl", recipeID.getSourceUrl());
+        nextPage.putExtra("summary", recipeID.getSummary());
         startActivity(nextPage);
     }
 
@@ -120,11 +120,11 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
                             for (int i = 0; i < data.length(); i++) {
                                 JSONObject result = data.getJSONObject(i);
                                 JSONObject recipeIdObject = result.getJSONObject("id");
-                                RecipeID RecipeID = new RecipeID();
-                                RecipeID.setTitle(result.getString("title"));
-                                RecipeID.setPicture(recipeIdObject.getString("image"));
-                                RecipeID.setSummary(recipeIdObject.getString("summary"));
-                                RecipeID.setSourceUrl(recipeIdObject.getString("sourceUrl"));
+                                RecipeID recipeID = new RecipeID();
+                                recipeID.setTitle(result.getString("title"));
+                                recipeID.setPicture(recipeIdObject.getString("image"));
+                                recipeID.setSummary(recipeIdObject.getString("summary"));
+                                recipeID.setSourceUrl(recipeIdObject.getString("sourceUrl"));
                           //      com.college.converter.recipe.data.RecipeID.add(track);
                             }
 

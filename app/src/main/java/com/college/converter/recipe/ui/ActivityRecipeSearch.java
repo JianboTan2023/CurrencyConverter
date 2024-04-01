@@ -40,10 +40,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID_Adapter.OnItemClickListener{
+public class ActivityRecipeSearch extends AppCompatActivity implements RecipeAdapter.OnItemClickListener{
 
     ArrayList<Recipe> recipes = new ArrayList<>();
-    ArrayList<RecipeID> RecipeIDs = new ArrayList<>();
+    ArrayList<RecipeID> recipeIDs = new ArrayList<>();
     RecipeAdapter adapter;
     RecipeIDDAO rDAO;
 
@@ -75,7 +75,8 @@ public class ActivityRecipeSearch extends AppCompatActivity implements Recipe_ID
             sendRequest(name);
             Toast.makeText(this, R.string.waitrequest, Toast.LENGTH_SHORT).show();
             // Set the click listener
-            adapter.setOnItemClickListener((RecipeAdapter.OnItemClickListener) this);
+            //adapter.setOnItemClickListener((RecipeAdapter.OnItemClickListener) this);
+            adapter.setOnItemClickListener(this);
         });
     }
 
