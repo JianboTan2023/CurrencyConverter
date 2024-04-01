@@ -33,7 +33,7 @@
     <string name="word_sharedPreferences_name" translatable="false">MyDictionary</string>
     <string name="error_word_msg">Please enter a valid word.</string>
     <string name="error_word_info">"Error encoding word"</string>
-    <string name="dictionary_information">The APP support user to look up the definitions of word which is entered by the user. User can click save button to save the search term and definitions in the database and click view button to see the history of the search term and definitions.</string>
+    <string name="dictionary_information">Dictionary APP supports users to look up the definition of words entered by the user. Users can save words and definitions in the database and then click the History button to view the history of words and definitions.</string>
     <string name="dictionary_info_title">Dictionary API instructions</string>
 
     <!--Dictionary App end  Jianbo Tan -->
