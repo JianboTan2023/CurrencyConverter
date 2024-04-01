@@ -35,7 +35,11 @@
     <string name="error_word_info">"Error encoding word"</string>
     <string name="dictionary_information">Dictionary APP supports users to look up the definition of words entered by the user. Users can save words and definitions in the database and then click the History button to view the history of words and definitions.</string>
     <string name="dictionary_info_title">Dictionary API instructions</string>
-
+    <string name="json_utf8" translatable="false">UTF-8</string>
+    <string name="json_words" translatable="false">words</string>
+    <string name="json_meanings" translatable="false">meanings</string>
+    <string name="json_definitions" translatable="false">definitions</string>
+    <string name="json_definition" translatable="false">definition</string>
     <!--Dictionary App end  Jianbo Tan -->
 
 

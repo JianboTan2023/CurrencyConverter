@@ -144,7 +144,7 @@ public class DictionaryActivity extends AppCompatActivity {
                 editor.putString(getString(string.word_search), searchWord);
                 editor.apply();
 
-                String url= URL_REQUEST + URLEncoder.encode(searchWord,"UTF-8");
+                String url= URL_REQUEST + URLEncoder.encode(searchWord,getString(string.json_utf8));
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                         (response) -> {
                             String jsonString = front + response + back;
@@ -152,19 +152,19 @@ public class DictionaryActivity extends AppCompatActivity {
 
                             try {
                                 JSONObject jsonObject = new JSONObject(jsonString);
-                                JSONArray wordsArray = jsonObject.getJSONArray("words");
+                                JSONArray wordsArray = jsonObject.getJSONArray(getString(R.string.json_words));
                                 for (int i = 0; i < wordsArray.length(); i++) {
                                     JSONObject wordsItem = wordsArray.getJSONObject(i);
 
-                                    JSONArray meaningsArray = wordsItem.getJSONArray("meanings");
+                                    JSONArray meaningsArray = wordsItem.getJSONArray(getString(string.json_meanings));
 
                                     for (int j = 0; j < meaningsArray.length(); j++) {
                                         JSONObject meaningsItem = meaningsArray.getJSONObject(j);
 
-                                        JSONArray definitionsArray = meaningsItem.getJSONArray("definitions");
+                                        JSONArray definitionsArray = meaningsItem.getJSONArray(getString(string.json_definitions));
                                         for (int k = 0; k < definitionsArray.length(); k++) {
                                             JSONObject definitionsItem = definitionsArray.getJSONObject(k);
-                                            result =  definitionsItem.getString("definition");
+                                            result =  definitionsItem.getString(getString(R.string.json_definition));
                                             resultBuilder.append(result); // Append current definition to StringBuilder
                                             resultBuilder.append("\n");
 //                                            resultRecord.add(result);
