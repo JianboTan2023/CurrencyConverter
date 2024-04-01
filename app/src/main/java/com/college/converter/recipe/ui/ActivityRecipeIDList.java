@@ -47,7 +47,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
         getSupportActionBar().setTitle("Search Recipe");
 
         RecyclerView recyclerView = findViewById(R.id.recipeIdRecyclerView);
-        adapter = new Recipe_ID_Adapter(this, RecipeIDs);
+        adapter = new Recipe_ID_Adapter(this, recipeIDs);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -61,7 +61,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
 
     @Override
     public void onItemClick(int position) {
-        RecipeID RecipeID = RecipeIDs.get(position);
+        RecipeID RecipeID = recipeIDs.get(position);
         // Handle item click here
         // For example, start a new activity
         Intent nextPage = new Intent(ActivityRecipeIDList.this, ActivityRecipeIDDetail.class);
