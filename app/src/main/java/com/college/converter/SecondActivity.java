@@ -6,7 +6,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+
+import com.college.converter.song.ui.SearchArtistActivity;
+
 import com.college.converter.dictionary.DictionaryActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SecondActivity extends AppCompatActivity {
@@ -39,7 +43,7 @@ public class SecondActivity extends AppCompatActivity {
                     return true;
                 }
                 else if ( item_id == R.id.forth_id ) {
-                    startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+                    startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
                     return true;
                 }
                 return false;

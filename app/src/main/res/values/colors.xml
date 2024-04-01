@@ -7,6 +7,7 @@
     <color name="white">#FFFFFFFF</color>
 
 
+
     <!--recipe color-->
 
     <color name="purple_200">#606c38</color>
@@ -20,4 +21,7 @@
 
 
     <!---->
+
+    <color name="deezer_toolbar">#430E0E</color>
+
 </resources>

@@ -11,7 +11,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+
+import com.college.converter.song.ui.FavoriteSongActivity;
+import com.college.converter.song.ui.SearchArtistActivity;
+
 import com.college.converter.dictionary.DictionaryActivity;
+import com.college.converter.sunlookup.SunActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (item_id == R.id.first_id) {
-            startActivity(new Intent(getApplicationContext(), FirstActivity.class));
+            startActivity(new Intent(getApplicationContext(), SunActivity.class));
             return true;
         }
         else if (item_id == R.id.second_id) {
@@ -60,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (item_id == R.id.forth_id) {
-            startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+            startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
             return true;
         }
         return false;
@@ -81,6 +87,32 @@ public class MainActivity extends AppCompatActivity {
         //bottomNavigationView.setSelectedItemId(R.id.home_id);
 
         // Perform item selected listener
+
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//
+//            int item_id = item.getItemId();
+//            if (item_id == R.id.home_id) {
+//                return true;
+//            }
+//            else if (item_id == R.id.first_id) {
+//                startActivity(new Intent(getApplicationContext(), FirstActivity.class));
+//                return true;
+//            }
+//            else if (item_id == R.id.second_id) {
+//                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+//                return true;
+//            }
+//            else if (item_id == R.id.third_id) {
+//                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+//                return true;
+//            }
+//            else if (item_id == R.id.forth_id) {
+//                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
+//                return true;
+//            }
+//            return false;
+//        });
+
 //        bottomNavigationView.setOnItemSelectedListener(item -> {
 //
 //            int item_id = item.getItemId();
@@ -105,5 +137,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //            return false;
 //        });
+
     }
 }

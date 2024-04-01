@@ -32,6 +32,8 @@ import androidx.room.Room;
 
 import com.college.converter.SecondActivity;
 import com.college.converter.databinding.ActivityDictionaryBinding;
+import com.college.converter.song.ui.SearchArtistActivity;
+import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -216,7 +218,7 @@ public class DictionaryActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
             else if (item_id == R.id.first_id) {
-                startActivity(new Intent(getApplicationContext(), FirstActivity.class));
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
                 return true;
             }
             else if ( item_id == R.id.second_id ) {
@@ -227,7 +229,7 @@ public class DictionaryActivity extends AppCompatActivity {
                 return true;
             }
             else if ( item_id == R.id.forth_id ) {
-                startActivity(new Intent(getApplicationContext(), ForthActivity.class));
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
                 return true;
             }
             return false;
