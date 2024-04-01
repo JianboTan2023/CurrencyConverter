@@ -4,17 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,12 +21,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.college.converter.MainActivity;
 import com.college.converter.R;
+import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.recipe.adapter.RecipeAdapter;
-import com.college.converter.recipe.adapter.Recipe_ID_Adapter;
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeID;
 import com.college.converter.recipe.data.RecipeIDDAO;
+import com.college.converter.sunlookup.SunActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,18 +53,22 @@ public class ActivityRecipeSearch extends AppCompatActivity implements RecipeAda
         Toolbar toolbar = findViewById(R.id.recipeToolBar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
         adapter = new RecipeAdapter(this, recipes);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         SharedPreferences prefs = getSharedPreferences("results", Context.MODE_PRIVATE);
-        String recipeName = prefs.getString("Recipe Name", "");
-        EditText nameEditText = findViewById(R.id.nameInput);
-        nameEditText.setText(recipeName);
-        // 4. Set onClickListener for the search button.
+        String recipeSearch = prefs.getString("My data", "");
+        EditText nameEditText = findViewById(R.id.recipeSearchText);
+        nameEditText.setText(recipeSearch);
+
+//add menu bar at the top of the page
+
+
+        // this setion set up click function and bottom navigation
         Button btn = findViewById(R.id.searchButton);
         btn.setOnClickListener(click -> {
-            TextView nameInput = findViewById(R.id.nameInput);
+            TextView nameInput = findViewById(R.id.recipeSearchText);
             String name = nameInput.getText().toString();
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("recipeName", nameEditText.getText().toString());
@@ -78,45 +80,53 @@ public class ActivityRecipeSearch extends AppCompatActivity implements RecipeAda
             //adapter.setOnItemClickListener((RecipeAdapter.OnItemClickListener) this);
             adapter.setOnItemClickListener(this);
         });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.forth_id);
+
+        // Set item selected listener for bottom navigation view
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int item_id = item.getItemId();
+            // Navigate to respective activities based on selected item
+            if ( item_id == R.id.home_id ) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+            else if (item_id == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.second_id ) {
+                startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
+                return true;
+            }
+            else if ( item_id == R.id.third_id ) {
+                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.forth_id ) {
+
+                return true;
+            }
+            return false;
+        });
+
     }
 
+//onItemClick function for item clicked from RecyclerView
    @Override
    public void onItemClick(int position) {
         Recipe recipe = recipes.get(position);
-        // Handle item click here
-        // For example, start a new activity
+
         Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeIDList.class);
-        nextPage.putExtra("url", recipe.getRecipeTitle());
+        nextPage.putExtra("url", recipe.getId());
         startActivity(nextPage);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.recipe_menu, menu);
-        Log.d("debug", menu.toString());
-        return super.onCreateOptionsMenu(menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Menu help
-        if (item.getItemId() == R.id.help) {
-            AlertDialog.Builder builder = new AlertDialog.Builder( ActivityRecipeSearch.this );
-            builder.setMessage(R.string.recipe_instruction)
-                    .setTitle(R.string.how_to_use_interface)
-                    .setPositiveButton("Ok", (dialog, which) -> {
-                    })
-                    .create().show();
-            // Menu item 2 Help
-        } else if (item.getItemId() == R.id.homepage) {
-            Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeFavorite.class);
-            startActivity(nextPage);
-        } else if (item.getItemId() == R.id.search) {
-            Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeSearch.class);
-            startActivity(nextPage);
-        }
-        else {
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
+
+    /**
+     * this part is to send API request to search recipe from other website
+     * @param recipeName is the user edit content
+     */
     private void sendRequest(String recipeName) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -140,9 +150,9 @@ public class ActivityRecipeSearch extends AppCompatActivity implements RecipeAda
                             for (int i = 0; i < results.length(); i++) {
                                 JSONObject result = results.getJSONObject(i);
                                Recipe recipe = new Recipe();
-                                recipe.setRecipeId(result.getString("id"));
-                                recipe.setRecipeTitle(result.getString("title"));
-                                recipe.setRecipePicture(result.getString("image"));
+                                recipe.setId(result.getString("id"));
+                                recipe.setTitle(result.getString("title"));
+                                recipe.setImage(result.getString("image"));
 
                                 recipes.add(recipe);
                             }

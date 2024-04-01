@@ -53,7 +53,7 @@ public class TrackDetailsActivity extends AppCompatActivity {
 
         Track track = new Track(id, song0, duration0, coverM, coverL, album0, rank);
 
-        ImageView cover = findViewById(R.id.imageView2);
+        ImageView cover = findViewById(R.id.recipeImage);
         TextView album = findViewById(R.id.album2);
         TextView song  = findViewById(R.id.title2);
         TextView duration = findViewById(R.id.duration2);

@@ -20,17 +20,17 @@ import java.util.ArrayList;
 public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAdapter.RecipeIDViewRowHolder>{
 
     private Context context;
-    private ArrayList<RecipeID> RecipeIDs;
+    private ArrayList<RecipeID> recipeIDs;
     private static OnItemClickListener listener;
 
     public RecipeFavoriteAdapter(Context context, ArrayList<RecipeID> RecipeIDs) {
         this.context = context;
-        this.RecipeIDs = RecipeIDs;
+        this.recipeIDs = RecipeIDs;
     }
     @Override
     public void onBindViewHolder(@NonNull RecipeFavoriteAdapter.RecipeIDViewRowHolder holder, int position) {
 
-        RecipeID RecipeID = RecipeIDs.get(position);
+        RecipeID RecipeID = recipeIDs.get(position);
         holder.title.setText(RecipeID.getTitle());
         holder.summary.setText(RecipeID.getSummary());
 
@@ -71,7 +71,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
 
     @Override
     public int getItemCount() {
-        return RecipeIDs.size();
+        return recipeIDs.size();
     }
 
     public interface OnItemClickListener {
@@ -94,7 +94,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
         public RecipeIDViewRowHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.imageView);
+            imageView = itemView.findViewById(R.id.imageView2);
             title     = itemView.findViewById(R.id.recipeTitle);
             summary = itemView.findViewById(R.id.textView);
 

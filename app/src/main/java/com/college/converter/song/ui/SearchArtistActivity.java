@@ -60,18 +60,18 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
         Toolbar toolbar = findViewById(R.id.deezerToolBar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
         adapter = new Artist_Adapter(this, artists);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String artistName = prefs.getString("artistName", "");
-        EditText nameEditText = findViewById(R.id.nameInput);
+        EditText nameEditText = findViewById(R.id.recipeSearchText);
         nameEditText.setText(artistName);
         // 4. Set onClickListener for the search button.
         Button btn = findViewById(R.id.searchButton);
         btn.setOnClickListener(click -> {
-            TextView nameInput = findViewById(R.id.nameInput);
+            TextView nameInput = findViewById(R.id.recipeSearchText);
             String name = nameInput.getText().toString();
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("artistName", nameEditText.getText().toString());

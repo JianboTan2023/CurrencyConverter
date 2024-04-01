@@ -1,5 +1,11 @@
 package com.college.converter.recipe.ui;
 
+/**
+ * Author Kelly Wu
+ * section 021
+ * this class is to display all the receips showed up as per search request
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,7 +37,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ActivityRecipeIDList extends AppCompatActivity implements Recipe_ID_Adapter.OnItemClickListener {
+public class ActivityRecipeIDList extends AppCompatActivity implements
+        Recipe_ID_Adapter.OnItemClickListener {
 
     Recipe_ID_Adapter adapter;
 
@@ -55,16 +62,16 @@ public class ActivityRecipeIDList extends AppCompatActivity implements Recipe_ID
         String url = intent.getStringExtra("url");
         sendRequest(url);
 
-        // Set the click listener
+
         adapter.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(int position) {
         RecipeID recipeID = recipeIDs.get(position);
-        // Handle item click here
-        // For example, start a new activity
-        Intent nextPage = new Intent(ActivityRecipeIDList.this, ActivityRecipeIDDetail.class);
+
+        Intent nextPage = new Intent(ActivityRecipeIDList.this,
+                ActivityRecipeIDDetail.class);
         nextPage.putExtra("id", recipeID.getRecipeId());
         nextPage.putExtra("image", recipeID.getPicture());
         nextPage.putExtra("title", recipeID.getTitle());

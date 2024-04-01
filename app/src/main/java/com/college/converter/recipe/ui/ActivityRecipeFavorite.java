@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.college.converter.R;
-import com.college.converter.recipe.adapter.RecipeFavoriteAdapter;
 import com.college.converter.recipe.data.RecipeID;
 import com.college.converter.recipe.data.RecipeIDDAO;
 import com.college.converter.recipe.data.RecipeIDDatabase;
@@ -150,7 +149,7 @@ public class ActivityRecipeFavorite extends AppCompatActivity {
             public RecipeFavoriteViewRowHolder(@NonNull View itemView) {
                 super(itemView);
 
-                imageView = itemView.findViewById(R.id.imageView);
+                imageView = itemView.findViewById(R.id.imageView2);
                 title = itemView.findViewById(R.id.recipeTitle);
                 deleteBtn = itemView.findViewById(R.id.deleteBtn);
 

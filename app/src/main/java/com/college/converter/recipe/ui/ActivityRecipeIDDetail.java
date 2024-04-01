@@ -1,5 +1,6 @@
 package com.college.converter.recipe.ui;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +26,11 @@ import com.squareup.picasso.Picasso;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Kelly Wu
+ * @section Lab 021
+ * this class is to get recipe details by second request
+ */
 public class ActivityRecipeIDDetail extends AppCompatActivity {
 
     private boolean isLiked = false;
@@ -33,53 +39,54 @@ public class ActivityRecipeIDDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipeid_detail);
 
         Toolbar toolbar = findViewById(R.id.recipeToolBar);
         setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_recipeid_detail);
 
         RecipeIDDatabase db = Room.databaseBuilder(getApplicationContext(), RecipeIDDatabase.class,
                 "database-track").build();
         rDAO = db.RecipeIDDAO();
 
         Intent intent = getIntent();
-        String recipeId = intent.getStringExtra("recipeId");
-        String picture = intent.getStringExtra("picture_medium");
-        String title  = intent.getStringExtra("title");
-        String ingredient = intent.getStringExtra("ingredient");
-        String instruction     = intent.getStringExtra("instruction");
+        String recipeId = intent.getStringExtra("id");
+        String rImage = intent.getStringExtra("image");
+        String recipeTitle = intent.getStringExtra("title");
+        String recipeSummary = intent.getStringExtra("summary");
+        String recipeSourceUrl = intent.getStringExtra("sourceUrl");
 
-        RecipeID RecipeID = new RecipeID(recipeId, picture, title, ingredient, instruction);
+//use received data to set up track object
+        RecipeID recipeID = new RecipeID(recipeId, rImage,
+                recipeTitle, recipeSourceUrl, recipeSummary);
 
-        ImageView picture2 = findViewById(R.id.imageView2);
-        TextView title2 = findViewById(R.id.recipe_title);
-        TextView ingredientdetail  = findViewById(R.id.ingredientdetail);
-        TextView instructiondetail = findViewById(R.id.instructiondetail);
+        ImageView image = findViewById(R.id.recipeImage);
+        TextView title = findViewById(R.id.recipe_title);
+        TextView sourceUrl = findViewById(R.id.source);
+        TextView summary = findViewById(R.id.summary);
 
-        Picasso.get().load(picture).into(picture2);
-
-        title2.setText(title);
-        ingredientdetail.setText(ingredient);
-        instructiondetail.setText(instruction);
-
-
+        Picasso.get().load(rImage).into(image);
+        title.setText(recipeTitle);
+        summary.setText(recipeSummary);
+        sourceUrl.setText(recipeSourceUrl);
         ImageButton favBtn = findViewById(R.id.favBtn);
+        boolean result = true;
         favBtn.setOnClickListener(clk -> {
             Executor thread = Executors.newSingleThreadExecutor();
 
             thread.execute(() ->
             {
                 try {
-                    rDAO.insertRecipeID(RecipeID);
+                    rDAO.insertRecipeID(recipeID);
                     runOnUiThread(() -> {
                         Toast.makeText(this, R.string.favconfirmation, Toast.LENGTH_SHORT).show();
                     });
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
             });
 
         });
+
 
         ImageButton homeBtn = findViewById(R.id.homeBtn);
         homeBtn.setOnClickListener(clk -> {

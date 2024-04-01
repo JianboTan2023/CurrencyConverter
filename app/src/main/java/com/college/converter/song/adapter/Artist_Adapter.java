@@ -58,7 +58,7 @@ public class Artist_Adapter extends RecyclerView.Adapter<Artist_Adapter.MyViewHo
         ImageView imageView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
+            imageView = itemView.findViewById(R.id.imageView2);
             name = itemView.findViewById(R.id.artistName);
             album = itemView.findViewById(R.id.album);
             fan = itemView.findViewById(R.id.fans);

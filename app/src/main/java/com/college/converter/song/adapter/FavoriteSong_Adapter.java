@@ -70,7 +70,7 @@ import java.util.ArrayList;
             public TrackViewRowHolder(@NonNull View itemView) {
                 super(itemView);
 
-                imageView = itemView.findViewById(R.id.imageView);
+                imageView = itemView.findViewById(R.id.imageView2);
                 title     = itemView.findViewById(R.id.songTitle);
                 rank      = itemView.findViewById(R.id.rank);
                 duration  = itemView.findViewById(R.id.duration);

@@ -138,6 +138,7 @@
     <string name="message_goes_here">Message goes here</string>
     <string name="summary">summary</string>
     <string name="source">sourceUrl</string>
+    <string name="sourUrl">sourceUrl\n</string>
 
     <!--SunLookup App end  Yue Shang -->
 

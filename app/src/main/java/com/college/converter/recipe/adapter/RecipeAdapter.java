@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.arch.core.internal.SafeIterableMap;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.R;
@@ -26,87 +27,96 @@ import java.util.ArrayList;
  * it links with recyclerview_row_recipe
  */
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder>{
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
 
 
-        Context context;
-        ArrayList<Recipe> recipes;
-        private static OnItemClickListener listener;
-        public RecipeAdapter(Context context, ArrayList<Recipe> recipes){
-            this.context = context;
-            this.recipes = recipes;
-        }
-        @NonNull
-        @Override
-        public RecipeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(context);
-            View view = inflater.inflate(R.layout.recyclerview_row_recipe,parent,false);
-            return new RecipeAdapter.MyViewHolder(view);
-        }
+    Context context;
+    ArrayList<Recipe> recipes;
+    private static OnItemClickListener listener;
+
+    public RecipeAdapter(Context context, ArrayList<Recipe> recipes) {
+        this.context = context;
+        this.recipes = recipes;
+    }
 
     /**
-     *
-     * @param holder   The ViewHolder which should be updated to represent the contents of the
-     *                 item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to
+     *                 an adapter position.
+     * @param viewType The view type of the new View.
+     * @return
      */
-        @Override
-        public void onBindViewHolder(@NonNull RecipeAdapter.MyViewHolder holder, int position) {
-            Recipe recipe = recipes.get(position);
-            Log.d("D", recipe.getRecipeTitle());
-            holder.title.setText(recipes.get(position).getRecipeTitle());
-            holder.recipeId.setText(recipes.get(position).getRecipeId());
-            holder.recipebind(recipe);
-        }
+    @NonNull
+    @Override
+    public RecipeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.recyclerview_row_recipe, parent, false);
+        return new RecipeAdapter.MyViewHolder(view);
+    }
+
+    //bind data to viewholder
+    @Override
+    public void onBindViewHolder(@NonNull RecipeAdapter.MyViewHolder holder, int position) {
+        Recipe recipe = recipes.get(position);
+        Log.d("D", recipe.getId());
+        holder.title.setText(recipes.get(position).getTitle());
+        holder.recipeId.setText(recipes.get(position).getId());
+        holder.recipebind(recipe);
+    }
 
     /**
+     * Returns the total number of items in the data set held by the adapter.
      *
-     * @return the number of items to display
+     * @return The total number of items in this adapter.
      */
-        @Override
-        public int getItemCount() {
-            return recipes.size();
-        }
+    @Override
+    public int getItemCount() {
+        return recipes.size();
+    }
 
-        public interface OnItemClickListener {
-            void onItemClick(int position);
-        }
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
 
     /**
      * initiate viewholder with variables
      */
-        public static class MyViewHolder extends RecyclerView.ViewHolder{
-            TextView recipeId, title;
-            ImageView imageView;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView recipeId;
+        TextView title;
+        ImageView imageView;
 
-            public MyViewHolder(@NonNull View itemView) {
-                super(itemView);
-                imageView = itemView.findViewById(R.id.imageView);
-                title = itemView.findViewById(R.id.recipeTitle);
-                recipeId = itemView.findViewById(R.id.recipeId);
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageView2);
+            title = itemView.findViewById(R.id.recipeTitle);
+            recipeId = itemView.findViewById(R.id.recipeId);
 
 
-
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        int position = getAbsoluteAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION && listener != null) {
-                            listener.onItemClick(position);
-                        }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAbsoluteAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(position);
                     }
-                });
-            }
+                }
+            });
+        }
 
-
-            public void recipebind(Recipe recipe) {
-                Picasso.get().load(recipe.getRecipePicture()).into(imageView);
-            }
+        public void recipebind(Recipe recipe) {
+            Picasso.get().load(recipe.getId()).into(imageView);
 
         }
 
-        public void setOnItemClickListener(OnItemClickListener listener) {
-            this.listener = listener;
-        }
+
     }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+}
+
+
+
 

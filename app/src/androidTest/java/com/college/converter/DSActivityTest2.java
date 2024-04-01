@@ -51,7 +51,7 @@ public class DSActivityTest2 {
         bottomNavigationItemView.perform(click());
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.nameInput),
+                allOf(withId(R.id.recipeSearchText),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

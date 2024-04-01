@@ -28,12 +28,12 @@ import java.util.ArrayList;
     public class Recipe_ID_Adapter extends RecyclerView.Adapter<Recipe_ID_Adapter.RecipeIDViewRowHolder> {
 
         private final Context context;
-        private final ArrayList<RecipeID> RecipeIDs;
+        private final ArrayList<RecipeID> recipeIDs;
         private static OnItemClickListener listener;
 
-        public Recipe_ID_Adapter(Context context, ArrayList<RecipeID> RecipeIDs) {
+        public Recipe_ID_Adapter(Context context, ArrayList<RecipeID> recipeIDs) {
             this.context = context;
-            this.RecipeIDs = RecipeIDs;
+            this.recipeIDs = recipeIDs;
         }
 
         @NonNull
@@ -49,16 +49,16 @@ import java.util.ArrayList;
         @Override
         public void onBindViewHolder(@NonNull Recipe_ID_Adapter.RecipeIDViewRowHolder holder, int position) {
 
-            RecipeID RecipeID = RecipeIDs.get(position);
-            holder.title.setText(RecipeID.getTitle());
-            holder.summary.setText(RecipeID.getSummary());
-            holder.bind(RecipeID);
+            RecipeID recipeID = recipeIDs.get(position);
+            holder.title.setText(recipeID.getTitle());
+            holder.summary.setText(recipeID.getSummary());
+            holder.bind(recipeID);
 
         }
 
         @Override
         public int getItemCount() {
-            return RecipeIDs.size();
+            return recipeIDs.size();
         }
 
         public interface OnItemClickListener {
@@ -66,18 +66,20 @@ import java.util.ArrayList;
         }
 
         public void setOnItemClickListener(OnItemClickListener listener) {
-            Recipe_ID_Adapter.listener = listener;
+            this.listener = listener;
         }
 
         public static class RecipeIDViewRowHolder extends RecyclerView.ViewHolder{
 
-            ImageView imageView;
-            TextView title,summary, receipeId;
+            ImageView image;
+            TextView title;
+            TextView summary;
+            TextView id;
 
             public RecipeIDViewRowHolder(@NonNull View itemView) {
                 super(itemView);
-                receipeId = itemView.findViewById(R.id.recipeId);
-                imageView = itemView.findViewById(R.id.imageView);
+                id = itemView.findViewById(R.id.recipeId);
+                image = itemView.findViewById(R.id.imageView2);
                 title = itemView.findViewById(R.id.textView);
                 summary = itemView.findViewById(R.id.textView4);
 
@@ -93,8 +95,8 @@ import java.util.ArrayList;
                 });
             }
 
-            public void bind(RecipeID RecipeID) {
-                Picasso.get().load(RecipeID.getPicture()).into(imageView);
+            public void bind(RecipeID recipeID) {
+                Picasso.get().load(recipeID.getPicture()).into(image);
             }
         }
     }
