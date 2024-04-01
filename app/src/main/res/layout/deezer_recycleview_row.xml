@@ -32,6 +32,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/ds_fans"
+
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/artistName" />
 
@@ -41,7 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+
                 android:text="@string/ds_album"
+
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/artistName" />
 
@@ -60,7 +63,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
+
                 android:text="@string/ds_name"
+
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -73,6 +78,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/ds_album2"
+
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/artistName" />
 
@@ -82,7 +88,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
+
                 android:text="@string/ds_fans2"
+
                 app:layout_constraintStart_toEndOf="@+id/album"
                 app:layout_constraintTop_toBottomOf="@+id/artistName" />
         </androidx.constraintlayout.widget.ConstraintLayout>

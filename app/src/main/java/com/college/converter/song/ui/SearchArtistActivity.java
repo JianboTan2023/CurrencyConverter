@@ -26,12 +26,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< HEAD
 import com.college.converter.R;
 
+=======
+import com.college.converter.MainActivity;
+import com.college.converter.R;
+
+import com.college.converter.SecondActivity;
+import com.college.converter.dictionary.DictionaryActivity;
+>>>>>>> main
 import com.college.converter.song.adapter.Artist_Adapter;
 import com.college.converter.song.data.Artist;
 import com.college.converter.song.data.Track;
 import com.college.converter.song.data.TrackDAO;
+<<<<<<< HEAD
+=======
+import com.college.converter.sunlookup.SunActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+>>>>>>> main
 
 
 import org.json.JSONArray;
@@ -73,10 +86,46 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
             editor.apply();
             nameInput.setText("");
             sendRequest(name);
+<<<<<<< HEAD
             Toast.makeText(this, R.string.ds_acquiring_result, Toast.LENGTH_SHORT).show();
             // Set the click listener
             adapter.setOnItemClickListener(this);
         });
+=======
+            Toast.makeText(this, "Acquiring Result......", Toast.LENGTH_SHORT).show();
+            // Set the click listener
+            adapter.setOnItemClickListener(this);
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.forth_id);
+
+        // Perform item selected listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int item_id = item.getItemId();
+            if ( item_id == R.id.home_id ) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+            else if (item_id == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.second_id ) {
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.third_id ) {
+                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.forth_id ) {
+
+                return true;
+            }
+            return false;
+        });
+>>>>>>> main
     }
 
     @Override
@@ -99,8 +148,18 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
         // Menu help
         if (item.getItemId() == R.id.help) {
             AlertDialog.Builder builder = new AlertDialog.Builder( SearchArtistActivity.this );
+<<<<<<< HEAD
             builder.setMessage(R.string.deezer_help_info)
                     .setTitle(R.string.deezer_how_to_use_the_interface)
+=======
+            builder.setMessage("Steps:\n\n" +
+                            "1. Type artist name in the editText.\n" +
+                            "2. Click on the artist you want.\n" +
+                            "3. Choose a song to see the details.\n" +
+                            "4. Add this song to your favorite.\n" +
+                            "5. Click on the home button to see your song list.")
+                    .setTitle("How to use the Interface?")
+>>>>>>> main
                     .setPositiveButton("Ok", (dialog, which) -> {
                     })
                     .create().show();

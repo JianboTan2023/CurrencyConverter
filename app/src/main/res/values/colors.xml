@@ -5,5 +5,24 @@
     <color name="my_statusbar">#FFEB3B</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="deezer_toolbar">#430E0E</color>
+
+
+
+
+    <!--recipe color-->
+
+    <color name="purple_200">#606c38</color>
+    <color name="purple_500">#dda15e</color>
+    <color name="purple_700">#aec3b0</color>
+    <color name="teal_200">#e9edc9</color>
+    <color name="teal_700">#283618</color>
+    <color name="grey_1">#5e503f</color>
+    <color name="grey_2">#c6ac8f</color>
+    <color name="dark_blue">#22333b</color>
+
+
+
+>>>>>>> main
 </resources>

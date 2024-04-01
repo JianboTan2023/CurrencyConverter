@@ -151,10 +151,17 @@ public class FavoriteSongActivity extends AppCompatActivity{
                     if (position != RecyclerView.NO_POSITION) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(FavoriteSongActivity.this);
                         builder.setMessage(getString(R.string.deezer_do_you_want_to_delete_the_song) + title.getText())
+<<<<<<< HEAD
                                 .setTitle(R.string.ds_question)
                                 .setNegativeButton(R.string.ds_no, (dialog, which) -> {
                                 })
                                 .setPositiveButton(R.string.ds_yes, (dialog, which) -> {
+=======
+                                .setTitle("Question:")
+                                .setNegativeButton("No", (dialog, which) -> {
+                                })
+                                .setPositiveButton("Yes", (dialog, which) -> {
+>>>>>>> main
                                     // 4.
                                     Track removedTrack = tracks.get(position);
                                     Executors.newSingleThreadExecutor().execute(() -> {
@@ -162,8 +169,13 @@ public class FavoriteSongActivity extends AppCompatActivity{
                                         runOnUiThread(() -> {
                                             tracks.remove(position);
                                             adapter.notifyItemRemoved(position);
+<<<<<<< HEAD
                                             Snackbar.make(title, getString(R.string.ds_you_deleted_song) + position, Snackbar.LENGTH_LONG)
                                                     .setAction(R.string.ds_undo, clk2 -> {
+=======
+                                            Snackbar.make(title, "You deleted song #" + position, Snackbar.LENGTH_LONG)
+                                                    .setAction("Undo", clk2 -> {
+>>>>>>> main
                                                         tracks.add(position, removedTrack);
                                                         adapter.notifyItemInserted(position);
                                                         Executors.newSingleThreadExecutor().execute(() -> {

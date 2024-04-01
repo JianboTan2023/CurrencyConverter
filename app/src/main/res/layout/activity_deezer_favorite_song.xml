@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".song.ui.FavoriteSongActivity">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/trackRecyclerView"
         android:layout_width="0dp"

@@ -15,18 +15,34 @@
         android:theme="@style/Theme.NoToolbar"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
+=======
+        android:name=".sunlookup.SunActivity"
+        android:parentActivityName=".MainActivity"
+
+        android:exported="false" />
+        <activity
+
+>>>>>>> main
             android:name=".song.ui.TrackListActivity"
             android:theme="@style/Theme.Deezer"
             android:exported="false" />
+
+
         <activity
             android:name=".song.ui.FavoriteSongActivity"
             android:theme="@style/Theme.Deezer"
             android:exported="false" />
         <activity
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
             android:name=".song.ui.TrackDetailsActivity"
             android:theme="@style/Theme.Deezer"
             android:exported="false" />
         <activity
+<<<<<<< HEAD
             android:name=".FirstActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
@@ -38,6 +54,26 @@
             android:name=".dictionary.Dictionary"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".song.ui.SearchArtistActivity"
+            android:theme="@style/Theme.Deezer"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+=======
+            android:name=".dictionary.DictionaryActivity"
+            android:parentActivityName=".MainActivity"
+
+            android:exported="false" />
+>>>>>>> main
+        <activity
+            android:name=".FirstActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SecondActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".song.ui.SearchArtistActivity"
             android:theme="@style/Theme.Deezer"
