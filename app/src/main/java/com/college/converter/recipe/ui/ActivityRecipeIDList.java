@@ -35,7 +35,7 @@ public class ActivityRecipeIDList extends AppCompatActivity implements RecipeAda
 
     Recipe_ID_Adapter adapter;
 
-    ArrayList<RecipeID> RecipeIDs = new ArrayList<>();
+    ArrayList<RecipeID> recipeIDs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
