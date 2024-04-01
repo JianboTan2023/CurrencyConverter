@@ -1,4 +1,4 @@
-package com.college.converter;
+package com.college.converter.suntest;
 
 
 import static androidx.test.espresso.Espresso.onView;
@@ -8,7 +8,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 import android.view.View;
@@ -16,35 +15,39 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.college.converter.MainActivity;
+import com.college.converter.R;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SunActivityTest003 {
+public class SunActivityTest005 {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void sunActivityTest003() {
+    public void sunActivityTest005() {
         try {
             Thread.sleep(5929);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         ViewInteraction actionMenuItemView = onView(
-                allOf(withId(R.id.first_id), withContentDescription("Sunrise/Sunset"),
+                Matchers.allOf(ViewMatchers.withId(R.id.first_id), withContentDescription("Sunrise/Sunset"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.mainToolbar),
@@ -57,12 +60,11 @@ public class SunActivityTest003 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ViewInteraction button = onView(
-                allOf(withId(R.id.button_save), withText("SAVE"),
-                        withParent(allOf(withId(R.id.linear_layout),
-                                withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
+        ViewInteraction frameLayout = onView(
+                allOf(withId(R.id.home_id), withContentDescription("Home"),
+                        withParent(withParent(withId(R.id.bottom_navigation))),
                         isDisplayed()));
-        button.check(matches(isDisplayed()));
+        frameLayout.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(

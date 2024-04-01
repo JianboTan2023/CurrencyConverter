@@ -1,4 +1,4 @@
-package com.college.converter;
+package com.college.converter.suntest;
 
 
 import static androidx.test.espresso.Espresso.onView;
@@ -16,12 +16,17 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.college.converter.MainActivity;
+import com.college.converter.R;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
@@ -30,21 +35,21 @@ import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SunActivityTest002 {
+public class SunActivityTest003 {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void sunActivityTest002() {
+    public void sunActivityTest003() {
         try {
             Thread.sleep(5929);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         ViewInteraction actionMenuItemView = onView(
-                allOf(withId(R.id.first_id), withContentDescription("Sunrise/Sunset"),
+                Matchers.allOf(ViewMatchers.withId(R.id.first_id), withContentDescription("Sunrise/Sunset"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.mainToolbar),
@@ -58,7 +63,7 @@ public class SunActivityTest002 {
             e.printStackTrace();
         }
         ViewInteraction button = onView(
-                allOf(withId(R.id.button_search), withText("SEARCH"),
+                allOf(withId(R.id.button_save), withText("SAVE"),
                         withParent(allOf(withId(R.id.linear_layout),
                                 withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
                         isDisplayed()));
