@@ -44,8 +44,28 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.content.Intent;
 
+
+
+/**
+ * This file contains the implementation of the SunActivity Class.
+ * It provides functionalities for lookup, save, list sunrise and sunset time according to
+ * different user input(latitude, longitude).
+ *
+ * Author: Yue Shang
+ * Lab Section: [CST2335_021]
+ * Creation Date: [2024-03-31]
+ */
 public class SunActivity extends AppCompatActivity {
 
+    /**
+     * Called when an options menu item is clicked.
+     *
+     * This method handles the click events for menu items in the options menu.
+     * It specifically handles the actions for the Help and Home menu items.
+     *
+     * @param item The menu item that was clicked.
+     * @return True if the event was handled successfully, false otherwise.
+     */
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
