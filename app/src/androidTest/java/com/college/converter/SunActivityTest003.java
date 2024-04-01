@@ -30,14 +30,14 @@ import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SunActivityTest1 {
+public class SunActivityTest003 {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void sunActivityTest1() {
+    public void sunActivityTest003() {
         try {
             Thread.sleep(5929);
         } catch (InterruptedException e) {
@@ -52,76 +52,17 @@ public class SunActivityTest1 {
                                 1),
                         isDisplayed()));
         actionMenuItemView.perform(click());
-
         try {
             Thread.sleep(5929);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         ViewInteraction button = onView(
-                allOf(withId(R.id.button_search), withText("SEARCH"),
-                        withParent(allOf(withId(R.id.linear_layout),
-                                withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
-                        isDisplayed()));
-        button.check(matches(isDisplayed()));
-
-        try {
-            Thread.sleep(5929);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ViewInteraction button2 = onView(
                 allOf(withId(R.id.button_save), withText("SAVE"),
                         withParent(allOf(withId(R.id.linear_layout),
                                 withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
                         isDisplayed()));
-        button2.check(matches(isDisplayed()));
-
-        try {
-            Thread.sleep(5929);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ViewInteraction button3 = onView(
-                allOf(withId(R.id.button_read), withText("HISTORY"),
-                        withParent(allOf(withId(R.id.linear_layout),
-                                withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
-                        isDisplayed()));
-        button3.check(matches(isDisplayed()));
-
-        try {
-            Thread.sleep(5929);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ViewInteraction editText = onView(
-                allOf(withId(R.id.editText_latitude), withText("0"),
-                        withParent(allOf(withId(R.id.linear_layout),
-                                withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
-                        isDisplayed()));
-        editText.check(matches(withText("0")));
-
-        try {
-            Thread.sleep(5929);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ViewInteraction frameLayout = onView(
-                allOf(withId(R.id.third_id), withContentDescription("Dictionary"),
-                        withParent(withParent(withId(R.id.bottom_navigation))),
-                        isDisplayed()));
-        frameLayout.check(matches(isDisplayed()));
-
-        try {
-            Thread.sleep(5929);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ViewInteraction frameLayout2 = onView(
-                allOf(withId(R.id.third_id), withContentDescription("Dictionary"),
-                        withParent(withParent(withId(R.id.bottom_navigation))),
-                        isDisplayed()));
-        frameLayout2.check(matches(isDisplayed()));
+        button.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(
