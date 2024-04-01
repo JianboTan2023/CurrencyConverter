@@ -96,6 +96,10 @@ public class TrackDetailsActivity extends AppCompatActivity {
         // Menu help
         if (item.getItemId() == R.id.help) {
             AlertDialog.Builder builder = new AlertDialog.Builder( TrackDetailsActivity.this );
+<<<<<<< HEAD
+            builder.setMessage(R.string.deezer_help_info)
+                    .setTitle(R.string.deezer_how_to_use_the_interface)
+=======
             builder.setMessage("Steps:\n\n" +
                             "1. Type artist name in the editText.\n" +
                             "2. Click on the artist you want.\n" +
@@ -103,6 +107,7 @@ public class TrackDetailsActivity extends AppCompatActivity {
                             "4. Add this song to your favorite.\n" +
                             "5. Click on the home button to see your song list.")
                     .setTitle("How to use the Interface?")
+>>>>>>> main
                     .setPositiveButton("Ok", (dialog, which) -> {
                     })
                     .create().show();

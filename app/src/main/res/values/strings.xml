@@ -35,6 +35,12 @@
     <string name="error_word_info">"Error encoding word"</string>
     <string name="dictionary_information">The APP support user to look up the definitions of word which is entered by the user. User can click save button to save the search term and definitions in the database and click view button to see the history of the search term and definitions.</string>
     <string name="dictionary_info_title">Dictionary API instructions</string>
+
+    <!--Dictionary App end  Jianbo Tan -->
+
+
+
+    <!--recipe string-->
     <string name="fabRecipe">Your favorite recipe</string>
     <string name="recipe_delete_warning">Are you sure you want to delte the recipe?</string>
     <string name="recipe_instruction">Instruction: \\n1. the saved recipe will be displayed in recycler view\\n2. click search button to do recipe search\\n3. save button to save recipe as favourite\\n4. go back button to return to the previous page</string>
@@ -48,12 +54,6 @@
     <string name="favconfirmation">added successfully</string>
     <string name="waitrequest">Time is too slow for those who wait, too swift for those who fear, too long for those who grieve, too short for those who rejoice, but for those who love, time is eternity.\nRead more at https://www.brainyquote.com/topics/wait-quotes</string>
     <string name="recipeId">recipe id</string>
-    <!--Dictionary App end  Jianbo Tan -->
-
-
-
-    <!--recipe string-->
-
 
         <string name="title_activity_recipt_main">ReciptMain</string>
         <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -111,14 +111,34 @@
 
     <!--Song App begin  Tammy Liu -->
     <string name="song_search">Song name</string>
-    <string name="deezer_help_info">"Steps:\n\n" +
-                            "1. Type artist name in the editText.\n +
-                            "2. Click on the artist you want.\n" +
-                            "3. Choose a song to see the details.\n" +
-                            "4. Add this song to your favorite.\n" +
-                            "5. Click on the home button to see your song list."</string>
+
+    <string name="deezer_help_info">"Steps:
+                            "Enter artist name, click to select, view song details, add to favorites, and access your list with a home button."</string>
     <string name="deezer_how_to_use_the_interface">How to use the Interface?</string>
     <string name="deezer_do_you_want_to_delete_the_song">"Do you want to delete the song: "</string>
+    <string name="deezer_help">Help</string>
+    <string name="deezer_home">home</string>
+    <string name="deezer_search">Search</string>
+    <string name="ds_question">Question:</string>
+    <string name="ds_no">No</string>
+    <string name="ds_yes">Yes</string>
+    <string name="ds_you_deleted_song">You deleted song #</string>
+    <string name="ds_undo">Undo</string>
+    <string name="ds_acquiring_result">Acquiring Result......</string>
+    <string name="ds_please_type_artist_name">Please type artist name</string>
+    <string name="ds_album">Album:</string>
+    <string name="ds_song_title">Song Title:</string>
+    <string name="ds_textview">TextView</string>
+    <string name="ds_duration">Duration:</string>
+    <string name="ds_rank">Rank</string>
+    <string name="ds_title">Title</string>
+    <string name="ds_rank2">Rank:</string>
+    <string name="ds_fans">Fans</string>
+    <string name="ds_name">Name</string>
+    <string name="ds_album2">Album:</string>
+    <string name="ds_fans2">Fans:</string>
+
+
     <!--Song App end  Tammy Liu -->
 
 

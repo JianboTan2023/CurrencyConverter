@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.college.converter.song.ui.SearchArtistActivity;
+<<<<<<< HEAD
+=======
 
 import com.college.converter.dictionary.DictionaryActivity;
 
+>>>>>>> main
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class FirstActivity extends AppCompatActivity {

@@ -6,6 +6,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="deezer_toolbar">#430E0E</color>
+
+
 
 
     <!--recipe color-->
@@ -20,8 +23,6 @@
     <color name="dark_blue">#22333b</color>
 
 
-    <!---->
 
-    <color name="deezer_toolbar">#430E0E</color>
-
+>>>>>>> main
 </resources>

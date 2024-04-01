@@ -5,18 +5,24 @@
     <item
         android:id="@+id/help"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="Help"
+
+        android:title="@string/deezer_help"
+
         app:showAsAction="never" />
     <item
         android:id="@+id/homepage"
         android:icon="@drawable/ds_icons8heart50"
 
-        android:title="home"
+
+        android:title="@string/deezer_home"
+
         app:showAsAction="always" />
     <item
         android:id="@+id/search"
         android:icon="@drawable/ds_icons8search50white"
 
-        android:title="Search"
+
+        android:title="@string/deezer_search"
+
         app:showAsAction="always" />
 </menu>
