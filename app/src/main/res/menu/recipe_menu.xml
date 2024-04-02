@@ -5,8 +5,8 @@
 
         android:id="@+id/recipe_help"
         android:icon="@drawable/ds_help"
-        android:title="@string/help"
-        app:showAsAction="ifRoom"
+        android:title="@string/recipe_help"
+        app:showAsAction="always"
         />
     <item
         android:id="@+id/homepage"

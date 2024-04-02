@@ -3,6 +3,7 @@ package com.college.converter.recipe.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.college.converter.MainActivity;
 import com.college.converter.R;
 import com.college.converter.databinding.ActivityRecipeDetailBinding;
 import com.college.converter.recipe.data.Recipe;
@@ -57,6 +59,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         binding = ActivityRecipeDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         String source = getIntent().getStringExtra("source");
+
         int recipeId = getIntent().getIntExtra("recipeId", -1);
         if (SOURCE_FAVORITE.equals(source)) {
             Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipe");
@@ -84,7 +87,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
             recipeDAO.deleteRecipe(recipe);
         });
-        Snackbar.make(binding.getRoot(), "recipe removed", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(binding.getRoot(), getString(R.string.deleteConfirm), Snackbar.LENGTH_SHORT).show();
     }
 
     /**
@@ -96,15 +99,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void addFavorite(Recipe recipe) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Do you want to add '" + recipe.getTitle() + "' to your Favorite List?")
+        builder.setMessage(getString(R.string.recipe_delete_warning) + recipe.getTitle())
                 .setTitle("Question")
                 .setNegativeButton("no", (dialog, cl) -> {})
                 .setPositiveButton("yes", (dialog, cl) -> {
-                    Executors.newSingleThreadExecutor().execute(() -> {
+                    Executors.newSingleThreadExecutor().execute(() ->
+                    {
                         RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
                         recipeDAO.insertRecipe(recipe);
                     });
-                    Snackbar.make(binding.getRoot(), "recipe added", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(binding.getRoot(), getString(R.string.addsuccess), Snackbar.LENGTH_SHORT).show();
                     binding.addFavroite.setText(R.string.favoriteadded);
                 }).create().show();
     }
@@ -116,14 +120,14 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void searchRecipe(int query) {
         if (query == -1) {
-            Snackbar.make(binding.getRoot(), "recipe not found", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(binding.getRoot(), getString(R.string.receip_not_found), Snackbar.LENGTH_SHORT).show();
             return;
         }
         String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
         String url = "https://api.spoonacular.com/recipes/" + query + "/information?includeNutrition=false&apiKey=" + apiKey;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response ->
+        {
                     try {
                         Recipe recipe = getRecipe(response);
                         binding.recipeTitle.setText(recipe.getTitle());
@@ -135,7 +139,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                     } catch (JSONException e)
                     {
                         e.printStackTrace();
-                        Toast.makeText(RecipeDetailActivity.this, "error occurred during parsing.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RecipeDetailActivity.this, getString(R.string.error_occurred), Toast.LENGTH_LONG).show();
                     }
                 },
                 error -> Toast.makeText(RecipeDetailActivity.this, getString(R.string.tryagain), Toast.LENGTH_LONG).show());
@@ -175,24 +179,24 @@ public class RecipeDetailActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     *
-     * @param item The menu item that was selected.
-     * help item show instruction
-     * home item return to main action
-     * @return
-     */
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.help) {
 
-            Toast.makeText(this, getString(R.string.instruction), Toast.LENGTH_LONG).show();
+        int id = item.getItemId();
+        if (id == R.id.recipe_help) {
+            // Show help information
+            Toast.makeText(this, getString(R.string.help_info), Toast.LENGTH_LONG).show();
             return true;
-        } else if (item.getItemId() == R.id.home) {
+        } else if (item.getItemId() == R.id.homepage) {
             // Navigate to the home activity
             startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
+
     }
+
+
+
 }

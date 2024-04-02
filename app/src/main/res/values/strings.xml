@@ -132,6 +132,8 @@
     <string name="receip_not_found">Recipe not founded</string>
     <string name="search_key">Please enter search key words for your recipe list\n</string>
     <string name="recipe_title">Search the recipe you want to cook</string>
+    <string name="fail">Failed to get data from website</string>
+    <string name="addsuccess">Added success</string>
 
     <!--SunLookup App end  Yue Shang -->
 

@@ -70,7 +70,6 @@ public class RecipeSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_search);
 
-
         // Initialize toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +78,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(R.string.recipe_title);
+        getSupportActionBar().setTitle(R.string.receip_title);
 
 //set up search result display in recyclerview
         searchTermEdit = findViewById(R.id.searchEditText);
@@ -110,9 +109,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
         });
 
         //favorite button for saved recipes
-        favoriteBtn = findViewById(R.id.favorite_recipes);
-        favoriteBtn.setOnClickListener(view -> {
-        });
+        favoriteBtn = findViewById(R.id.favorite_button);
+//        favoriteBtn.setOnClickListener(view -> {
+//        });
         favoriteBtn.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), FavoriteActivity.class));
         });
@@ -121,10 +120,42 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
         setupBottomNavigationView();
     }
+    private void searchRecipes(String query) {
+        String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
+        String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&apiKey=" + apiKey;
 
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        recipeList.clear();
+
+                        for (int i = 0; i < jsonArray.length(); i++)
+                        {
+                            JSONObject recipeObject = jsonArray.getJSONObject(i);
+                            String title = recipeObject.getString("title");
+                            String imageUrl = recipeObject.getString("image");
+                            int id = recipeObject.getInt("id");
+
+                            Recipe recipe = new Recipe(id, title, imageUrl);
+                            recipe.setId(id);
+                            recipeList.add(recipe);
+                        }
+                        recipeAdapter.notifyDataSetChanged();
+                    } catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                        Toast.makeText(RecipeSearchActivity.this, getString(R.string.error_occurred), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(RecipeSearchActivity.this, getString(R.string.fail), Toast.LENGTH_SHORT).show());
+
+        queue.add(stringRequest);
+    }
     /**
      * set up bottom navigation view
-     * navigation between different sections of the application.
+     * allows jump to different sections of the application.
      */
 //    protected void setupBottomNavigationView() {
 //        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -168,7 +199,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
             } else if (itemId == R.id.first_id) {
                 startActivity(new Intent(getApplicationContext(), SunActivity.class));
             } else if (itemId == R.id.second_id) {
-                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
+              //  startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
             } else if (itemId == R.id.third_id) {
                 startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
             } else if (itemId == R.id.forth_id) {
@@ -182,6 +213,13 @@ public class RecipeSearchActivity extends AppCompatActivity {
      *
      * @param menu The options menu in which you place your items.
      * @return You must return true for the menu to be displayed; if you return false it will not be shown.
+     * item has two items, home and help
+     */
+    /**
+     * set up menu option
+     * @param menu The options menu in which you place your items.
+     *
+     * @return
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -189,31 +227,26 @@ public class RecipeSearchActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * action bar item clicks here, automatically handle clicks
-     * on the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml.
-     * @param item has two items, home and help
-     * @return boolean Return false to allow normal menu processing to proceed,
-     * true to consume it here.
-     */
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.help)
+        if ( id ==  R.id.recipe_help)
         {
             androidx.appcompat.app.AlertDialog.Builder builder1 =
                     new androidx.appcompat.app.AlertDialog.Builder(RecipeSearchActivity.this);
-            builder1.setMessage(getString(R.string.recipe_help));
+            builder1.setMessage(getString(R.string.recipe_instruction));
             builder1.setTitle(getString(R.string.recipe_search_info_title));
 
             builder1.create().show();
-        } else if (id == R.id.home)
-        {
-            Toast.makeText(this, getString(R.string.back), Toast.LENGTH_LONG).show();
+        }
+        else if (id ==  R.id.homepage) {
+            Toast.makeText(this, getString(R.string.back), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         return super.onOptionsItemSelected(item);
+
     }
 
 
@@ -221,39 +254,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
      * this part is recipe search using the specified query string, sends a request to the external API.
      * @param query search term used to query the recipeId.
      */
-    private void searchRecipes(String query) {
-        String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
-        String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&apiKey=" + apiKey;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                response -> {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response);
-                        JSONArray jsonArray = jsonObject.getJSONArray("results");
-                        recipeList.clear();
-
-                        for (int i = 0; i < jsonArray.length(); i++)
-                        {
-                            JSONObject recipeObject = jsonArray.getJSONObject(i);
-                            String title = recipeObject.getString("title");
-                            String imageUrl = recipeObject.getString("image");
-                            int id = recipeObject.getInt("id");
-
-                            Recipe recipe = new Recipe(id, title, imageUrl);
-                            recipe.setId(id);
-                            recipeList.add(recipe);
-                        }
-                        recipeAdapter.notifyDataSetChanged();
-                    } catch (JSONException e)
-                    {
-                        e.printStackTrace();
-                        Toast.makeText(RecipeSearchActivity.this, "An error occurred during parsing.", Toast.LENGTH_SHORT).show();
-                    }
-                },
-                error -> Toast.makeText(RecipeSearchActivity.this, "Failed to get data.", Toast.LENGTH_SHORT).show());
-
-        queue.add(stringRequest);
-    }
 
 }
 

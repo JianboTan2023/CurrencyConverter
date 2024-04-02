@@ -47,5 +47,6 @@
     <string name="deezer_how_to_use_the_interface">使用接口</string>
     <string name="deezer_do_you_want_to_delete_the_song">删除歌曲</string>
     <string name="recipe_title">Search the recipe you want to cook</string>
+    <string name="addsuccess">Added success</string>
 
 </resources>

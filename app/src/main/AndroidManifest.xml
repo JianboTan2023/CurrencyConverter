@@ -48,6 +48,14 @@
             android:name=".recipe.ui.RecipeSearchActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".recipe.ui.RecipeDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".recipe.ui.FavoriteActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".song.ui.SearchArtistActivity"
