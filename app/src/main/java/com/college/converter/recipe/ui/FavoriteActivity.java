@@ -1,4 +1,4 @@
-package
+package com.college.converter.recipe.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -126,4 +126,4 @@ class FavoriteActivity extends AppCompatActivity {
         refreshList();
     }
 }
-}
+

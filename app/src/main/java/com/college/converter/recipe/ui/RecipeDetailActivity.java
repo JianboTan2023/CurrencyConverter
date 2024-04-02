@@ -44,13 +44,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
     public static final String SOURCE_FAVORITE = "source_favorite";
 
     /**
-     * Initializes the activity, sets up the view binding, and processes the intent data to
-     * display the correct recipe information. If the recipe comes from the favorites list,
-     * it displays the stored data. Otherwise, it fetches data from an external API.
-     *
-     * @param savedInstanceState Bundle object containing the activity's previously saved state.
+     * Initializes the activity, sets up the view binding,
+     * display the recipe information.
+     * displays the stored data.
+     *display data from an external API if not existed in database
      */
     @Override
+    /**
+     * savedInstanceState Bundle object containing data from previously saved state
+     * this is the first part for retriving data upon search request
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRecipeDetailBinding.inflate(getLayoutInflater());
@@ -75,25 +78,23 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Removes a recipe from the favorites list using a background executor.
-     * Displays a Snackbar message upon completion.
-     *
-     * @param recipe The recipe object to be removed from favorites.
+     * this part is to removes a recipe from the favorites list using a background executor.
+     * Snackbar message shows removal completion.
      */
     private void removeFavoirte(Recipe recipe) {
         Executors.newSingleThreadExecutor().execute(() -> {
-            RecipeDAO recipeDao = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDao();
-            recipeDao.deleteRecipe(recipe);
+            RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
+            recipeDAO.deleteRecipe(recipe);
         });
-        Snackbar.make(binding.getRoot(), "Recipe remove success", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(binding.getRoot(), getString(R.string.deleteConfirm), Snackbar.LENGTH_SHORT).show();
     }
 
     /**
-     * Adds a recipe to the favorites list. Presents a confirmation dialog before adding.
-     * Uses a background executor to insert the recipe into the database and displays
-     * a Snackbar message upon completion.
+     *  @param recipe The recipe object to be added to favorites.
+     * add a recipe data into the favorites list.
+     * presents a confirmation message before adding.
+     * calls background executor to insert the recipe into the database
      *
-     * @param recipe The recipe object to be added to favorites.
      */
     private void addFavorite(Recipe recipe) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -102,23 +103,22 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 .setNegativeButton("no", (dialog, cl) -> {})
                 .setPositiveButton("yes", (dialog, cl) -> {
                     Executors.newSingleThreadExecutor().execute(() -> {
-                        RecipeDAO recipeDao = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDao();
-                        recipeDao.insertRecipe(recipe);
+                        RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
+                        recipeDAO.insertRecipe(recipe);
                     });
-                    Snackbar.make(binding.getRoot(), "Add success", Snackbar.LENGTH_SHORT).show();
-                    binding.addFavroite.setText(R.string.favorite_has_added);
+                    Snackbar.make(binding.getRoot(), getString(R.string.addedMessage), Snackbar.LENGTH_SHORT).show();
+                    binding.addFavroite.setText(R.string.favoriteadded);
                 }).create().show();
     }
 
     /**
-     * Fetches the detailed information of a recipe based on its ID using a GET request.
-     * Updates the UI elements with the fetched data upon successful response.
-     *
+     * using GET request to retrieve the data based on its ID .
+     * second request, using API to get data from external link
      * @param query The unique ID of the recipe to fetch details for.
      */
     private void searchRecipe(int query) {
         if (query == -1) {
-            Snackbar.make(binding.getRoot(), "Recipe not found", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(binding.getRoot(), getString(R.string.receip_not_found), Snackbar.LENGTH_SHORT).show();
             return;
         }
         String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
@@ -136,10 +136,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         binding.addFavroite.setOnClickListener(clk -> addFavorite(recipe));
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(RecipeDetailActivity.this, "An error occurred during parsing.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RecipeDetailActivity.this, getString(R.string.error_occurred), Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> Toast.makeText(RecipeDetailActivity.this, "Failed to fetch data.", Toast.LENGTH_SHORT).show());
+                error -> Toast.makeText(RecipeDetailActivity.this, getString(R.string.tryagain), Toast.LENGTH_SHORT).show());
 
         queue.add(stringRequest);
     }

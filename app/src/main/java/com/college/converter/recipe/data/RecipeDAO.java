@@ -1,5 +1,6 @@
 package com.college.converter.recipe.data;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -13,6 +14,7 @@ import java.util.List;
  * DAO defines methods for standard database operation, insert, delete, and query,
  * using the room persistence library for SQL abstraction
  */
+@Dao
 public interface RecipeDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertRecipe(Recipe recipe);

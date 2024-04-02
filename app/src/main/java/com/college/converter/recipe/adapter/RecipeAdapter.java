@@ -2,7 +2,6 @@ package com.college.converter.recipe.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.arch.core.internal.SafeIterableMap;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.R;
+//import com.college.converter.recipe.data.Recipe;
+//import com.college.converter.recipe.data.RecipeDAO;
+//import com.college.converter.recipe.data.RecipeDatabase;
+//import com.college.converter.recipe.ui.RecipeDetailActivity;
 import com.college.converter.recipe.data.Recipe;
+import com.college.converter.recipe.data.RecipeDAO;
+import com.college.converter.recipe.data.RecipeDatabase;
 import com.college.converter.recipe.ui.RecipeDetailActivity;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +37,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private Context context;
     private List<Recipe> recipeList;
 
-    private RecipeDao recipeDao;
+    private RecipeDAO recipeDAO;
 
     /**
      * Constructs the RecipeAdapter with the provided context and recipe list.
@@ -45,7 +48,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public RecipeAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
         this.recipeList = recipeList;
-        recipeDao = RecipeDatabase.getDbInstance(context).recipeDao();
+        recipeDAO = RecipeDatabase.getDbInstance(context).recipeDao();
     }
 
     /**
@@ -76,11 +79,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.itemView.setOnClickListener(clk -> {
             Intent intent = new Intent(context, RecipeDetailActivity.class);
             intent.putExtra("source", RecipeDetailActivity.SOURCE_LIST);
-            intent.putExtra("recipeId", recipe.recipeId);
-            intent.putExtra("title", recipe.title);
-            intent.putExtra("image_url", recipe.imageUrl);
-            intent.putExtra("summary", recipe.summary);
-            intent.putExtra("source_url", recipe.sourceUrl);
+            intent.putExtra("recipeId", recipe.getRecipeId());
+            intent.putExtra("title", recipe.getTitle());
+            intent.putExtra("image_url", recipe.getImageUrl());
+            intent.putExtra("summary", recipe.getSummary());
+            intent.putExtra("source_url", recipe.getSourceUrl());
             context.startActivity(intent);
         });
         Picasso.get().load(recipe.getImageUrl()).into(holder.imageView);

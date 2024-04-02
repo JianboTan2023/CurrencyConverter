@@ -20,7 +20,7 @@ import androidx.room.RoomDatabase;
 @Database(entities = {Recipe.class}, version = 1, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {
 
-    public abstract RecipeDAO recipeDao();
+    public abstract RecipeDAO recipeDAO();
 
     // Single instance of the RecipeDatabase
     private static volatile RecipeDatabase INSTANCE;

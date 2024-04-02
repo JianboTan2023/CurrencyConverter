@@ -26,10 +26,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.college.converter.MainActivity;
 import com.college.converter.R;
+import com.college.converter.SecondActivity;
 import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.recipe.adapter.RecipeAdapter;
 import com.college.converter.recipe.data.Recipe;
-import com.college.converter.recipe.data.RecipeIDDAO;
+import com.college.converter.recipe.data.RecipeDAO;
+import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -116,34 +118,6 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
 
     }
-//    class MyRowHolder extends RecyclerView.ViewHolder {
-//        TextView rowitem;
-//
-//        public MyRowHolder(@NonNull View itemView, RecipeAdapter adapter) { // Pass the adapter as a parameter
-//            super(itemView);
-//            itemView.setOnClickListener(clk -> {
-//                int position = getAbsoluteAdapterPosition();
-//                Executor thread = Executors.newSingleThreadExecutor();
-//                AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-//                builder.setMessage("Do you want to add '" + rowitem.getText().toString() + "' to your Favorite List?")
-//                        .setTitle("Question")
-//                        .setNegativeButton("no", (dialog, cl) -> {})
-//                        .setPositiveButton("yes", (dialog, cl) -> {
-//                            thread.execute(() -> {
-//                                // Assuming you have a method to add a recipe to favorites
-//                                // This is a placeholder; replace with your actual method to insert into the database
-//                                // Also ensure that RecipeDao and its method to insert a recipe are correctly implemented
-//                                Recipe recipe = recipeList.get(position);
-//                                // RecipeDao.insertRecipe(recipe); // This should be your method call to insert
-//                                // Assuming you have access to update the UI after insertion
-//                                itemView.post(() -> adapter.notifyItemInserted(recipeList.size() - 1));
-//                            });
-//                        }).create().show();
-//            });
-//            rowitem = itemView.findViewById(R.id.rowitem);
-//        }
-//    }
-
 
     /**
      * Sets up the bottom navigation view and its item selection behavior, allowing
@@ -151,24 +125,33 @@ public class RecipeSearchActivity extends AppCompatActivity {
      */
     protected void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.second_id);
+        bottomNavigationView.setSelectedItemId(R.id.third_id);
 
         // Perform item selected listener
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.home_id) {
+
+            int item_id = item.getItemId();
+            if ( item_id == R.id.home_id ) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            } else if (itemId == R.id.first_id) {
-                startActivity(new Intent(getApplicationContext(), Sunlookup.class));
-            } else if (itemId == R.id.second_id) {
-                // Current activity, do nothing or handle accordingly
-            } else if (itemId == R.id.third_id) {
-                startActivity(new Intent(getApplicationContext(), Dictionary.class));
-            } else if (itemId == R.id.forth_id) {
-                startActivity(new Intent(getApplicationContext(), DeezerActivity.class));
             }
-            return true; // Return true to display the item as the selected item
+            else if (item_id == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.second_id ) {
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.third_id ) {
+                return true;
+            }
+            else if ( item_id == R.id.forth_id ) {
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
+                return true;
+            }
+            return false;
         });
+
     }
 
     /**
@@ -197,7 +180,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.help) {
             androidx.appcompat.app.AlertDialog.Builder builder1 = new androidx.appcompat.app.AlertDialog.Builder(RecipeSearchActivity.this);
-            builder1.setMessage(getString(R.string.recipe_search_information));
+            builder1.setMessage(getString(R.string.recipe_help));
             builder1.setTitle(getString(R.string.recipe_search_info_title));
 
             builder1.create().show();
@@ -216,7 +199,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
      * @param query The search term used to query the recipe API.
      */
     private void searchRecipes(String query) {
-        String apiKey = "7db24f50bd8c4927aff6c87ea850979b"; // Replace with your actual API key
+        String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
         String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&apiKey=" + apiKey;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
