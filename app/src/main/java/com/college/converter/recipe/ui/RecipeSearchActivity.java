@@ -26,7 +26,6 @@ import com.college.converter.R;
 import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.recipe.adapter.RecipeAdapter;
 import com.college.converter.recipe.data.Recipe;
-import com.college.converter.recipe.data.RecipeID;
 import com.college.converter.recipe.data.RecipeIDDAO;
 import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,7 +37,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class ActivityRecipeSearch extends AppCompatActivity implements RecipeAdapter.OnItemClickListener{
+public class RecipeSearchActivity extends AppCompatActivity implements RecipeAdapter.OnItemClickListener{
 
     ArrayList<Recipe> recipes = new ArrayList<>();
     ArrayList<RecipeID> recipeIDs = new ArrayList<>();
@@ -96,7 +95,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements RecipeAda
                 return true;
             }
             else if ( item_id == R.id.second_id ) {
-                startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
+                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
                 return true;
             }
             else if ( item_id == R.id.third_id ) {
@@ -117,7 +116,7 @@ public class ActivityRecipeSearch extends AppCompatActivity implements RecipeAda
    public void onItemClick(int position) {
         Recipe recipe = recipes.get(position);
 
-        Intent nextPage = new Intent(ActivityRecipeSearch.this, ActivityRecipeIDList.class);
+        Intent nextPage = new Intent(RecipeSearchActivity.this, ActivityRecipeIDList.class);
         nextPage.putExtra("url", recipe.getId());
         startActivity(nextPage);
     }

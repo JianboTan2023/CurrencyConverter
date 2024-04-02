@@ -1,6 +1,7 @@
 package com.college.converter.recipe.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.college.converter.recipe.data.Recipe;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Kelly Wu
@@ -27,40 +29,61 @@ import java.util.ArrayList;
  * it links with recyclerview_row_recipe
  */
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
+    private Context context;
+    private List<Recipe> recipeList;
 
+    private RecipeDao recipeDao;
 
-    Context context;
-    ArrayList<Recipe> recipes;
-    private static OnItemClickListener listener;
-
-    public RecipeAdapter(Context context, ArrayList<Recipe> recipes) {
+    /**
+     * Constructs the RecipeAdapter with the provided context and recipe list.
+     *
+     * @param context    The current context.
+     * @param recipeList The list of recipes to display.
+     */
+    public RecipeAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
-        this.recipes = recipes;
+        this.recipeList = recipeList;
+        recipeDao = RecipeDatabase.getDbInstance(context).recipeDao();
     }
 
     /**
-     * @param parent   The ViewGroup into which the new View will be added after it is bound to
-     *                 an adapter position.
+     * Called when RecyclerView needs a new {@link RecipeViewHolder} of the given type to represent
+     * an item.
+     *
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to an adapter position.
      * @param viewType The view type of the new View.
-     * @return
+     * @return A new RecipeViewHolder that holds a View of the given view type.
      */
     @NonNull
     @Override
-    public RecipeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recyclerview_row_recipe, parent, false);
-        return new RecipeAdapter.MyViewHolder(view);
+    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recipe_item, parent, false);
+        return new RecipeViewHolder(view);
     }
 
-    //bind data to viewholder
+    /**
+     * Called by RecyclerView to display the data at the specified position.
+     *
+     * @param holder   The RecipeViewHolder which should be updated to represent the contents of the item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
-    public void onBindViewHolder(@NonNull RecipeAdapter.MyViewHolder holder, int position) {
-        Recipe recipe = recipes.get(position);
-        Log.d("D", recipe.getId());
-        holder.title.setText(recipes.get(position).getTitle());
-        holder.recipeId.setText(recipes.get(position).getId());
-        holder.recipebind(recipe);
+    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
+        Recipe recipe = recipeList.get(position);
+        holder.titleTextView.setText(recipe.getTitle());
+        holder.itemView.setOnClickListener(clk -> {
+            Intent intent = new Intent(context, RecipeDetailsActivity.class);
+            intent.putExtra("source", RecipeDetailsActivity.SOURCE_LIST);
+            intent.putExtra("recipeId", recipe.recipeId);
+            intent.putExtra("title", recipe.title);
+            intent.putExtra("image_url", recipe.imageUrl);
+            intent.putExtra("summary", recipe.summary);
+            intent.putExtra("source_url", recipe.sourceUrl);
+            context.startActivity(intent);
+        });
+        Picasso.get().load(recipe.getImageUrl()).into(holder.imageView);
+        // Set other fields accordingly
     }
 
     /**
@@ -70,50 +93,26 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
      */
     @Override
     public int getItemCount() {
-        return recipes.size();
+        return recipeList.size();
     }
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-    }
-
 
     /**
-     * initiate viewholder with variables
+     * Provides a reference to the type of views that the adapter uses.
      */
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView recipeId;
-        TextView title;
+    public static class RecipeViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTextView;
         ImageView imageView;
 
-        public MyViewHolder(@NonNull View itemView) {
+        /**
+         * Initializes the RecipeViewHolder with the provided itemView.
+         *
+         * @param itemView The View for the Recipe item.
+         */
+        public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView2);
-            title = itemView.findViewById(R.id.recipeTitle);
-            recipeId = itemView.findViewById(R.id.recipeId);
-
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAbsoluteAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION && listener != null) {
-                        listener.onItemClick(position);
-                    }
-                }
-            });
+            titleTextView = itemView.findViewById(R.id.recipeTitle);
+            imageView = itemView.findViewById(R.id.recipeImage);
         }
-
-        public void recipebind(Recipe recipe) {
-            Picasso.get().load(recipe.getId()).into(imageView);
-
-        }
-
-
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
     }
 }
 

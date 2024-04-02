@@ -8,17 +8,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
-import com.college.converter.recipe.ui.ActivityRecipeSearch;
-import com.college.converter.song.ui.FavoriteSongActivity;
+import com.college.converter.recipe.ui.RecipeSearchActivity;
 import com.college.converter.song.ui.SearchArtistActivity;
 
 import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.sunlookup.SunActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /*
     TODOs:
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (item_id == R.id.second_id) {
-            startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
+            startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
             return true;
         }
         else if (item_id == R.id.third_id) {

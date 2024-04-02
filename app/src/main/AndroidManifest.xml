@@ -45,7 +45,7 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".recipe.ui.ActivityRecipeSearch"
+            android:name=".recipe.ui.RecipeSearchActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
