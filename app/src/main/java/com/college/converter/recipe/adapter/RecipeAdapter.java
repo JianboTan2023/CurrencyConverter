@@ -12,10 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.R;
-//import com.college.converter.recipe.data.Recipe;
-//import com.college.converter.recipe.data.RecipeDAO;
-//import com.college.converter.recipe.data.RecipeDatabase;
-//import com.college.converter.recipe.ui.RecipeDetailActivity;
+
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeDAO;
 import com.college.converter.recipe.data.RecipeDatabase;
@@ -61,7 +58,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
      */
     @NonNull
     @Override
-    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(context).inflate(R.layout.recipe_item, parent, false);
         return new RecipeViewHolder(view);
     }
@@ -73,7 +71,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position)
+    {
         Recipe recipe = recipeList.get(position);
         holder.titleTextView.setText(recipe.getTitle());
         holder.itemView.setOnClickListener(clk -> {
@@ -91,8 +90,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     }
 
     /**
-     * Returns the total number of items in the data set held by the adapter.
-     *
      * @return The total number of items in this adapter.
      */
     @Override
@@ -109,8 +106,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         /**
          * Initializes the RecipeViewHolder with the provided itemView.
-         *
-         * @param itemView The View for the Recipe item.
          */
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);

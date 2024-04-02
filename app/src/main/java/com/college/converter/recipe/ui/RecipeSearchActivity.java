@@ -1,6 +1,5 @@
 package com.college.converter.recipe.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,7 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.college.converter.MainActivity;
 import com.college.converter.R;
-import com.college.converter.SecondActivity;
+import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.recipe.adapter.RecipeAdapter;
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.song.ui.SearchArtistActivity;
@@ -57,7 +56,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
     private RequestQueue queue;
     private Toolbar toolbar;
     //protected BottomNavigationView bottomNavigationView;
-
+    protected BottomNavigationView bottomNavigationView;
     private Button favoriteBtn;
 
     /**
@@ -71,31 +70,35 @@ public class RecipeSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_search);
 
-//        // Initialize the toolbar and set it as the app bar for the activity
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         // Initialize toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(R.string.second);
+        getSupportActionBar().setTitle(R.string.recipe_title);
 
 //set up search result display in recyclerview
         searchTermEdit = findViewById(R.id.searchEditText);
         searchBtn = findViewById(R.id.search_button);
-        recipeRecyclerView = findViewById(R.id.recipesRecyclerView);
+        recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
+
 //sharedPreferences used to save last searched term
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         searchTermEdit.setText(prefs.getString(SEARCH_TERM_KEY, ""));
+
 //set up RecyclerView
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         recipeAdapter = new RecipeAdapter(this, recipeList);
         recipeRecyclerView.setAdapter(recipeAdapter);
+
 //volley library method to create new request queue and associate with the specified context
         queue = Volley.newRequestQueue(this);
 
+        //search button set up
         searchBtn.setOnClickListener(view -> {
             String query = searchTermEdit.getText().toString().trim();
             if (!query.isEmpty()) {
@@ -115,12 +118,12 @@ public class RecipeSearchActivity extends AppCompatActivity {
         });
 
         // set up BottomNavigationView
-    //    setupBottomNavigationView();
 
+        setupBottomNavigationView();
     }
 
     /**
-     * bottom navigation view
+     * set up bottom navigation view
      * navigation between different sections of the application.
      */
 //    protected void setupBottomNavigationView() {
@@ -154,34 +157,26 @@ public class RecipeSearchActivity extends AppCompatActivity {
 //        });
 //
 //    }
-    BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.third_id);
+    protected void setupBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.second_id);
 
-    // Perform item selected listener
         bottomNavigationView.setOnItemSelectedListener(item -> {
-
-        int item_id = item.getItemId();
-        if ( item_id == R.id.home_id ) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }
-        else if (item_id == R.id.first_id) {
-            startActivity(new Intent(getApplicationContext(), SunActivity.class));
-            return true;
-        }
-        else if ( item_id == R.id.second_id ) {
-            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
-            return true;
-        }
-        else if ( item_id == R.id.third_id ) {
-            startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
-            return true;
-        }
-        else if ( item_id == R.id.forth_id ) {
-            startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
-            return true;
-        }
-        return false;
-    });
+            int itemId = item.getItemId();
+            if (itemId == R.id.home_id) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            } else if (itemId == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
+            } else if (itemId == R.id.second_id) {
+                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
+            } else if (itemId == R.id.third_id) {
+                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+            } else if (itemId == R.id.forth_id) {
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
+            }
+            return true; // Return true to display the item as the selected item
+        });
+    }
     /**
      * menu options for the activity from a menu resource.
      *
@@ -230,14 +225,15 @@ public class RecipeSearchActivity extends AppCompatActivity {
         String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
         String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&apiKey=" + apiKey;
 
-        @SuppressLint("ResourceType") StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
                         recipeList.clear();
 
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                        for (int i = 0; i < jsonArray.length(); i++)
+                        {
                             JSONObject recipeObject = jsonArray.getJSONObject(i);
                             String title = recipeObject.getString("title");
                             String imageUrl = recipeObject.getString("image");
@@ -248,12 +244,13 @@ public class RecipeSearchActivity extends AppCompatActivity {
                             recipeList.add(recipe);
                         }
                         recipeAdapter.notifyDataSetChanged();
-                    } catch (JSONException e) {
+                    } catch (JSONException e)
+                    {
                         e.printStackTrace();
-                        Toast.makeText(RecipeSearchActivity.this, getString(R.id.errormessage) , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RecipeSearchActivity.this, "An error occurred during parsing.", Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> Toast.makeText(RecipeSearchActivity.this, getString(R.id.failmessage), Toast.LENGTH_SHORT).show());
+                error -> Toast.makeText(RecipeSearchActivity.this, "Failed to get data.", Toast.LENGTH_SHORT).show());
 
         queue.add(stringRequest);
     }

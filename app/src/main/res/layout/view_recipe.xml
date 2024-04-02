@@ -17,4 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Delete" />
 
+    <include
+        layout="@layout/bottom_navigation" />
+
 </LinearLayout>

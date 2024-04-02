@@ -17,7 +17,11 @@ import com.college.converter.recipe.ui.RecipeDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
+/**
+ * @author Kelly Wu
+ * @lab section 021
+ * this is to hold data for favorite recipe
+ */
 public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAdapter.RecipeViewHolder> {
     private Context context;
     private List<Recipe> recipeList;
@@ -26,13 +30,13 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
      * Constructs the adapter with a given context and list of recipes.
      *
      * @param context The current context.
-     * @param recipeList A list of recipes to be displayed.
+     * @param recipeList list of recipes
      */
     public RecipeFavoriteAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
         this.recipeList = recipeList;
     }
-
+//create viewHolder
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,17 +45,16 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
     }
 
     /**
-     * Binds the data from the recipe list to the views in the ViewHolder.
      * This method sets up the title of the recipe, the image using Picasso for asynchronous loading,
-     * and the click listener which opens the recipe details activity when a recipe item is clicked.
+     * click listener opens the recipe details activity when a recipe item is clicked.
      *
-     * @param holder   The ViewHolder which should be updated to represent the
-     *                 contents of the item at the given position in the data set.
+     * @param holder   should be updated to represent the data at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position)
+    {
         Recipe recipe = recipeList.get(position);
         holder.titleTextView.setText(recipe.getTitle());
         holder.itemView.setOnClickListener(clk -> {
@@ -61,13 +64,10 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
             context.startActivity(intent);
         });
         Picasso.get().load(recipe.getImageUrl()).into(holder.imageView);
-        // Set other fields accordingly
     }
 
     /**
-     * Returns the total number of items in the data set held by the adapter.
-     *
-     * @return The total number of items in this adapter.
+     * Returns the total number of items held by the adapter.
      */
     @Override
     public int getItemCount() {
@@ -75,8 +75,8 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
     }
 
     /**
-     * Provides a reference to the type of views that the adapter uses.
-     * It holds all the view components for the recipe item layout, allowing for each one to be manipulated programmatically.
+     * Provides a reference to the type of views
+     * hold all the view components for the recipe item layout
      */
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
@@ -84,14 +84,11 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
 
         /**
          * Constructs the ViewHolder instance and binds the view components.
-         *
-         * @param itemView The view that the ViewHolder will manage.
          */
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.recipeTitle);
             imageView = itemView.findViewById(R.id.recipeImage);
-            // Initialize other views
         }
     }
 }

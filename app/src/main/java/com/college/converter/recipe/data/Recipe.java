@@ -44,7 +44,7 @@ public class Recipe implements Serializable {
         public Recipe() {}
 
         /**
-         * Constructor used for creating a Recipe instance when fetching from an API.
+         * Constructor used for data recived from an API upon first request.
          *
          */
         public Recipe(int recipeId, String title, String imageUrl) {
@@ -54,7 +54,7 @@ public class Recipe implements Serializable {
         }
 
         /**
-         * Full constructor used by Room with all fields.
+         * Full constructor for Room with all fields.
          *
          */
         @Ignore

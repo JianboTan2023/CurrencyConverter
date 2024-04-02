@@ -47,13 +47,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
      * Initializes the activity, sets up the view binding,
      * display the recipe information.
      * displays the stored data.
-     *display data from an external API if not existed in database
-     */
-    @Override
-    /**
+     * display data from an external API if not existed in database
      * savedInstanceState Bundle object containing data from previously saved state
      * this is the first part for retriving data upon search request
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRecipeDetailBinding.inflate(getLayoutInflater());
@@ -86,7 +84,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
             recipeDAO.deleteRecipe(recipe);
         });
-        Snackbar.make(binding.getRoot(), getString(R.string.deleteConfirm), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(binding.getRoot(), "recipe removed", Snackbar.LENGTH_SHORT).show();
     }
 
     /**
@@ -106,7 +104,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
                         recipeDAO.insertRecipe(recipe);
                     });
-                    Snackbar.make(binding.getRoot(), getString(R.string.addedMessage), Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(binding.getRoot(), "recipe added", Snackbar.LENGTH_SHORT).show();
                     binding.addFavroite.setText(R.string.favoriteadded);
                 }).create().show();
     }
@@ -118,7 +116,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void searchRecipe(int query) {
         if (query == -1) {
-            Snackbar.make(binding.getRoot(), getString(R.string.receip_not_found), Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(binding.getRoot(), "recipe not found", Snackbar.LENGTH_SHORT).show();
             return;
         }
         String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
@@ -134,12 +132,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         Picasso.get().load(recipe.getImageUrl()).into(binding.recipeImage);
                         binding.progressBar.setVisibility(View.GONE);
                         binding.addFavroite.setOnClickListener(clk -> addFavorite(recipe));
-                    } catch (JSONException e) {
+                    } catch (JSONException e)
+                    {
                         e.printStackTrace();
-                        Toast.makeText(RecipeDetailActivity.this, getString(R.string.error_occurred), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RecipeDetailActivity.this, "error occurred during parsing.", Toast.LENGTH_LONG).show();
                     }
                 },
-                error -> Toast.makeText(RecipeDetailActivity.this, getString(R.string.tryagain), Toast.LENGTH_SHORT).show());
+                error -> Toast.makeText(RecipeDetailActivity.this, getString(R.string.tryagain), Toast.LENGTH_LONG).show());
 
         queue.add(stringRequest);
     }
@@ -151,7 +150,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      * @return A Recipe object with data extracted from the JSON response.
      * @throws JSONException If parsing the JSON data fails.
      */
-    @androidx.annotation.NonNull
+    @NonNull
     private static Recipe getRecipe(String response) throws JSONException {
         JSONObject jsonObject = new JSONObject(response);
         Recipe recipe = new Recipe();
@@ -165,8 +164,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Initializes the contents of the Activity's standard options menu.
-     * This is only called once, the first time the options menu is displayed.
+     * Initializes the contents of the options menu.
      *
      * @param menu The options menu in which items are placed.
      * @return true for the menu to be displayed; false it will not be shown.
@@ -178,17 +176,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Handles action bar item clicks. The action bar will automatically handle clicks on the
-     * Home/Up button, so long as a parent activity in AndroidManifest.xml is specified.
      *
      * @param item The menu item that was selected.
-     * @return boolean Return false to allow normal menu processing to proceed,
-     *         true to consume it here.
+     * help item show instruction
+     * home item return to main action
+     * @return
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.help) {
-            // Show help information
+
             Toast.makeText(this, getString(R.string.instruction), Toast.LENGTH_LONG).show();
             return true;
         } else if (item.getItemId() == R.id.home) {

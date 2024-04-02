@@ -16,6 +16,7 @@ import com.college.converter.recipe.adapter.RecipeFavoriteAdapter;
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeDAO;
 import com.college.converter.recipe.data.RecipeDatabase;
+import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,14 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-class FavoriteActivity extends AppCompatActivity {
+public class FavoriteActivity extends AppCompatActivity {
 
-    private RecyclerView recipesRecyclerView;
+    private RecyclerView recipeRecyclerView;
     List<Recipe> recipes = new ArrayList<>();
 
     private Toolbar toolbar;
 
-    private RecipeDAO recipeDao;
+    private RecipeDAO recipeDAO;
 
     private RecipeFavoriteAdapter recipeAdapter;
 
@@ -53,16 +54,16 @@ class FavoriteActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.favorite_recipes);
 
-        recipesRecyclerView = findViewById(R.id.recycle_food);
+        recipeRecyclerView = findViewById(R.id.recycle_food);
 
-        recipesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //database
-        recipeDao = RecipeDatabase.getDbInstance(this).recipeDAO();
+        recipeDAO = RecipeDatabase.getDbInstance(this).recipeDAO();
 
         recipeAdapter = new RecipeFavoriteAdapter(this, recipes);
 
         refreshList();
-        // Now setup the BottomNavigationView
+
         setupBottomNavigationView(); // Add this line
     }
 
@@ -77,27 +78,20 @@ class FavoriteActivity extends AppCompatActivity {
         // Perform item selected listener
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            int item_id = item.getItemId();
-            if ( item_id == R.id.home_id ) {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home_id) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-            else if (item_id == R.id.first_id) {
+            } else if (itemId == R.id.first_id) {
                 startActivity(new Intent(getApplicationContext(), SunActivity.class));
-                return true;
-            }
-            else if ( item_id == R.id.second_id ) {
-                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
-                return true;
-            }
-            else if ( item_id == R.id.third_id ) {
+            } else if (itemId == R.id.second_id) {
+                // Current activity, do nothing or handle accordingly
+                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
+            } else if (itemId == R.id.third_id) {
                 startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
-                return true;
+            } else if (itemId == R.id.forth_id) {
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
             }
-            else if ( item_id == R.id.forth_id ) {
-
-                return true;
-            }
-            return false;
+            return true; // Return true to display the item as the selected item
         });
     }
 
@@ -108,10 +102,10 @@ class FavoriteActivity extends AppCompatActivity {
     private void refreshList() {
         recipes.clear();
         Executors.newSingleThreadExecutor().execute(() -> {
-            if (recipeDao.getAllRecipes() != null) {
-                recipes.addAll( recipeDao.getAllRecipes() ); //Once you get the data from database
+            if (recipeDAO.getAllRecipes() != null) {
+                recipes.addAll( recipeDAO.getAllRecipes() ); //Once you get the data from database
             }
-            runOnUiThread( () ->  recipesRecyclerView.setAdapter( recipeAdapter )); //You can then load the RecyclerView
+            runOnUiThread( () ->  recipeRecyclerView.setAdapter( recipeAdapter )); //You can then load the RecyclerView
         });
     }
 

@@ -7,7 +7,7 @@
     tools:context="recipe.ui.RecipeDetailActivity">
 
     <Button
-        android:id="@+id/add_favroite"
+        android:id="@+id/addFavroite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/favorite_recipes"
@@ -79,6 +79,5 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="675dp" />
 
-    <!-- Add additional views for other recipe details as needed -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
