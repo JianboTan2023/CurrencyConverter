@@ -48,7 +48,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public RecipeAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
         this.recipeList = recipeList;
-        recipeDAO = RecipeDatabase.getDbInstance(context).recipeDao();
+        recipeDAO = RecipeDatabase.getDbInstance(context).recipeDAO();
     }
 
     /**

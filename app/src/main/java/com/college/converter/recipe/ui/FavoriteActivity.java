@@ -57,7 +57,7 @@ class FavoriteActivity extends AppCompatActivity {
 
         recipesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //database
-        recipeDao = RecipeDatabase.getDbInstance(this).recipeDao();
+        recipeDao = RecipeDatabase.getDbInstance(this).recipeDAO();
 
         recipeAdapter = new RecipeFavoriteAdapter(this, recipes);
 

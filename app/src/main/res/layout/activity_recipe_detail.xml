@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Zhihao.RecipeDetailsActivity">
+    tools:context="recipe.ui.RecipeDetailActivity">
 
     <Button
         android:id="@+id/add_favroite"
@@ -73,6 +73,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="http://source.url.here" />
+
+    <include
+        layout="@layout/bottom_navigation"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="675dp" />
 
     <!-- Add additional views for other recipe details as needed -->
 

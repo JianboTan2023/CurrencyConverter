@@ -130,6 +130,7 @@
     <string name="sourUrl">sourceUrl\n</string>
     <string name="tryagain">Please try again....</string>
     <string name="receip_not_found">Recipe not founded</string>
+    <string name="search_key">Please enter search key words for your recipe list\n</string>
 
     <!--SunLookup App end  Yue Shang -->
 

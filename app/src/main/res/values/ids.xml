@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="errormessage" type="id">An error occurred</item>
+    <item name="failmessage" type="id">failed to get data</item>
+    <item name="addQuestion" type="id">Do you want to add '</item>
+    <item name="addQuestion_2" type="id">' to your Favorite List?</item>
+    <item name="addConfirm" type="id">Your favorite recipe added</item>
+</resources>

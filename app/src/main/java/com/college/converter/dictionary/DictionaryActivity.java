@@ -32,6 +32,7 @@ import androidx.room.Room;
 
 import com.college.converter.SecondActivity;
 import com.college.converter.databinding.ActivityDictionaryBinding;
+import com.college.converter.recipe.ui.RecipeSearchActivity;
 import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -226,6 +227,7 @@ public class DictionaryActivity extends AppCompatActivity {
                 return true;
             }
             else if ( item_id == R.id.third_id ) {
+                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
                 return true;
             }
             else if ( item_id == R.id.forth_id ) {
