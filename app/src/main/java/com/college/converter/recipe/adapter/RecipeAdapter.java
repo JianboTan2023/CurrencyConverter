@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.R;
 import com.college.converter.recipe.data.Recipe;
+import com.college.converter.recipe.ui.RecipeDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -73,8 +74,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         Recipe recipe = recipeList.get(position);
         holder.titleTextView.setText(recipe.getTitle());
         holder.itemView.setOnClickListener(clk -> {
-            Intent intent = new Intent(context, RecipeDetailsActivity.class);
-            intent.putExtra("source", RecipeDetailsActivity.SOURCE_LIST);
+            Intent intent = new Intent(context, RecipeDetailActivity.class);
+            intent.putExtra("source", RecipeDetailActivity.SOURCE_LIST);
             intent.putExtra("recipeId", recipe.recipeId);
             intent.putExtra("title", recipe.title);
             intent.putExtra("image_url", recipe.imageUrl);

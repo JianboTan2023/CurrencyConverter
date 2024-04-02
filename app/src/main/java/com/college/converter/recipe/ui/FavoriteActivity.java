@@ -10,6 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.MainActivity;
 import com.college.converter.R;
+import com.college.converter.SecondActivity;
+import com.college.converter.dictionary.DictionaryActivity;
+import com.college.converter.recipe.adapter.RecipeFavoriteAdapter;
+import com.college.converter.recipe.data.Recipe;
+import com.college.converter.recipe.data.RecipeDAO;
+import com.college.converter.recipe.data.RecipeDatabase;
+import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -23,7 +30,7 @@ class FavoriteActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    private RecipeDao recipeDao;
+    private RecipeDAO recipeDao;
 
     private RecipeFavoriteAdapter recipeAdapter;
 
@@ -69,19 +76,28 @@ class FavoriteActivity extends AppCompatActivity {
 
         // Perform item selected listener
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.home_id) {
+
+            int item_id = item.getItemId();
+            if ( item_id == R.id.home_id ) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            } else if (itemId == R.id.first_id) {
-                startActivity(new Intent(getApplicationContext(), Sunlookup.class));
-            } else if (itemId == R.id.second_id) {
-                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
-            } else if (itemId == R.id.third_id) {
-                startActivity(new Intent(getApplicationContext(), Dictionary.class));
-            } else if (itemId == R.id.forth_id) {
-                startActivity(new Intent(getApplicationContext(), DeezerActivity.class));
             }
-            return true; // Return true to display the item as the selected item
+            else if (item_id == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.second_id ) {
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.third_id ) {
+                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+                return true;
+            }
+            else if ( item_id == R.id.forth_id ) {
+
+                return true;
+            }
+            return false;
         });
     }
 

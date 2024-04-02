@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.R;
+import com.college.converter.recipe.data.Recipe;
+import com.college.converter.recipe.ui.RecipeDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -53,9 +55,9 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
         Recipe recipe = recipeList.get(position);
         holder.titleTextView.setText(recipe.getTitle());
         holder.itemView.setOnClickListener(clk -> {
-            Intent intent = new Intent(context, RecipeDetailsActivity.class);
+            Intent intent = new Intent(context, RecipeDetailActivity.class);
             intent.putExtra("recipe", recipe);
-            intent.putExtra("source", RecipeDetailsActivity.SOURCE_FAVORITE);
+            intent.putExtra("source", RecipeDetailActivity.SOURCE_FAVORITE);
             context.startActivity(intent);
         });
         Picasso.get().load(recipe.getImageUrl()).into(holder.imageView);

@@ -2,7 +2,7 @@ package com.college.converter.recipe.data;
 /**
  * @author Kelly Wu
  *  @lab section 021
- *  this is Database for RecipeID
+ *  this is Database for Recipe
  */
 import android.content.Context;
 
@@ -10,25 +10,25 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {RecipeID.class}, version=1)
+
 /**
- * RecipeDatabase extends from RoomDatabase and have abstract class rDAO()
+ * RecipeDatabase extends from RoomDatabase and have abstract class RecipeDAO()
+ * DAO contains methods to insert and delete operations on the database, and maintain the database
  * @author Kelly Wu
  * @date: March 30, 2024
  */
+@Database(entities = {Recipe.class}, version = 1, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {
 
-    public abstract RecipeDao recipeDao();
+    public abstract RecipeDAO recipeDao();
 
     // Single instance of the RecipeDatabase
     private static volatile RecipeDatabase INSTANCE;
 
     /**
-     * Retrieves the single instance of the database for the application's context.
-     * If the instance does not exist, it synchronously creates the database.
-     *
-     * @param context The context of the application used to construct the database.
-     * @return The single instance of the RecipeDatabase.
+     * Retrieves the single instance of the database if already existed.It will insert data if not existed
+     * @param context construct the database.
+     * @return The single instance.
      */
     public static RecipeDatabase getDbInstance(Context context) {
         if (INSTANCE == null) {
@@ -36,7 +36,7 @@ public abstract class RecipeDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     RecipeDatabase.class, "recipes_database")
-                            .fallbackToDestructiveMigration() // You might want to handle migrations properly instead
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

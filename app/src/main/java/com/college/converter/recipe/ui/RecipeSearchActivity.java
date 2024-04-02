@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,140 +38,212 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class RecipeSearchActivity extends AppCompatActivity implements RecipeAdapter.OnItemClickListener{
+public class RecipeSearchActivity extends AppCompatActivity {
 
-    ArrayList<Recipe> recipes = new ArrayList<>();
-    ArrayList<RecipeID> recipeIDs = new ArrayList<>();
-    RecipeAdapter adapter;
-    RecipeIDDAO rDAO;
+    private static final String PREFS_NAME = "RecipePrefs";
+    private static final String SEARCH_TERM_KEY = "recipeSearchTerm";
 
+    private EditText searchEditText;
+    private Button searchButton;
+    private RecyclerView recipesRecyclerView;
+    private List<Recipe> recipeList = new ArrayList<>();
+    private RecipeAdapter adapter;
+    private RequestQueue queue;
+    private Toolbar toolbar;
+    protected BottomNavigationView bottomNavigationView;
+
+    private Button favoriteRecipes;
+
+    /**
+     * Initializes the activity, its views, and functionalities. It sets up the RecyclerView
+     * for displaying search results and configures the search functionality, including saving
+     * and retrieving the last search term from SharedPreferences.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down then this Bundle contains the data it most
+     *                           recently supplied in onSaveInstanceState(Bundle). Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_recipe_search);
-        Toolbar toolbar = findViewById(R.id.recipeToolBar);
+
+        // Initialize the toolbar and set it as the app bar for the activity
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
-        adapter = new RecipeAdapter(this, recipes);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        SharedPreferences prefs = getSharedPreferences("results", Context.MODE_PRIVATE);
-        String recipeSearch = prefs.getString("My data", "");
-        EditText nameEditText = findViewById(R.id.recipeSearchText);
-        nameEditText.setText(recipeSearch);
+        // Initialize toolbar
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(R.string.second);
 
-//add menu bar at the top of the page
+        searchEditText = findViewById(R.id.searchEditText);
+        searchButton = findViewById(R.id.search_button);
+        recipesRecyclerView = findViewById(R.id.recipesRecyclerView);
 
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        searchEditText.setText(prefs.getString(SEARCH_TERM_KEY, ""));
 
-        // this setion set up click function and bottom navigation
-        Button btn = findViewById(R.id.searchButton);
-        btn.setOnClickListener(click -> {
-            TextView nameInput = findViewById(R.id.recipeSearchText);
-            String name = nameInput.getText().toString();
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("recipeName", nameEditText.getText().toString());
-            editor.apply();
-            nameInput.setText("");
-            sendRequest(name);
-            Toast.makeText(this, R.string.waitrequest, Toast.LENGTH_SHORT).show();
-            // Set the click listener
-            //adapter.setOnItemClickListener((RecipeAdapter.OnItemClickListener) this);
-            adapter.setOnItemClickListener(this);
+        recipesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new RecipeAdapter(this, recipeList);
+        recipesRecyclerView.setAdapter(adapter);
+
+        queue = Volley.newRequestQueue(this);
+
+        searchButton.setOnClickListener(view -> {
+            String query = searchEditText.getText().toString().trim();
+            if (!query.isEmpty()) {
+                searchRecipes(query);
+                prefs.edit().putString(SEARCH_TERM_KEY, query).apply();
+            } else {
+                Toast.makeText(RecipeSearchActivity.this, R.string.enter_search_term, Toast.LENGTH_SHORT).show();
+            }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.forth_id);
-
-        // Set item selected listener for bottom navigation view
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int item_id = item.getItemId();
-            // Navigate to respective activities based on selected item
-            if ( item_id == R.id.home_id ) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-            else if (item_id == R.id.first_id) {
-                startActivity(new Intent(getApplicationContext(), SunActivity.class));
-                return true;
-            }
-            else if ( item_id == R.id.second_id ) {
-                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
-                return true;
-            }
-            else if ( item_id == R.id.third_id ) {
-                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
-                return true;
-            }
-            else if ( item_id == R.id.forth_id ) {
-
-                return true;
-            }
-            return false;
+        favoriteRecipes = findViewById(R.id.favorite_recipes);
+        favoriteRecipes.setOnClickListener(view -> {
         });
+        favoriteRecipes.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), FavoriteActivity.class));
+        });
+        // Now setup the BottomNavigationView
+        setupBottomNavigationView(); // Add this line
+
 
     }
+//    class MyRowHolder extends RecyclerView.ViewHolder {
+//        TextView rowitem;
+//
+//        public MyRowHolder(@NonNull View itemView, RecipeAdapter adapter) { // Pass the adapter as a parameter
+//            super(itemView);
+//            itemView.setOnClickListener(clk -> {
+//                int position = getAbsoluteAdapterPosition();
+//                Executor thread = Executors.newSingleThreadExecutor();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+//                builder.setMessage("Do you want to add '" + rowitem.getText().toString() + "' to your Favorite List?")
+//                        .setTitle("Question")
+//                        .setNegativeButton("no", (dialog, cl) -> {})
+//                        .setPositiveButton("yes", (dialog, cl) -> {
+//                            thread.execute(() -> {
+//                                // Assuming you have a method to add a recipe to favorites
+//                                // This is a placeholder; replace with your actual method to insert into the database
+//                                // Also ensure that RecipeDao and its method to insert a recipe are correctly implemented
+//                                Recipe recipe = recipeList.get(position);
+//                                // RecipeDao.insertRecipe(recipe); // This should be your method call to insert
+//                                // Assuming you have access to update the UI after insertion
+//                                itemView.post(() -> adapter.notifyItemInserted(recipeList.size() - 1));
+//                            });
+//                        }).create().show();
+//            });
+//            rowitem = itemView.findViewById(R.id.rowitem);
+//        }
+//    }
 
-//onItemClick function for item clicked from RecyclerView
-   @Override
-   public void onItemClick(int position) {
-        Recipe recipe = recipes.get(position);
 
-        Intent nextPage = new Intent(RecipeSearchActivity.this, ActivityRecipeIDList.class);
-        nextPage.putExtra("url", recipe.getId());
-        startActivity(nextPage);
+    /**
+     * Sets up the bottom navigation view and its item selection behavior, allowing
+     * navigation between different sections of the application.
+     */
+    protected void setupBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.second_id);
+
+        // Perform item selected listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home_id) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            } else if (itemId == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), Sunlookup.class));
+            } else if (itemId == R.id.second_id) {
+                // Current activity, do nothing or handle accordingly
+            } else if (itemId == R.id.third_id) {
+                startActivity(new Intent(getApplicationContext(), Dictionary.class));
+            } else if (itemId == R.id.forth_id) {
+                startActivity(new Intent(getApplicationContext(), DeezerActivity.class));
+            }
+            return true; // Return true to display the item as the selected item
+        });
+    }
+
+    /**
+     * Inflates the menu options for the activity from a menu resource.
+     *
+     * @param menu The options menu in which you place your items.
+     * @return You must return true for the menu to be displayed; if you return false it will not be shown.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.recipe_menu, menu);
+        return true;
+    }
+
+    /**
+     * Handles action bar item clicks here. The action bar will automatically handle clicks
+     * on the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml.
+     *
+     * @param item The menu item that was selected.
+     * @return boolean Return false to allow normal menu processing to proceed,
+     * true to consume it here.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.help) {
+            androidx.appcompat.app.AlertDialog.Builder builder1 = new androidx.appcompat.app.AlertDialog.Builder(RecipeSearchActivity.this);
+            builder1.setMessage(getString(R.string.recipe_search_information));
+            builder1.setTitle(getString(R.string.recipe_search_info_title));
+
+            builder1.create().show();
+        } else if (id == R.id.home) {
+            Toast.makeText(this, getString(R.string.back), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
     /**
-     * this part is to send API request to search recipe from other website
-     * @param recipeName is the user edit content
+     * Performs the recipe search using the specified query string. It sends a request to
+     * the external API and processes the response to update the UI with the search results.
+     *
+     * @param query The search term used to query the recipe API.
      */
-    private void sendRequest(String recipeName) {
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + recipeName
-                +"&apiKey=6c93a30ed6624a03be850e3d2c118b6b";
+    private void searchRecipes(String query) {
+        String apiKey = "7db24f50bd8c4927aff6c87ea850979b"; // Replace with your actual API key
+        String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&apiKey=" + apiKey;
 
-
-        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+                response -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        recipeList.clear();
 
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            JSONArray results = jsonResponse.getJSONArray("results");
-                            recipes.clear();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject recipeObject = jsonArray.getJSONObject(i);
+                            String title = recipeObject.getString("title");
+                            String imageUrl = recipeObject.getString("image");
+                            int id = recipeObject.getInt("id");
 
-                            // Iterate through the JSONArray to get recipeId and data
-
-                            for (int i = 0; i < results.length(); i++) {
-                                JSONObject result = results.getJSONObject(i);
-                               Recipe recipe = new Recipe();
-                                recipe.setId(result.getString("id"));
-                                recipe.setTitle(result.getString("title"));
-                                recipe.setImage(result.getString("image"));
-
-                                recipes.add(recipe);
-                            }
-
-                            adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            Recipe recipe = new Recipe(id, title, imageUrl);
+                            recipe.setId(id);
+                            recipeList.add(recipe);
                         }
+                        adapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(RecipeSearchActivity.this, "An error occurred during parsing.", Toast.LENGTH_SHORT).show();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                },
+                error -> Toast.makeText(RecipeSearchActivity.this, "Failed to fetch data.", Toast.LENGTH_SHORT).show());
 
-            }
-        });
-
-        // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
 

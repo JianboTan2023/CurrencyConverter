@@ -17,7 +17,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.college.converter.R;
-import com.college.converter.recipe.data.RecipeIDDAO;
+import com.college.converter.databinding.ActivityRecipeDetailBinding;
+import com.college.converter.recipe.data.Recipe;
+import com.college.converter.recipe.data.RecipeDAO;
 import com.college.converter.recipe.data.RecipeDatabase;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
@@ -30,11 +32,11 @@ import java.util.concurrent.Executors;
 /**
  * @author Kelly Wu
  * @section Lab 021
- * this class is to get recipe details by second request
+ * this class is to get recipe details by second request from API or database,
  */
 public class RecipeDetailActivity extends AppCompatActivity {
 
-    ActivityRecipeDetailsBinding binding;
+    ActivityRecipeDetailBinding binding;
     private RequestQueue queue;
 
     // Constant keys for identifying the source of the data
@@ -51,7 +53,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityRecipeDetailsBinding.inflate(getLayoutInflater());
+        binding = ActivityRecipeDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         String source = getIntent().getStringExtra("source");
         int recipeId = getIntent().getIntExtra("recipeId", -1);
@@ -80,7 +82,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     private void removeFavoirte(Recipe recipe) {
         Executors.newSingleThreadExecutor().execute(() -> {
-            RecipeDao recipeDao = RecipeDatabase.getDbInstance(RecipeDetailsActivity.this).recipeDao();
+            RecipeDAO recipeDao = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDao();
             recipeDao.deleteRecipe(recipe);
         });
         Snackbar.make(binding.getRoot(), "Recipe remove success", Snackbar.LENGTH_SHORT).show();
@@ -100,7 +102,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 .setNegativeButton("no", (dialog, cl) -> {})
                 .setPositiveButton("yes", (dialog, cl) -> {
                     Executors.newSingleThreadExecutor().execute(() -> {
-                        RecipeDao recipeDao = RecipeDatabase.getDbInstance(RecipeDetailsActivity.this).recipeDao();
+                        RecipeDAO recipeDao = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDao();
                         recipeDao.insertRecipe(recipe);
                     });
                     Snackbar.make(binding.getRoot(), "Add success", Snackbar.LENGTH_SHORT).show();
@@ -119,7 +121,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             Snackbar.make(binding.getRoot(), "Recipe not found", Snackbar.LENGTH_SHORT).show();
             return;
         }
-        String apiKey = "7db24f50bd8c4927aff6c87ea850979b"; // Replace with your actual API key
+        String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
         String url = "https://api.spoonacular.com/recipes/" + query + "/information?includeNutrition=false&apiKey=" + apiKey;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -134,10 +136,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         binding.addFavroite.setOnClickListener(clk -> addFavorite(recipe));
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(RecipeDetailsActivity.this, "An error occurred during parsing.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RecipeDetailActivity.this, "An error occurred during parsing.", Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> Toast.makeText(RecipeDetailsActivity.this, "Failed to fetch data.", Toast.LENGTH_SHORT).show());
+                error -> Toast.makeText(RecipeDetailActivity.this, "Failed to fetch data.", Toast.LENGTH_SHORT).show());
 
         queue.add(stringRequest);
     }
@@ -171,7 +173,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my_menu, menu);
+        getMenuInflater().inflate(R.menu.recipe_menu, menu);
         return true;
     }
 
@@ -187,7 +189,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.help) {
             // Show help information
-            Toast.makeText(this, getString(R.string.help_info), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.instruction), Toast.LENGTH_LONG).show();
             return true;
         } else if (item.getItemId() == R.id.home) {
             // Navigate to the home activity
