@@ -134,6 +134,10 @@
     <string name="recipe_title">Search the recipe you want to cook</string>
     <string name="fail">Failed to get data from website</string>
     <string name="addsuccess">Added success</string>
+    <string name="addFavorite">Likes</string>
+    <string name="textView">textView</string>
+    <string name="rSummary">summary</string>
+    <string name="urltext">website</string>
 
     <!--SunLookup App end  Yue Shang -->
 

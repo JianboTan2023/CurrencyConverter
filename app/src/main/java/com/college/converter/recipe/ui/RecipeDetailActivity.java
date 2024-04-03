@@ -64,17 +64,17 @@ public class RecipeDetailActivity extends AppCompatActivity {
         if (SOURCE_FAVORITE.equals(source)) {
             Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipe");
             assert recipe != null;
-            binding.progressBar.setVisibility(View.GONE);
+            binding.loadBar.setVisibility(View.GONE);
             binding.recipeTitle.setText(recipe.getTitle());
             binding.recipeSummary.setText(recipe.getSummary());
             binding.recipeSourceUrl.setText(recipe.getSpoonacularSourceUrl());
             Picasso.get().load(recipe.getImageUrl()).into(binding.recipeImage);
-            binding.addFavroite.setText(R.string.remove_favorite);
-            binding.addFavroite.setOnClickListener(clk -> removeFavoirte(recipe));
+            binding.favButton.setText(R.string.remove_favorite);
+            binding.favButton.setOnClickListener(clk -> removeFavoirte(recipe));
             return;
         }
         queue = Volley.newRequestQueue(this);
-        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.loadBar.setVisibility(View.VISIBLE);
         searchRecipe(recipeId);
     }
 
@@ -109,7 +109,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         recipeDAO.insertRecipe(recipe);
                     });
                     Snackbar.make(binding.getRoot(), getString(R.string.addsuccess), Snackbar.LENGTH_SHORT).show();
-                    binding.addFavroite.setText(R.string.favoriteadded);
+                    binding.favButton.setText(R.string.favoriteadded);
                 }).create().show();
     }
 
@@ -134,8 +134,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         binding.recipeSummary.setText(recipe.getSummary());
                         binding.recipeSourceUrl.setText(recipe.getSpoonacularSourceUrl());
                         Picasso.get().load(recipe.getImageUrl()).into(binding.recipeImage);
-                        binding.progressBar.setVisibility(View.GONE);
-                        binding.addFavroite.setOnClickListener(clk -> addFavorite(recipe));
+                        binding.loadBar.setVisibility(View.GONE);
+                        binding.favButton.setOnClickListener(clk -> addFavorite(recipe));
                     } catch (JSONException e)
                     {
                         e.printStackTrace();

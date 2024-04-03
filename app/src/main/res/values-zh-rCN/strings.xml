@@ -46,7 +46,11 @@
     <string name="deezer_help_info">步骤</string>
     <string name="deezer_how_to_use_the_interface">使用接口</string>
     <string name="deezer_do_you_want_to_delete_the_song">删除歌曲</string>
-    <string name="recipe_title">Search the recipe you want to cook</string>
-    <string name="addsuccess">Added success</string>
+    <string name="recipe_title">输入查询条件</string>
+    <string name="addsuccess">添加成功</string>
+    <string name="addFavorite">喜欢</string>
+    <string name="textView">文档</string>
+    <string name="rSummary">介绍</string>
+    <string name="urltext">网站</string>
 
 </resources>
