@@ -7,16 +7,12 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +32,14 @@ import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class RecipeSearchActivityTest2 {
+public class RecipeSearchTest2 {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void recipeSearchActivityTest2() {
+    public void mainActivityTest2() {
         ViewInteraction actionMenuItemView = onView(
                 allOf(withId(R.id.second_id), withContentDescription("Recipe"),
                         childAtPosition(
@@ -54,6 +50,16 @@ public class RecipeSearchActivityTest2 {
                         isDisplayed()));
         actionMenuItemView.perform(click());
 
+        ViewInteraction actionMenuItemView2 = onView(
+                allOf(withId(R.id.recipe_help), withContentDescription("Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.toolbar),
+                                        1),
+                                0),
+                        isDisplayed()));
+        actionMenuItemView2.perform(click());
+
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.searchEditText),
                         childAtPosition(
@@ -63,7 +69,7 @@ public class RecipeSearchActivityTest2 {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("beef"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("soup"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.search_button), withText("Search"),
@@ -81,7 +87,7 @@ public class RecipeSearchActivityTest2 {
                         childAtPosition(
                                 withId(R.id.main),
                                 3)));
-        recyclerView.perform(actionOnItemAtPosition(2, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
 
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.favButton), withText("Likes"),
@@ -102,7 +108,7 @@ public class RecipeSearchActivityTest2 {
                                 3)));
         materialButton3.perform(scrollTo(), click());
 
-        ViewInteraction actionMenuItemView2 = onView(
+        ViewInteraction actionMenuItemView3 = onView(
                 allOf(withId(R.id.homepage), withContentDescription("Home"),
                         childAtPosition(
                                 childAtPosition(
@@ -110,39 +116,7 @@ public class RecipeSearchActivityTest2 {
                                         1),
                                 1),
                         isDisplayed()));
-        actionMenuItemView2.perform(click());
-
-        ViewInteraction actionMenuItemView3 = onView(
-                allOf(withId(R.id.recipe_help), withContentDescription("Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.toolbar),
-                                        1),
-                                0),
-                        isDisplayed()));
         actionMenuItemView3.perform(click());
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.searchEditText), withText("beef"),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatEditText2.perform(replaceText("soup"));
-
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.searchEditText), withText("soup"),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatEditText3.perform(closeSoftKeyboard());
 
         ViewInteraction materialButton4 = onView(
                 allOf(withId(R.id.search_button), withText("Search"),
@@ -160,7 +134,7 @@ public class RecipeSearchActivityTest2 {
                         childAtPosition(
                                 withId(R.id.main),
                                 3)));
-        recyclerView2.perform(actionOnItemAtPosition(1, click()));
+        recyclerView2.perform(actionOnItemAtPosition(3, click()));
 
         ViewInteraction materialButton5 = onView(
                 allOf(withId(R.id.favButton), withText("Likes"),
@@ -173,12 +147,12 @@ public class RecipeSearchActivityTest2 {
         materialButton5.perform(click());
 
         ViewInteraction materialButton6 = onView(
-                allOf(withId(android.R.id.button1), withText("yes"),
+                allOf(withId(android.R.id.button2), withText("no"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(androidx.appcompat.R.id.buttonPanel),
                                         0),
-                                3)));
+                                2)));
         materialButton6.perform(scrollTo(), click());
 
         ViewInteraction actionMenuItemView4 = onView(
@@ -202,22 +176,44 @@ public class RecipeSearchActivityTest2 {
                         isDisplayed()));
         materialButton7.perform(click());
 
-        ViewInteraction recyclerView3 = onView(
-                allOf(withId(R.id.recyclerview_recipe_list),
-                        childAtPosition(
-                                withClassName(is("androidx.coordinatorlayout.widget.CoordinatorLayout")),
-                                1)));
-        recyclerView3.perform(actionOnItemAtPosition(1, click()));
+        pressBack();
 
         ViewInteraction materialButton8 = onView(
-                allOf(withId(R.id.favButton), withText("remove"),
+                allOf(withId(R.id.search_button), withText("Search"),
+                        childAtPosition(
+                                allOf(withId(R.id.main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                4),
+                        isDisplayed()));
+        materialButton8.perform(click());
+
+        ViewInteraction recyclerView3 = onView(
+                allOf(withId(R.id.recipeRecyclerView),
+                        childAtPosition(
+                                withId(R.id.main),
+                                3)));
+        recyclerView3.perform(actionOnItemAtPosition(2, click()));
+
+        ViewInteraction materialButton9 = onView(
+                allOf(withId(R.id.favButton), withText("Likes"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 1),
                         isDisplayed()));
-        materialButton8.perform(click());
+        materialButton9.perform(click());
+
+        ViewInteraction materialButton10 = onView(
+                allOf(withId(android.R.id.button1), withText("yes"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(androidx.appcompat.R.id.buttonPanel),
+                                        0),
+                                3)));
+        materialButton10.perform(scrollTo(), click());
 
         ViewInteraction actionMenuItemView5 = onView(
                 allOf(withId(R.id.homepage), withContentDescription("Home"),
@@ -229,7 +225,7 @@ public class RecipeSearchActivityTest2 {
                         isDisplayed()));
         actionMenuItemView5.perform(click());
 
-        ViewInteraction materialButton9 = onView(
+        ViewInteraction materialButton11 = onView(
                 allOf(withId(R.id.favorite_button), withText("Favourite Recipes"),
                         childAtPosition(
                                 allOf(withId(R.id.main),
@@ -238,103 +234,7 @@ public class RecipeSearchActivityTest2 {
                                                 0)),
                                 2),
                         isDisplayed()));
-        materialButton9.perform(click());
-
-        pressBack();
-
-        ViewInteraction materialButton10 = onView(
-                allOf(withId(R.id.search_button), withText("Search"),
-                        childAtPosition(
-                                allOf(withId(R.id.main),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                4),
-                        isDisplayed()));
-        materialButton10.perform(click());
-
-        ViewInteraction recyclerView4 = onView(
-                allOf(withId(R.id.recipeRecyclerView),
-                        childAtPosition(
-                                withId(R.id.main),
-                                3)));
-        recyclerView4.perform(actionOnItemAtPosition(3, click()));
-
-        ViewInteraction materialButton11 = onView(
-                allOf(withId(R.id.favButton), withText("Likes"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
         materialButton11.perform(click());
-
-        ViewInteraction materialButton12 = onView(
-                allOf(withId(android.R.id.button1), withText("yes"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(androidx.appcompat.R.id.buttonPanel),
-                                        0),
-                                3)));
-        materialButton12.perform(scrollTo(), click());
-
-        ViewInteraction actionMenuItemView6 = onView(
-                allOf(withId(R.id.homepage), withContentDescription("Home"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.toolbar),
-                                        1),
-                                1),
-                        isDisplayed()));
-        actionMenuItemView6.perform(click());
-
-        ViewInteraction editText = onView(
-                allOf(withId(R.id.searchEditText), withText("soup"),
-                        withParent(allOf(withId(R.id.main),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        editText.check(matches(withText("soup")));
-
-        ViewInteraction editText2 = onView(
-                allOf(withId(R.id.searchEditText), withText("soup"),
-                        withParent(allOf(withId(R.id.main),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        editText2.check(matches(withText("soup")));
-
-        ViewInteraction button = onView(
-                allOf(withId(R.id.recipe_help), withContentDescription("Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page"),
-                        withParent(withParent(withId(R.id.toolbar))),
-                        isDisplayed()));
-        button.check(matches(isDisplayed()));
-
-        ViewInteraction button2 = onView(
-                allOf(withId(R.id.homepage), withContentDescription("Home"),
-                        withParent(withParent(withId(R.id.toolbar))),
-                        isDisplayed()));
-        button2.check(matches(isDisplayed()));
-
-        ViewInteraction button3 = onView(
-                allOf(withId(R.id.search_button), withText("SEARCH"),
-                        withParent(allOf(withId(R.id.main),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        button3.check(matches(isDisplayed()));
-
-        ViewInteraction button4 = onView(
-                allOf(withId(R.id.favorite_button), withText("FAVOURITE RECIPES"),
-                        withParent(allOf(withId(R.id.main),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        button4.check(matches(isDisplayed()));
-
-        ViewInteraction button5 = onView(
-                allOf(withId(R.id.favorite_button), withText("FAVOURITE RECIPES"),
-                        withParent(allOf(withId(R.id.main),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        button5.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(
