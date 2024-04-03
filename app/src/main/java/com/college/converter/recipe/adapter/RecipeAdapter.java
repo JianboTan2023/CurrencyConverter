@@ -74,7 +74,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position)
     {
         Recipe recipe = recipeList.get(position);
-        holder.titleTextView.setText(recipe.getTitle());
+        holder.recipeTitleText.setText(recipe.getTitle());
         holder.itemView.setOnClickListener(clk -> {
             Intent intent = new Intent(context, RecipeDetailActivity.class);
             intent.putExtra("source", RecipeDetailActivity.SOURCE_LIST);
@@ -85,10 +85,26 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             intent.putExtra("source_url", recipe.getSourceUrl());
             context.startActivity(intent);
         });
-        Picasso.get().load(recipe.getImageUrl()).into(holder.imageView);
-        // Set other fields accordingly
+        Picasso.get().load(recipe.getImageUrl()).into(holder.recipeImageView);
+
     }
 
+    /**
+     * Provides a reference to the type of views that the adapter uses.
+     */
+    public static class RecipeViewHolder extends RecyclerView.ViewHolder {
+        TextView recipeTitleText;
+        ImageView recipeImageView;
+
+        /**
+         * Initializes the RecipeViewHolder with the provided itemView.
+         */
+        public RecipeViewHolder(@NonNull View itemView) {
+            super(itemView);
+            recipeTitleText = itemView.findViewById(R.id.recipeTitle);
+            recipeImageView = itemView.findViewById(R.id.recipeImage);
+        }
+    }
     /**
      * @return The total number of items in this adapter.
      */
@@ -97,22 +113,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipeList.size();
     }
 
-    /**
-     * Provides a reference to the type of views that the adapter uses.
-     */
-    public static class RecipeViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView;
-        ImageView imageView;
-
-        /**
-         * Initializes the RecipeViewHolder with the provided itemView.
-         */
-        public RecipeViewHolder(@NonNull View itemView) {
-            super(itemView);
-            titleTextView = itemView.findViewById(R.id.recipeTitle);
-            imageView = itemView.findViewById(R.id.recipeImage);
-        }
-    }
 }
 
 
