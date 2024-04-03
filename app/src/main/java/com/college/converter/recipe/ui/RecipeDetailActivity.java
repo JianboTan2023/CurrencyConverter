@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,9 +21,13 @@ import com.android.volley.toolbox.Volley;
 import com.college.converter.MainActivity;
 import com.college.converter.R;
 import com.college.converter.databinding.ActivityRecipeDetailBinding;
+import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeDAO;
 import com.college.converter.recipe.data.RecipeDatabase;
+import com.college.converter.song.ui.SearchArtistActivity;
+import com.college.converter.sunlookup.SunActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +45,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     ActivityRecipeDetailBinding binding;
     private RequestQueue queue;
+    private Toolbar toolbar;
+    protected BottomNavigationView bottomNavigationView;
 
     // Constant keys for identifying the source of the data
     public static final String SOURCE_LIST = "source_list";
@@ -59,6 +66,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
         binding = ActivityRecipeDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         String source = getIntent().getStringExtra("source");
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         int recipeId = getIntent().getIntExtra("recipeId", -1);
         if (SOURCE_FAVORITE.equals(source)) {
@@ -168,6 +180,32 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     /**
+     * set up bottom navigation view
+     * allows jump to different sections of the application.
+     */
+//
+    protected void setupBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.second_id);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home_id) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            } else if (itemId == R.id.first_id) {
+                startActivity(new Intent(getApplicationContext(), SunActivity.class));
+            } else if (itemId == R.id.second_id) {
+                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
+            } else if (itemId == R.id.third_id) {
+                startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
+            } else if (itemId == R.id.forth_id) {
+                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
+            }
+            return true;
+        });
+    }
+
+    /**
      * Initializes the contents of the options menu.
      *
      * @param menu The options menu in which items are placed.
@@ -179,19 +217,22 @@ public class RecipeDetailActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.recipe_help) {
-            // Show help information
-            Toast.makeText(this, getString(R.string.help_info), Toast.LENGTH_LONG).show();
-            return true;
-        } else if (item.getItemId() == R.id.homepage) {
-            // Navigate to the home activity
+        if ( id ==  R.id.recipe_help)
+        {
+            androidx.appcompat.app.AlertDialog.Builder builder1 =
+                    new androidx.appcompat.app.AlertDialog.Builder(RecipeDetailActivity.this);
+            builder1.setMessage(getString(R.string.recipe_instruction));
+            builder1.setTitle(getString(R.string.recipe_search_info_title));
+
+            builder1.create().show();
+        }
+        else if (id ==  R.id.homepage) {
+            Toast.makeText(this, getString(R.string.back), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
-            return true;
         }
         return super.onOptionsItemSelected(item);
 

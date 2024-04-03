@@ -157,37 +157,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
      * set up bottom navigation view
      * allows jump to different sections of the application.
      */
-//    protected void setupBottomNavigationView() {
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setSelectedItemId(R.id.third_id);
 //
-//        // Perform item selected listener
-//        bottomNavigationView.setOnItemSelectedListener(item -> {
-//
-//            int item_id = item.getItemId();
-//            if ( item_id == R.id.home_id ) {
-//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//            }
-//            else if (item_id == R.id.first_id) {
-//                startActivity(new Intent(getApplicationContext(), SunActivity.class));
-//                return true;
-//            }
-//            else if ( item_id == R.id.second_id ) {
-//                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
-//                return true;
-//            }
-//            else if ( item_id == R.id.third_id ) {
-//                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
-//                return true;
-//            }
-//            else if ( item_id == R.id.forth_id ) {
-//                startActivity(new Intent(getApplicationContext(), SearchArtistActivity.class));
-//                return true;
-//            }
-//            return false;
-//        });
-//
-//    }
     protected void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.second_id);
