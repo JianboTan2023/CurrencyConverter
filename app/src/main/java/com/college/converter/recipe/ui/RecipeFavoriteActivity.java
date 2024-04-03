@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-public class FavoriteActivity extends AppCompatActivity {
+public class RecipeFavoriteActivity extends AppCompatActivity {
 
     private RecyclerView recipeRecyclerView;
     List<Recipe> recipes = new ArrayList<>();

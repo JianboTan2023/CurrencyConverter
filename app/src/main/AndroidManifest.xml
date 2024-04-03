@@ -53,7 +53,7 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".recipe.ui.FavoriteActivity"
+            android:name=".recipe.ui.RecipeFavoriteActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 

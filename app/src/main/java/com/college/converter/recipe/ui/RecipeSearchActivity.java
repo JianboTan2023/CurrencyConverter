@@ -113,7 +113,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
 //        favoriteBtn.setOnClickListener(view -> {
 //        });
         favoriteBtn.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), FavoriteActivity.class));
+            startActivity(new Intent(getApplicationContext(), RecipeFavoriteActivity.class));
         });
 
         // set up BottomNavigationView
