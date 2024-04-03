@@ -63,12 +63,37 @@ public class RecipeFavoriteActivity extends AppCompatActivity {
 
         refreshList();
 
-        setupBottomNavigationView(); // Add this line
+        setupBottomNavigationView();
     }
 
     /**
-     * Sets up the bottom navigation view and item selection handling, providing
-     * navigation to other activities within the application.
+     * Refreshes the list of favorite list by retrieving the latest data
+     * from the database and updating the adapter in RecyclerView.
+     */
+    private void refreshList() {
+        recipes.clear();
+        Executors.newSingleThreadExecutor().execute(() -> {
+            if (recipeDAO.getAllRecipes() != null) {
+                recipes.addAll( recipeDAO.getAllRecipes() );
+            }
+            runOnUiThread( () ->  recipeRecyclerView.setAdapter( recipeAdapter ));
+        });
+    }
+
+    /**
+     * Called when the activity has been stopped, before it is started again.
+     * It triggers a refresh of the recipe list to ensure the UI is up to date
+     * with the latest changes.
+     */
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        refreshList();
+    }
+
+
+      /**
+     * Sets up the bottom navigation view and item selection handling
      */
     protected void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -83,7 +108,6 @@ public class RecipeFavoriteActivity extends AppCompatActivity {
             } else if (itemId == R.id.first_id) {
                 startActivity(new Intent(getApplicationContext(), SunActivity.class));
             } else if (itemId == R.id.second_id) {
-                // Current activity, do nothing or handle accordingly
                 startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
             } else if (itemId == R.id.third_id) {
                 startActivity(new Intent(getApplicationContext(), DictionaryActivity.class));
@@ -92,31 +116,6 @@ public class RecipeFavoriteActivity extends AppCompatActivity {
             }
             return true; // Return true to display the item as the selected item
         });
-    }
-
-    /**
-     * Refreshes the list of favorite recipes by retrieving the latest data
-     * from the database and updating the adapter for the RecyclerView.
-     */
-    private void refreshList() {
-        recipes.clear();
-        Executors.newSingleThreadExecutor().execute(() -> {
-            if (recipeDAO.getAllRecipes() != null) {
-                recipes.addAll( recipeDAO.getAllRecipes() ); //Once you get the data from database
-            }
-            runOnUiThread( () ->  recipeRecyclerView.setAdapter( recipeAdapter )); //You can then load the RecyclerView
-        });
-    }
-
-    /**
-     * Called when the activity has been stopped, before it is started again.
-     * It triggers a refresh of the recipe list to ensure the UI is up to date
-     * with the latest changes.
-     */
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        refreshList();
     }
 }
 

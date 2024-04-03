@@ -57,6 +57,7 @@
     <string name="error_occurred">无法链接，请再试</string>
     <string name="tryagain">再来一遍。。。</string>
     <string name="recipe_delete_warning">确定删除吗？</string>
+    <string name="favorite_recipes">收藏夹</string>
 
 
 </resources>
