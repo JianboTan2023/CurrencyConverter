@@ -10,7 +10,8 @@ import java.io.Serializable;
 /**
  * @author Kelly Wu
  * @lab section 021
- * this is to hold data for recipe
+ * this is the components of recipes for recipe database
+ * class implements the Serizlizable interface
  */
 
 @Entity(tableName = "recipes")
@@ -39,7 +40,7 @@ public class Recipe implements Serializable {
         protected String spoonacularSourceUrl;
 
         /**
-         * Default constructor used by Room to create Recipe instances.
+         * Default constructor used by Room.
          */
         public Recipe() {}
 

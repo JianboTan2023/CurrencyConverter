@@ -16,12 +16,17 @@ import java.util.List;
  */
 @Dao
 public interface RecipeDAO {
+
+    //insert a recipe with the same ID as an existing one and will be replaced
+    //by using onConflict
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertRecipe(Recipe recipe);
-
+//delet a recipe from the data source
     @Delete
     void deleteRecipe(Recipe recipe);
-
+/**
+ * below psection execute SQL query that selects all recipes from the recipes table
+ */
     /**
      * as long as recipes matches @entity table name, the data should be properly inserted
      * @return

@@ -27,8 +27,7 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
     private List<Recipe> recipeList;
 
     /**
-     * Constructs the adapter with a given context and list of recipes.
-     *
+     * Construct of the adapter
      * @param context The current context.
      * @param recipeList list of recipes
      */
@@ -36,7 +35,23 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
         this.context = context;
         this.recipeList = recipeList;
     }
-//create viewHolder
+
+    /**
+     * RecipeViewHolder hold all the view components of recipes
+     */
+    public static class RecipeViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTextView;
+        ImageView imageView;
+
+        /**
+         * Constructs the ViewHolder instance and binds the view components.
+         */
+        public RecipeViewHolder(@NonNull View itemView) {
+            super(itemView);
+            titleTextView = itemView.findViewById(R.id.recipeTitle);
+            imageView = itemView.findViewById(R.id.recipeImage);
+        }
+    }
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,9 +60,8 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
     }
 
     /**
-     * This method sets up the title of the recipe, the image using Picasso for asynchronous loading,
-     * click listener opens the recipe details activity when a recipe item is clicked.
-     *
+     * This method sets up the title of the recipe,Picasso for asynchronous loading image
+     * onclicklistener opens the recipe details
      * @param holder   should be updated to represent the data at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
@@ -66,29 +80,14 @@ public class RecipeFavoriteAdapter extends RecyclerView.Adapter<RecipeFavoriteAd
         Picasso.get().load(recipe.getImageUrl()).into(holder.imageView);
     }
 
+
     /**
-     * Returns the total number of items held by the adapter.
+     * initialize total number of items held by the adapter.
      */
     @Override
     public int getItemCount() {
         return recipeList.size();
     }
 
-    /**
-     * Provides a reference to the type of views
-     * hold all the view components for the recipe item layout
-     */
-    public static class RecipeViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView;
-        ImageView imageView;
 
-        /**
-         * Constructs the ViewHolder instance and binds the view components.
-         */
-        public RecipeViewHolder(@NonNull View itemView) {
-            super(itemView);
-            titleTextView = itemView.findViewById(R.id.recipeTitle);
-            imageView = itemView.findViewById(R.id.recipeImage);
-        }
-    }
 }
