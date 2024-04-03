@@ -53,5 +53,10 @@
     <string name="rSummary">介绍</string>
     <string name="urltext">网站</string>
     <string name="remove">删除</string>
+    <string name="confirmdelete">已删除</string>
+    <string name="error_occurred">无法链接，请再试</string>
+    <string name="tryagain">再来一遍。。。</string>
+    <string name="recipe_delete_warning">确定删除吗？</string>
+
 
 </resources>

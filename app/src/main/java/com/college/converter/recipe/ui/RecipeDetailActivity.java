@@ -3,7 +3,6 @@ package com.college.converter.recipe.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -82,49 +81,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
             binding.recipeSourceUrl.setText(recipe.getSpoonacularSourceUrl());
             Picasso.get().load(recipe.getImageUrl()).into(binding.recipeImage);
             binding.favButton.setText(R.string.remove_favorite);
-            binding.favButton.setOnClickListener(clk -> removeFavoirte(recipe));
+            binding.favButton.setOnClickListener(clk -> deleteFavorite(recipe));
             return;
         }
         queue = Volley.newRequestQueue(this);
         binding.loadBar.setVisibility(View.VISIBLE);
         searchRecipe(recipeId);
     }
-
-    /**
-     * this part is to removes a recipe from the favorites list using a background executor.
-     * Snackbar message shows removal completion.
-     */
-    private void removeFavoirte(Recipe recipe) {
-        Executors.newSingleThreadExecutor().execute(() -> {
-            RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
-            recipeDAO.deleteRecipe(recipe);
-        });
-        Snackbar.make(binding.getRoot(), getString(R.string.deleteConfirm), Snackbar.LENGTH_SHORT).show();
-    }
-
-    /**
-     *  @param recipe The recipe object to be added to favorites.
-     * add a recipe data into the favorites list.
-     * presents a confirmation message before adding.
-     * calls background executor to insert the recipe into the database
-     *
-     */
-    private void addFavorite(Recipe recipe) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.recipe_delete_warning) + recipe.getTitle())
-                .setTitle("Question")
-                .setNegativeButton("no", (dialog, cl) -> {})
-                .setPositiveButton("yes", (dialog, cl) -> {
-                    Executors.newSingleThreadExecutor().execute(() ->
-                    {
-                        RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
-                        recipeDAO.insertRecipe(recipe);
-                    });
-                    Snackbar.make(binding.getRoot(), getString(R.string.addsuccess), Snackbar.LENGTH_SHORT).show();
-                    binding.favButton.setText(R.string.favoriteadded);
-                }).create().show();
-    }
-
     /**
      * using GET request to retrieve the data based on its ID .
      * second request, using API to get data from external link
@@ -140,24 +103,25 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response ->
         {
-                    try {
-                        Recipe recipe = getRecipe(response);
-                        binding.recipeTitle.setText(recipe.getTitle());
-                        binding.recipeSummary.setText(recipe.getSummary());
-                        binding.recipeSourceUrl.setText(recipe.getSpoonacularSourceUrl());
-                        Picasso.get().load(recipe.getImageUrl()).into(binding.recipeImage);
-                        binding.loadBar.setVisibility(View.GONE);
-                        binding.favButton.setOnClickListener(clk -> addFavorite(recipe));
-                    } catch (JSONException e)
-                    {
-                        e.printStackTrace();
-                        Toast.makeText(RecipeDetailActivity.this, getString(R.string.error_occurred), Toast.LENGTH_LONG).show();
-                    }
-                },
+            try {
+                Recipe recipe = getRecipe(response);
+                binding.recipeTitle.setText(recipe.getTitle());
+                binding.recipeSummary.setText(recipe.getSummary());
+                binding.recipeSourceUrl.setText(recipe.getSpoonacularSourceUrl());
+                Picasso.get().load(recipe.getImageUrl()).into(binding.recipeImage);
+                binding.loadBar.setVisibility(View.GONE);
+                binding.favButton.setOnClickListener(clk -> addFavorite(recipe));
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+                Toast.makeText(RecipeDetailActivity.this, getString(R.string.error_occurred), Toast.LENGTH_LONG).show();
+            }
+        },
                 error -> Toast.makeText(RecipeDetailActivity.this, getString(R.string.tryagain), Toast.LENGTH_LONG).show());
 
         queue.add(stringRequest);
     }
+
 
     /**
      * Parses the JSON response from the API and returns a Recipe object.
@@ -180,10 +144,43 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     /**
+     *  @param recipe The recipe object to be added to favorites.
+     * add a recipe data into the favorites list.
+     * calls background executor to insert the recipe into the database
+     */
+
+    private void addFavorite(Recipe recipe) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.recipe_delete_warning) + recipe.getTitle())
+                .setTitle("Question")
+                .setNegativeButton("no", (dialog, cl) -> {})
+                .setPositiveButton("yes", (dialog, cl) -> {
+                    Executors.newSingleThreadExecutor().execute(() ->
+                    {
+                        RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
+                        recipeDAO.insertRecipe(recipe);
+                    });
+                    Snackbar.make(binding.getRoot(), getString(R.string.addsuccess), Snackbar.LENGTH_SHORT).show();
+                    binding.favButton.setText(R.string.favoriteadded);
+                }).create().show();
+    }
+
+    /**
+     * this part is to delete a recipe from the favorites list using a background executor.
+     * Snackbar message shows removal completion.
+     */
+    private void deleteFavorite(Recipe recipe) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            RecipeDAO recipeDAO = RecipeDatabase.getDbInstance(RecipeDetailActivity.this).recipeDAO();
+            recipeDAO.deleteRecipe(recipe);
+        });
+        Snackbar.make(binding.getRoot(), getString(R.string.confirmdelete), Snackbar.LENGTH_SHORT).show();
+    }
+
+    /**
      * set up bottom navigation view
      * allows jump to different sections of the application.
      */
-//
     protected void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.second_id);
@@ -237,7 +234,5 @@ public class RecipeDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
-
 
 }

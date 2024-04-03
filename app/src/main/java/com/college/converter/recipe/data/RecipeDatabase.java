@@ -32,15 +32,17 @@ public abstract class RecipeDatabase extends RoomDatabase {
      */
     public static RecipeDatabase getDbInstance(Context context) {
         if (INSTANCE == null) {
+            //this part ensures only one thread can enter the critical section at a time
             synchronized (RecipeDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     RecipeDatabase.class, "recipes_database")
-                            .fallbackToDestructiveMigration()
-                            .build();
+                            .fallbackToDestructiveMigration() //this is a destructive migration strategy
+                            .build(); //build the database instance based on the configuration
                 }
             }
         }
+        //returns the singleton instance of RecipeDatabase to the caller
         return INSTANCE;
     }
 }
