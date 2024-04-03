@@ -52,5 +52,6 @@
     <string name="textView">文档</string>
     <string name="rSummary">介绍</string>
     <string name="urltext">网站</string>
+    <string name="remove">删除</string>
 
 </resources>

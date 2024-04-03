@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.converter.MainActivity;
 import com.college.converter.R;
-import com.college.converter.SecondActivity;
 import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.recipe.adapter.RecipeFavoriteAdapter;
 import com.college.converter.recipe.data.Recipe;
@@ -48,13 +47,13 @@ public class FavoriteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite_food);
+        setContentView(R.layout.activity_favorite_recipe_list);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.favorite_recipes);
 
-        recipeRecyclerView = findViewById(R.id.recycle_food);
+        recipeRecyclerView = findViewById(R.id.recyclerview_recipe_list);
 
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //database

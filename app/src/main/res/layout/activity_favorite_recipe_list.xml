@@ -11,17 +11,32 @@
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/grey_2"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_food"
+        android:id="@+id/recyclerview_recipe_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
         layout="@layout/bottom_navigation" />
+
+    <ImageView
+        android:id="@+id/likeBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="50dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/recyclerview_recipe_list"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:srcCompat="@drawable/ic_baseline_bookmark_24"
+        android:background="@color/my_secondary"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
