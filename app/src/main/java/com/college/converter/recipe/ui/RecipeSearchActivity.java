@@ -39,7 +39,8 @@ import java.util.List;
 /**
  * @author Kelly Wu
  * @section Lab 021
- * this class is to get recipe lists by first request using API or database,
+ * this class is to get recipe lists by request
+ * using API or database, and get recipe Id
  *
  */
 
@@ -70,12 +71,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_search);
 
-        // Initialize toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.receip_title);
@@ -96,31 +94,34 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
 //volley library method to create new request queue and associate with the specified context
         queue = Volley.newRequestQueue(this);
+        //favorite button for saved recipes
+        favoriteBtn = findViewById(R.id.favorite_button);
 
-        //search button set up
+        //search button set up action
         searchBtn.setOnClickListener(view -> {
             String query = searchTermEdit.getText().toString().trim();
             if (!query.isEmpty()) {
-                searchRecipes(query);
+                searchRecipe(query);
                 prefs.edit().putString(SEARCH_TERM_KEY, query).apply();
             } else {
-                Toast.makeText(RecipeSearchActivity.this, R.string.search_key, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecipeSearchActivity.this, R.string.recipe_title, Toast.LENGTH_SHORT).show();
             }
         });
 
-        //favorite button for saved recipes
-        favoriteBtn = findViewById(R.id.favorite_button);
-//        favoriteBtn.setOnClickListener(view -> {
-//        });
+        //favorite button set up action
         favoriteBtn.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), RecipeFavoriteActivity.class));
         });
 
         // set up BottomNavigationView
-
         setupBottomNavigationView();
     }
-    private void searchRecipes(String query) {
+
+    /**
+     * this part is recipe search using the specified query string, sends a request to the external API.
+     * @param query search term to query the recipeId.
+     */
+    private void searchRecipe(String query) {
         String apiKey = "6c93a30ed6624a03be850e3d2c118b6b";
         String url = "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&apiKey=" + apiKey;
 
@@ -153,11 +154,11 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
         queue.add(stringRequest);
     }
+
     /**
      * set up bottom navigation view
      * allows jump to different sections of the application.
      */
-//
     protected void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.second_id);
@@ -178,6 +179,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
             return true; // Return true to display the item as the selected item
         });
     }
+
     /**
      * menu options for the activity from a menu resource.
      *
@@ -185,19 +187,11 @@ public class RecipeSearchActivity extends AppCompatActivity {
      * @return You must return true for the menu to be displayed; if you return false it will not be shown.
      * item has two items, home and help
      */
-    /**
-     * set up menu option
-     * @param menu The options menu in which you place your items.
-     *
-     * @return
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.recipe_menu, menu);
         return true;
     }
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -218,12 +212,6 @@ public class RecipeSearchActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
-
-    /**
-     * this part is recipe search using the specified query string, sends a request to the external API.
-     * @param query search term used to query the recipeId.
-     */
 
 
 }

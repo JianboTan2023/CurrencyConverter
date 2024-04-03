@@ -58,6 +58,8 @@
     <string name="tryagain">再来一遍。。。</string>
     <string name="recipe_delete_warning">确定删除吗？</string>
     <string name="favorite_recipes">收藏夹</string>
+    <string name="receip_title">搜食谱</string>
+
 
 
 </resources>

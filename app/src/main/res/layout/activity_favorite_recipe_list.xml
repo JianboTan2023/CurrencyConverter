@@ -31,12 +31,12 @@
         android:id="@+id/likeBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="65dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="65dp"
+
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/recyclerview_recipe_list"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:srcCompat="@drawable/ic_baseline_bookmark_24"
-        android:background="@color/my_secondary"/>
+        app:srcCompat="@drawable/ic_baseline_bookmark_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

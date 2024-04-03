@@ -41,7 +41,7 @@
     <string name="recipe_search_int">Please enter the recipe name (pasta,soup,salad, etc)</string>
     <string name="receip_title">Search Recipe</string>
     <string name="titel">title</string>
-    <string name="ingredient">ingredient</string>
+
     <string name="instruction">instruction</string>
     <string name="name">Name</string>
     <string name="how_to_use_interface">"How to use interface? "</string>
