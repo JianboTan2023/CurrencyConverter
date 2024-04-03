@@ -12,7 +12,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/deletBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete" />
