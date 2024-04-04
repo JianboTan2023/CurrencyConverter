@@ -34,7 +34,6 @@ import com.college.converter.MainActivity;
 
 import com.college.converter.dictionary.DictionaryActivity;
 
-import com.college.converter.recipe.ui.ActivityRecipeSearch;
 import com.college.converter.song.adapter.Artist_Adapter;
 import com.college.converter.song.data.Artist;
 import com.college.converter.song.data.Track;

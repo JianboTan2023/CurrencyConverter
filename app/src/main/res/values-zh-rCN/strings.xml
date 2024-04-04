@@ -63,8 +63,6 @@
     <string name="go_back">返回</string>
     <string name="searchHint">搜索菜单</string>
     <string name="help_title">标题</string>
-    <string name="author">吴琦</string>
-    <string name="date">3月30，2024</string>
     <string name="recipe_help">说明： 1. 保存的菜谱将显示在回收器视图中 2. 单击搜索按钮进行菜谱搜索 3. 保存按钮将菜谱保存到收藏夹 4. 返回按钮返回上一页</string>
     <string name="welcome_message">发现您最喜欢的新食谱</string>
     <string name="alreadyexisted">该食谱已存在于收藏夹列表中</string>
@@ -77,17 +75,24 @@
     <string name="searchRecipe">搜索菜单</string>
     <string name="hello_blank_fragment">你好空白片段</string>
     <string name="favourite">你最喜欢的食谱</string>
-    <string name="fav">保存</string>
-    <string name="empty">清空</string>
+
     <string name="fav_recipe">你最喜欢的食谱</string>
     <string name="food_name">食品名称</string>
-    <string name="salad">沙拉</string>
-    <string name="soup">汤</string>
-    <string name="beverage">饮料</string>
-    <string name="appetizer">开胃菜</string>
-    <string name="desserts">甜点</string>
-    <string name="fingerfood">小点心</string>
+
     <string name="song_search">歌曲名称</string>
+    <string name="recipe_title">输入查询条件</string>
+    <string name="addsuccess">添加成功</string>
+    <string name="addFavorite">喜欢</string>
+    <string name="textView">文档</string>
+    <string name="rSummary">介绍</string>
+    <string name="urltext">网站</string>
+    <string name="remove">删除</string>
+    <string name="confirmdelete">已删除</string>
+    <string name="error_occurred">无法链接，请再试</string>
+    <string name="tryagain">再来一遍。。。</string>
+    <string name="recipe_delete_warning">确定删除吗？</string>
+    <string name="favorite_recipes">收藏夹</string>
+    <string name="receip_title">搜食谱</string>
 
     <string name="deezer_help_info">说明指导</string>
     <string name="deezer_how_to_use_the_interface">如何使用界面</string>

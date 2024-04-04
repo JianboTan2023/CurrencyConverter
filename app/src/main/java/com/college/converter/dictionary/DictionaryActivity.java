@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.college.converter.databinding.ActivityDictionaryBinding;
-import com.college.converter.recipe.ui.ActivityRecipeSearch;
 import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.SunActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

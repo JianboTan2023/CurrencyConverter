@@ -26,7 +26,6 @@ import android.content.SharedPreferences;
 import com.college.converter.MainActivity;
 import com.college.converter.R;
 import com.college.converter.dictionary.DictionaryActivity;
-import com.college.converter.recipe.ui.ActivityRecipeSearch;
 import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.data.ChatMessage;
 import com.college.converter.sunlookup.data.ChatMessageDAO;

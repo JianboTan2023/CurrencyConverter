@@ -8,14 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 
 
 import com.college.converter.song.ui.SearchArtistActivity;
 
-
-import com.college.converter.recipe.ui.ActivityRecipeSearch;
 
 import com.college.converter.dictionary.DictionaryActivity;
 import com.college.converter.sunlookup.SunActivity;
