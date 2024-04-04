@@ -77,7 +77,7 @@
         <string name="help_info">Help information not available.</string>
         <string name="recipe_search_info_title">Recipe_Search_API_Instruction</string>
         <string name="remove_favorite">remove</string>
-        <string name="favoriteadded">favorite_has_added</string>
+        <string name="favoriteadded">favorite added</string>
 
         <string name="help_title">Recipe search user guidance</string>
         <string name="author">Kelly Wu</string>
@@ -85,7 +85,7 @@
         <string name="recipe_help">Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page</string>
         <string name="welcome_message">Discover your new favourite recipe</string>
         <string name="alreadyexisted">This recipe is already existed in the favourite list</string>
-        <string name="addedMessage">You added this recipe to the favourite list</string>
+        <string name="addedMessage">Do you want to add this recipe to the favourite list?</string>
 
         <string name="deleteConfirm">You deleted this recipe</string>
         <string name="dataName">database name</string>

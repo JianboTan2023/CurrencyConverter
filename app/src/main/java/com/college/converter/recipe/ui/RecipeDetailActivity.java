@@ -39,6 +39,7 @@ import java.util.concurrent.Executors;
  * @author Kelly Wu
  * @section Lab 021
  * this class is to get recipe details by second request from API or database,
+ * referenced: project codes from Zhihao Zhang
  */
 public class RecipeDetailActivity extends AppCompatActivity {
 
@@ -151,7 +152,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     private void addFavorite(Recipe recipe) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.recipe_delete_warning) + recipe.getTitle())
+        builder.setMessage(getString(R.string.addedMessage) + recipe.getTitle())
                 .setTitle("Question")
                 .setNegativeButton("no", (dialog, cl) -> {})
                 .setPositiveButton("yes", (dialog, cl) -> {

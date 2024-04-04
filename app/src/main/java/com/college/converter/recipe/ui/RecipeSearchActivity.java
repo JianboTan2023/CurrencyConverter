@@ -41,7 +41,7 @@ import java.util.List;
  * @section Lab 021
  * this class is to get recipe lists by request
  * using API or database, and get recipe Id
- *
+ * referenced: project codes from Zhihao Zhang
  */
 
 public class RecipeSearchActivity extends AppCompatActivity {
