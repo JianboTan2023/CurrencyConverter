@@ -5,11 +5,11 @@
 
         android:id="@+id/recipe_help"
         android:icon="@drawable/ds_help"
-        android:title="@string/help"
-        app:showAsAction="ifRoom"
+        android:title="@string/recipe_help"
+        app:showAsAction="always"
         />
     <item
-        android:id="@+id/favoriteSong"
+        android:id="@+id/homepage"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/home"
         app:showAsAction="always" />
