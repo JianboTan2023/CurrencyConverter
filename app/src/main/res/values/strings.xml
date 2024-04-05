@@ -73,7 +73,7 @@
     <string name="help_info">Help information not available.</string>
     <string name="recipe_search_info_title">Recipe_Search_API_Instruction</string>
     <string name="remove_favorite">remove</string>
-    <string name="favoriteadded">added successfully</string>
+    <string name="favoriteadded">Favorite Recipe</string>
 
     <string name="help_title">Recipe search user guidance</string>
     <string name="author">Kelly Wu</string>
@@ -146,7 +146,7 @@
     <string name="search_key">Please enter search key words for your recipe list\n</string>
     <string name="recipe_title">Search the recipe you want to cook</string>
     <string name="fail">Failed to get data from website</string>
-    <string name="addsuccess">Added success</string>
+    <string name="addsuccess">Added successfully</string>
     <string name="addFavorite">Likes</string>
     <string name="textView">textView</string>
     <string name="rSummary">summary</string>
