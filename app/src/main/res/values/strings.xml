@@ -46,8 +46,8 @@
 
     <!--recipe string-->
     <string name="fabRecipe">Your favorite recipe</string>
-    <string name="recipe_delete_warning">Are you sure you want to delte the recipe?</string>
-    <string name="recipe_instruction">Instruction: \\n1. the saved recipe will be displayed in recycler view\\n2. click search button to do recipe search\\n3. save button to save recipe as favourite\\n4. go back button to return to the previous page</string>
+    <string name="recipe_delete_warning">Do you want to add this recipe to your favorite list?</string>
+    <string name="recipe_instruction">Instruction: \\1. the saved recipe will be displayed in recycler view\\2. click search button to do recipe search\\3. save button to save recipe as favourite\\n4. go back button to return to the previous page</string>
     <string name="recipe_search_int">Please enter the recipe name (pasta,soup,salad, etc)</string>
     <string name="receip_title">Search Recipe</string>
     <string name="titel">title</string>
@@ -73,12 +73,12 @@
     <string name="help_info">Help information not available.</string>
     <string name="recipe_search_info_title">Recipe_Search_API_Instruction</string>
     <string name="remove_favorite">remove</string>
-    <string name="favoriteadded">favorite_has_added</string>
+    <string name="favoriteadded">added successfully</string>
 
     <string name="help_title">Recipe search user guidance</string>
     <string name="author">Kelly Wu</string>
     <string name="date">March 30, 2024</string>
-    <string name="recipe_help">Instruction: \n1. the saved recipe will be displayed in recycler view\n2. click search button to do recipe search\n3. save button to save recipe as favourite\n4. go back button to return to the previous page</string>
+    <string name="recipe_help">Instruction: \1. the saved recipe will be displayed in recycler view\2. click search button to do recipe search\3. save button to save recipe as favourite\4. go back button to return to the previous page</string>
     <string name="welcome_message">Discover your new favourite recipe</string>
     <string name="alreadyexisted">This recipe is already existed in the favourite list</string>
     <string name="addedMessage">You added this recipe to the favourite list</string>
