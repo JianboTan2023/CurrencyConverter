@@ -34,6 +34,7 @@ import com.college.converter.MainActivity;
 
 import com.college.converter.dictionary.DictionaryActivity;
 
+import com.college.converter.recipe.ui.RecipeSearchActivity;
 import com.college.converter.song.adapter.Artist_Adapter;
 import com.college.converter.song.data.Artist;
 import com.college.converter.song.data.Track;
@@ -106,7 +107,7 @@ public class SearchArtistActivity extends AppCompatActivity implements Artist_Ad
                 return true;
             }
             else if ( item_id == R.id.second_id ) {
-                startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
+                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
                 return true;
             }
             else if ( item_id == R.id.third_id ) {

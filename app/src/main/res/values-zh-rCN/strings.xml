@@ -32,52 +32,38 @@
     <string name="recipe_delete_warning">删除这个菜单吗？</string>
     <string name="recipe_instruction">指令：\\n1. 保存的配方将显示在回收器视图中\\n2. 单击搜索按钮进行菜谱搜索\\n3. 保存按钮将食谱保存为最爱\\n4. 返回按钮返回上一页</string>
     <string name="recipe_search_int">请输入菜单名称</string>
-    <string name="receip_title">搜索菜单</string>
+
     <string name="titel">标题</string>
-    <string name="ingredient">成分</string>
+
     <string name="instruction">指导</string>
     <string name="name">名称</string>
     <string name="how_to_use_interface">如何使用接口？</string>
     <string name="favconfirmation">成功添加</string>
-    <string name="waitrequest">时间对于等待的人来说太慢，对于恐惧的人来说太快，对于悲伤的人来说太长，对于欢乐的人来说太短，但对于爱的人来说，时间就是永恒。 欲了解更多信息，请访问 https://www.brainyquote.com/topics/wait-quotes</string>
+
     <string name="recipeId">菜单id</string>
     <string name="title_activity_recipt_main">主菜单</string>
     <string name="navigation_drawer_open">打开导航</string>
     <string name="navigation_drawer_close">关闭导航</string>
-    <string name="nav_header_title">android桌面</string>
-    <string name="nav_header_subtitle">android桌面</string>
-    <string name="nav_header_desc">导航标题</string>
-    <string name="action_settings">设置</string>
-    <string name="menu_home">主页</string>
-    <string name="menu_gallery">浏览</string>
-    <string name="menu_slideshow">边框</string>
-    <string name="website">网站</string>
+
+
     <string name="hint">搜索菜单或者成分</string>
     <string name="saveBtn">保存</string>
     <string name="retrieveBtn">取出</string>
-    <string name="favourite_pictures">喜欢的菜单</string>
-    <string name="placeholder">菜单图片</string>
-    <string name="delete">删除</string>
-    <string name="textview">文本视图</string>
-    <string name="RecipeSearch">搜索菜单</string>
-    <string name="go_back">返回</string>
-    <string name="searchHint">搜索菜单</string>
+
     <string name="help_title">标题</string>
     <string name="recipe_help">说明： 1. 保存的菜谱将显示在回收器视图中 2. 单击搜索按钮进行菜谱搜索 3. 保存按钮将菜谱保存到收藏夹 4. 返回按钮返回上一页</string>
     <string name="welcome_message">发现您最喜欢的新食谱</string>
     <string name="alreadyexisted">该食谱已存在于收藏夹列表中</string>
     <string name="addedMessage">您已将此食谱添加到收藏夹列表中</string>
-    <string name="deletAlert">您想删除该消息吗？</string>
+
     <string name="deleteConfirm">你删除了这个食谱</string>
     <string name="dataName">database name</string>
     <string name="click">点这里</string>
     <string name="errorMessage">错误</string>
     <string name="searchRecipe">搜索菜单</string>
-    <string name="hello_blank_fragment">你好空白片段</string>
-    <string name="favourite">你最喜欢的食谱</string>
 
-    <string name="fav_recipe">你最喜欢的食谱</string>
-    <string name="food_name">食品名称</string>
+
+
 
     <string name="song_search">歌曲名称</string>
     <string name="recipe_title">输入查询条件</string>
@@ -90,7 +76,7 @@
     <string name="confirmdelete">已删除</string>
     <string name="error_occurred">无法链接，请再试</string>
     <string name="tryagain">再来一遍。。。</string>
-    <string name="recipe_delete_warning">确定删除吗？</string>
+
     <string name="favorite_recipes">收藏夹</string>
     <string name="receip_title">搜食谱</string>
 

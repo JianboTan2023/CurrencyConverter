@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.college.converter.MainActivity;
 import com.college.converter.R;
 import com.college.converter.dictionary.DictionaryActivity;
+import com.college.converter.recipe.adapter.RecipeFavoriteAdapter;
+import com.college.converter.recipe.data.Recipe;
 import com.college.converter.recipe.data.RecipeDAO;
 import com.college.converter.recipe.data.RecipeDatabase;
 import com.college.converter.song.ui.SearchArtistActivity;

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.college.converter.recipe.ui.RecipeSearchActivity;
 import com.college.converter.song.ui.SearchArtistActivity;
 
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if (item_id == R.id.second_id) {
-            startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
+            startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
             return true;
         }
         else if (item_id == R.id.third_id) {

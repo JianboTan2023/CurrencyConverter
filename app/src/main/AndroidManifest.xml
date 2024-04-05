@@ -49,6 +49,18 @@
             android:parentActivityName=".MainActivity"
 
             android:exported="false" />
+        <activity
+            android:name=".recipe.ui.RecipeSearchActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".recipe.ui.RecipeDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".recipe.ui.RecipeFavoriteActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
 
 
 

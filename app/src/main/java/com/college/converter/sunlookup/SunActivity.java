@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import com.college.converter.MainActivity;
 import com.college.converter.R;
 import com.college.converter.dictionary.DictionaryActivity;
+import com.college.converter.recipe.ui.RecipeSearchActivity;
 import com.college.converter.song.ui.SearchArtistActivity;
 import com.college.converter.sunlookup.data.ChatMessage;
 import com.college.converter.sunlookup.data.ChatMessageDAO;
@@ -217,7 +218,7 @@ public class SunActivity extends AppCompatActivity {
                 return true;
             }
             else if ( item_id == R.id.second_id ) {
-                startActivity(new Intent(getApplicationContext(), ActivityRecipeSearch.class));
+                startActivity(new Intent(getApplicationContext(), RecipeSearchActivity.class));
                 return true;
             }
             else if ( item_id == R.id.third_id ) {
